@@ -40,27 +40,33 @@ def random_city_name():
         return random.choice(names.readlines()).strip()
 
 
-def random_goods(min, max):
-    number = random.randint(min, max)
+def random_goods(min_goods, max_goods):
+    number = random.randint(min_goods, max_goods)
     with open(pathlib.Path(__file__).with_name("available-goods.txt")) as goods:
         for good in random.sample(goods.readlines(), number):
             yield good.strip()
 
 
-def random_cities(count, size):
-    if size == "major":
-        for i in random_separate_map_points(count, border=5, distance_between=8):
-            yield "add_major_city", i, list(random_goods(0, 1))
-    elif size == "medium":
-        for i in random_separate_map_points(count, border=3, distance_between=7):
-            yield "add_medium_city", i, list(random_goods(0, 2))
-    elif size == "small":
-        for i in random_separate_map_points(count, border=3, distance_between=7):
-            yield "add_small_city", i, list(random_goods(0, 1))
+def only_distant_locations(filtered_class, test_class, distance=2):
+    for filterable in filtered_class:
+        if min(distances(filterable, test_class)) > distance:
+            yield filterable
 
 
 def build_new_map(game):
-    cities = list(random_cities(6, "major")) + list(random_cities(20, "medium")) + list(random_cities(35, "small"))
+    goods_list = list(random_goods(30, 35))
+
+    major = random_separate_map_points(6, border=5, distance_between=8)
+    medium = list(only_distant_locations(random_separate_map_points(30, border=3, distance_between=7), major))
+    small = list(only_distant_locations(random_separate_map_points(45, border=3, distance_between=7), major + medium))
+
+    cities = []
+    for location in major:
+        cities.append(("add_major_city", location, random.sample(goods_list, random.randint(0, 1))))
+    for location in medium:
+        cities.append(("add_medium_city", location, random.sample(goods_list, random.choice([0,0,1,1,1,1,2,2,2]))))
+    for location in small:
+        cities.append(("add_small_city", location, random.sample(goods_list, random.choice([0,0,1,1,1,1,2,2,2]))))
 
     for index, (action, location, goods) in enumerate(cities):
         if "city" in action:
