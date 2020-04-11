@@ -11,7 +11,7 @@ const CrayonChooser = (props) => {
   if (props.crayon !== null){
     return (
       <div style={{display: "inline-block"}}>
-        <button onClick={randomizeCrayon} style={{backgroundColor: props.crayon}}>Switch Crayon</button>
+        <button onClick={randomizeCrayon} style={{backgroundColor: props.crayon}}>Random Crayon</button><textarea onChange={(event) =>{props.setCrayon(event.target.value)}}>{props.crayon}</textarea>
       </div>
     )
   } else {

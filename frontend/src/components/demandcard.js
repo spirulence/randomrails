@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { default as moji } from "./openmoji"
 import { graphql, useStaticQuery } from "gatsby"
 
@@ -28,6 +28,8 @@ const DemandCard = (props) => {
   })
 
   const [demandOne, demandTwo, demandThree] = props.demands;
+  const [carrying, setCarrying] = useState([false, false, false])
+
   return (
     <div style={{ display: "inline-block", margin: "5px", backgroundColor: "#ccc" }}>
       <div style={{ display: "inline-block" }}>
@@ -35,6 +37,7 @@ const DemandCard = (props) => {
         <h4>{goodsNames[demandOne.good].split(":")[0]}</h4>
         <h5>to {demandOne.destination}</h5>
         <h2>$ {demandOne.price}</h2>
+        <button onClick={() => {setCarrying([!carrying[0], carrying[1], carrying[2]])}}>{carrying[0] ? "Carrying" : "Not Carrying"}</button>
         <button onClick={() => {props.removeMe()}}>Complete</button>
       </div>
       <h3 style={{ display: "inline-block", margin: "20px" }}>OR</h3>
@@ -43,6 +46,7 @@ const DemandCard = (props) => {
         <h4>{goodsNames[demandTwo.good].split(":")[0]}</h4>
         <h5>to {demandTwo.destination}</h5>
         <h2>$ {demandTwo.price}</h2>
+        <button onClick={() => {setCarrying([carrying[0], !carrying[1], carrying[2]])}}>{carrying[1] ? "Carrying" : "Not Carrying"}</button>
         <button onClick={() => {props.removeMe()}}>Complete</button>
       </div>
       <h3 style={{ display: "inline-block", margin: "20px" }}>OR</h3>
@@ -51,6 +55,7 @@ const DemandCard = (props) => {
         <h4>{goodsNames[demandThree.good].split(":")[0]}</h4>
         <h5>to {demandThree.destination}</h5>
         <h2>$ {demandThree.price}</h2>
+        <button onClick={() => {setCarrying([carrying[0], carrying[1], !carrying[2]])}}>{carrying[2] ? "Carrying" : "Not Carrying"}</button>
         <button onClick={() => {props.removeMe()}}>Complete</button>
       </div>
     </div>

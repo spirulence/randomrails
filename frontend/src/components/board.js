@@ -57,6 +57,22 @@ const PlayBoard = (props) => {
     }
   }, [needToFetch, gameId])
 
+  useEffect(() => {
+    let interval = setInterval(() => {
+      fetch(`/game/${gameId}/actions/last`).then(
+        (response) => {
+          return response.json()
+        },
+      ).then((data) => {
+        if(data.result.sequenceNumber >= actions.length) {
+          setNeedToFetch(true)
+        }
+      })
+    }, 300)
+    return function() {
+      clearInterval(interval);
+    }
+  })
 
   function reportClick(x, y) {
     if (selected != null && props.crayon != null) {
@@ -270,19 +286,28 @@ const PlayBoard = (props) => {
                                   y={gridToBoardPixelY(x, y)-150}>
       <g transform="scale(2,-2) translate(0,-100)" fill={train}>
         <path
-          d="M 1.000000 1.500000 L 6.000000 6.500000 L 6.000000 16.500000 L 11.000000 16.500000 L 11.000000 11.500000 L 26.000000 11.500000 L 26.000000 16.500000 L 41.000000 16.500000 L 41.000000 1.500000 L 2.325757 1.500000 Z"
-          transform="scale(1.000000,1.000000) translate(4.000000,16.000000)" opacity="1.000000"></path>
+  d="M 1.000000 1.500000 L 6.000000 6.500000 L 6.000000 16.500000 L 11.000000 16.500000 L 11.000000 11.500000 L 26.000000 11.500000 L 26.000000 16.500000 L 41.000000 16.500000 L 41.000000 1.500000 L 2.325757 1.500000 Z"
+  transform="scale(1.000000,1.000000) translate(4.000000,16.000000)" opacity="1.000000"/>
         <path
-          d="M 6.000000 4.000000 C 6.000000 5.380712 4.880712 6.500000 3.500000 6.500000 C 2.119288 6.500000 1.000000 5.380712 1.000000 4.000000 C 1.000000 2.619288 2.119288 1.500000 3.500000 1.500000 C 4.880712 1.500000 6.000000 2.619288 6.000000 4.000000 Z"
-          transform="scale(1.000000,1.000000) translate(9.000000,11.000000)" opacity="1.000000"></path>
+  d="M 6.000000 4.000000 C 6.000000 5.380712 4.880712 6.500000 3.500000 6.500000 C 2.119288 6.500000 1.000000 5.380712 1.000000 4.000000 C 1.000000 2.619288 2.119288 1.500000 3.500000 1.500000 C 4.880712 1.500000 6.000000 2.619288 6.000000 4.000000 Z"
+  transform="scale(1.000000,1.000000) translate(9.000000,11.000000)" opacity="1.000000"/>
         <path
-          d="M 6.000000 4.000000 C 6.000000 5.380712 4.880712 6.500000 3.500000 6.500000 C 2.119288 6.500000 1.000000 5.380712 1.000000 4.000000 C 1.000000 2.619288 2.119288 1.500000 3.500000 1.500000 C 4.880712 1.500000 6.000000 2.619288 6.000000 4.000000 Z"
-          transform="scale(1.000000,1.000000) translate(29.000000,11.000000)" opacity="1.000000"></path>
+  d="M 6.000000 4.000000 C 6.000000 5.380712 4.880712 6.500000 3.500000 6.500000 C 2.119288 6.500000 1.000000 5.380712 1.000000 4.000000 C 1.000000 2.619288 2.119288 1.500000 3.500000 1.500000 C 4.880712 1.500000 6.000000 2.619288 6.000000 4.000000 Z"
+  transform="scale(1.000000,1.000000) translate(29.000000,11.000000)" opacity="1.000000"/>
         <path
-          d="M 6.797190 4.000000 C 6.797190 5.380712 5.677902 6.500000 4.297190 6.500000 C 2.916478 6.500000 1.797190 5.380712 1.797190 4.000000 C 1.797190 2.619288 2.916478 1.500000 4.297190 1.500000 C 5.677902 1.500000 6.797190 2.619288 6.797190 4.000000 Z"
-          transform="scale(1.000000,1.000000) translate(34.000000,11.000000)" opacity="1.000000"></path>
+  d="M 6.797190 4.000000 C 6.797190 5.380712 5.677902 6.500000 4.297190 6.500000 C 2.916478 6.500000 1.797190 5.380712 1.797190 4.000000 C 1.797190 2.619288 2.916478 1.500000 4.297190 1.500000 C 5.677902 1.500000 6.797190 2.619288 6.797190 4.000000 Z"
+  transform="scale(1.000000,1.000000) translate(34.000000,11.000000)" opacity="1.000000"/>
       </g>
     </svg>
+  }
+
+  const rivers = []
+  function addRiver(collection, action, i) {
+    collection.unshift(<g key={i}>
+      <polyline points={action.data.locations.map((l) => {
+  return `${gridToBoardPixelX(l[0])}, ${gridToBoardPixelX(l[1])}`
+}).join(",")} style={{stroke: "#7fecff", strokeWidth: "6px", fill: "none"}}/>
+    </g>)
   }
 
   for (let i = 0; i < actions.length; i++) {
@@ -302,6 +327,8 @@ const PlayBoard = (props) => {
       addTrack(trackSegments, action, i)
     } else if (action.type === "move_train") {
       moveTrain(action, i)
+    }else if (action.type === "add_river") {
+      addRiver(rivers, action, i)
     }
   }
 
@@ -326,7 +353,7 @@ const PlayBoard = (props) => {
       <svg viewBox="0 0 3500 2000"
            style={{
              border: "1px solid black",
-             cursor: props.inputMode === "add_track" ? `url("${data.trackCursor.publicURL}"), pointer` : `url("${data.trainCursor.publicURL}"), default`,
+             cursor: props.inputMode === "add_track" ? `url("${data.trackCursor.publicURL}") 4 2, pointer` : `url("${data.trainCursor.publicURL}") 2 5, default`,
            }}>
         {selectionCircle}
         <g>
@@ -346,6 +373,9 @@ const PlayBoard = (props) => {
         </g>
         <g>
           {mountainIndicators}
+        </g>
+        <g>
+          {rivers}
         </g>
         <g>
           {Object.values(trainIndicators)}
