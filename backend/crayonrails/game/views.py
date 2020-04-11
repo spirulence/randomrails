@@ -33,6 +33,15 @@ def actions(request, game_id):
     })
 
 
+def action_last(request, game_id):
+    query = GameAction.objects.filter(game_id=game_id).order_by('-sequence_number')
+    actions_result = [{"sequenceNumber": a.sequence_number, "type": a.type, "data": json.loads(a.data)} for a in query]
+
+    return JsonResponse({
+        "result": actions_result[0]
+    })
+
+
 def goods_map(game_id):
     goods_to_locations = defaultdict(list)
 
