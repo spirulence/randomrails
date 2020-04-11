@@ -5,6 +5,8 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('new', views.game_new, name='game_new'),
+    path('<int:game_id>/slots', views.game_view_slots, name='game_view_slots'),
+    path('<int:game_id>/join/<str:joincode>', views.game_join, name='game_new'),
     path('<int:game_id>/actions', views.actions, name='actions'),
     path('<int:game_id>/actions/last', views.action_last, name='actions'),
     path('<int:game_id>/demand/random', views.demand_random, name='random_demand'),

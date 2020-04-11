@@ -1,9 +1,10 @@
 import json
 import random
 from random import randint
+import secrets
 import pathlib
 
-from .models import GameAction
+from .models import GameAction, PlayerSlot
 
 MAP_WIDTH = 87
 MAP_HEIGHT = 50
@@ -165,8 +166,14 @@ def build_new_map(game):
     #     sequence_number += 1
 
 
+def random_joincode():
+    return secrets.token_hex(32)
 
 
+def random_color():
+    return f"rgb({random.randint(30, 255)},{random.randint(30, 255)},{random.randint(30, 255)})"
 
 
-
+def build_player_slots(game, creator):
+    PlayerSlot(game_id=game.id, user_id=creator.id, color="#ff2234", role="creator", index=1).save()
+    [PlayerSlot(game_id=game.id, color=random_color(), joincode=random_joincode(), role="guest", index=i+1).save() for i in range(5)]

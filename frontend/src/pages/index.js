@@ -7,6 +7,7 @@ import SEO from "../components/seo"
 import PlayBoard from "../components/board"
 import CrayonChooser from "../components/crayon"
 import DemandCard from "../components/demandcard"
+import HostingTools from "../components/hostingtools"
 
 
 const IndexPage = () => {
@@ -15,6 +16,7 @@ const IndexPage = () => {
   const [money, setMoney] = useState(0)
   const [demandCards, setDemandCards] = useState([])
   const [inputMode, setInputMode] = useState("add_track")
+  const [showHostingTools, setShowHostingTools] = useState(false)
 
   useEffect(() => {
     setGameId(new URLSearchParams(window.location.search).get("game_id"))
@@ -71,6 +73,14 @@ const IndexPage = () => {
     return inputMode === "add_track" ? <button onClick={() => {setInputMode("move_train")}}>Move Train</button> : <button onClick={() => {setInputMode("add_track")}}>Add Track</button>
   }
 
+  function toggleHostingTools() {
+    return <button onClick={() => {setShowHostingTools(!showHostingTools)}}>Toggle Host Tools</button>
+  }
+
+  function hostingTools() {
+    return <HostingTools gameId={gameId} show={showHostingTools}/>
+  }
+
   return (
     <Layout>
       <SEO title="Home"/>
@@ -79,7 +89,9 @@ const IndexPage = () => {
         {adjustMoney()}
         {drawDemand()}
         {moveTrain()}
+        {toggleHostingTools()}
       </div>
+      {hostingTools()}
       {makeDemandCards()}
       <PlayBoard gameId={gameId} crayon={crayon} inputMode={inputMode}/>
     </Layout>

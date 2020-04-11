@@ -1,30 +1,89 @@
 import json
-import math
 import random
+import time
 from collections import defaultdict
 
+from django.contrib.auth import login
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseNotFound, HttpResponseForbidden
 from django.views.decorators.http import require_POST
 
-from .models import Game, GameAction
-from .actions import build_new_map, distances
+from .models import Game, GameAction, PlayerSlot
+from .actions import build_new_map, distances, build_player_slots
+
 
 def index(request):
     return HttpResponse("Hello, World. You're at the game index.")
 
+
 def game_new(request):
-    new_game = Game(title="New Game", password="")
-    new_game.save()
-    new_game.title = f"New Game {new_game.id}"
-    new_game.save()
+    if request.user.is_authenticated and request.user.has_perm('game.add_game'):
+        new_game = Game(title="New Game")
+        new_game.save()
+        new_game.title = f"New Game {new_game.id}"
+        new_game.save()
 
-    build_new_map(new_game)
+        build_new_map(new_game)
+        build_player_slots(new_game, creator=request.user)
 
-    return redirect(f"/static/?game_id={new_game.id}")
+        return redirect(f"/static/?game_id={new_game.id}")
+    else:
+        return HttpResponseForbidden("<h1>Admins only</h1>")
+
+
+def game_join(request, game_id, joincode):
+    if not joincode:
+        return HttpResponseForbidden("<h1>Bad credentials</h1>")
+
+    slot = PlayerSlot.objects.get(game_id=game_id, joincode=joincode)
+
+    if not slot:
+        time.sleep(random.uniform * 3)
+        return HttpResponseForbidden("<h1>Bad credentials</h1>")
+
+    if request.user.is_authenticated:
+        slot.user = request.user
+        slot.save()
+        return redirect(f"/static/?game_id={game_id}")
+
+    if not slot.user:
+        slot.user = User.objects.create_user(f"{slot.id}-{game_id}")
+        slot.save()
+        login(request, slot.user)
+        return redirect(f"/static/?game_id={game_id}")
+
+    time.sleep(random.uniform * 3)
+    return HttpResponseForbidden("<h1>Bad credentials</h1>")
+
+
+def is_creator(request, game_id):
+    return is_player(request, game_id) and PlayerSlot.objects.get(game_id=game_id, user_id=request.user.id).role == "creator"
+
+
+def game_view_slots(request, game_id):
+    if not is_creator(request, game_id):
+        return HttpResponseForbidden()
+
+    slots = []
+    for s in PlayerSlot.objects.filter(game_id=game_id):
+        if s.role != "creator":
+            slots.append({"name": s.screenname, "color": s.color, "joincode": s.joincode})
+
+    return JsonResponse({
+        "result": slots
+    })
+
+
+def is_player(request, game_id):
+    if request.user.is_authenticated and PlayerSlot.objects.get(game_id=game_id, user_id=request.user.id):
+        return True
 
 
 def actions(request, game_id):
+    if not is_player(request, game_id):
+        return HttpResponseForbidden()
+
     query = GameAction.objects.filter(game_id=game_id).order_by('sequence_number')
     actions_result = [{"sequenceNumber": a.sequence_number, "type": a.type, "data": json.loads(a.data)} for a in query]
 
@@ -34,6 +93,9 @@ def actions(request, game_id):
 
 
 def action_last(request, game_id):
+    if not is_player(request, game_id):
+        return HttpResponseForbidden()
+
     query = GameAction.objects.filter(game_id=game_id).order_by('-sequence_number')
     actions_result = [{"sequenceNumber": a.sequence_number, "type": a.type, "data": json.loads(a.data)} for a in query]
 
@@ -108,6 +170,9 @@ def single_demand(game_id):
 
 @require_POST
 def action_move_train(request, game_id, color, x, y):
+    if not is_player(request, game_id):
+        return HttpResponseForbidden()
+
     existing = GameAction.objects.filter(game_id=game_id).order_by('-sequence_number')[:1]
     last_sequence_number = existing[0].sequence_number
     game_action = GameAction(
@@ -123,8 +188,12 @@ def action_move_train(request, game_id, color, x, y):
         "result": "success"
     })
 
+
 @require_POST
 def action_add_track(request, game_id, color, x1, y1, x2, y2):
+    if not is_player(request, game_id):
+        return HttpResponseForbidden()
+
     existing = GameAction.objects.filter(game_id=game_id).order_by('-sequence_number')[:1]
     last_sequence_number = existing[0].sequence_number
     game_action = GameAction(
