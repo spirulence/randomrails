@@ -24,6 +24,8 @@ const PlayBoard = (props) => {
     }
   `)
 
+
+
   const goodsIcons = {}
   data.goods.edges.forEach((edge) => {
     goodsIcons[edge.node.name + ".svg"] = edge.node.publicURL
@@ -40,49 +42,25 @@ const PlayBoard = (props) => {
   const rows = 50
 
   const gameId = props.gameId
-  const [actions, setActions] = useState([])
-  const [needToFetch, setNeedToFetch] = useState(true)
+  const actions = props.actions
+  const setNeedToFetch = props.setNeedToFetch
+  const players = props.players
   const [selected, setSelected] = useState(null)
 
-  useEffect(() => {
-    if (needToFetch) {
-      fetch(`/game/${gameId}/actions`).then(
-        (response) => {
-          return response.json()
-        },
-      ).then((data) => {
-        setActions(data.result)
-        setNeedToFetch(false)
-      })
-    }
-  }, [needToFetch, gameId])
-
-  useEffect(() => {
-    let interval = setInterval(() => {
-      fetch(`/game/${gameId}/actions/last`).then(
-        (response) => {
-          return response.json()
-        },
-      ).then((data) => {
-        if(data.result.sequenceNumber >= actions.length) {
-          setNeedToFetch(true)
-        }
-      })
-    }, 300)
-    return function() {
-      clearInterval(interval);
-    }
+  const playerColors = []
+  players.forEach((player) => {
+    playerColors[player.playerNumber] = player.color
   })
 
   function reportClick(x, y) {
-    if (selected != null && props.crayon != null) {
+    if (selected != null) {
       if (props.inputMode === "move_train") {
-        fetch(`/game/${gameId}/actions/move-train/${props.crayon}/${x}/${y}`, { method: "POST" }).then(() => {
+        fetch(`/game/${gameId}/actions/move-train/${x}/${y}`, { method: "POST" }).then(() => {
           setNeedToFetch(true)
         })
       } else if (props.inputMode === "add_track") {
         if (areAdjacent(selected, [x, y])) {
-          fetch(`/game/${gameId}/actions/add/track/${props.crayon}/${x}/${y}/to/${selected[0]}/${selected[1]}`, { method: "POST" }).then(() => {
+          fetch(`/game/${gameId}/actions/add/track/${x}/${y}/to/${selected[0]}/${selected[1]}`, { method: "POST" }).then(() => {
             setNeedToFetch(true)
           })
         }
@@ -173,8 +151,8 @@ const PlayBoard = (props) => {
       L ${gridToBoardPixelBoth(x - 1, y + 1)}
       L ${gridToBoardPixelBoth(x - 1, y)}`}/>
           <text style={{ font: "30px sans-serif" }}
-                x={gridToBoardPixelX(x - 1, y + 1)}
-                y={gridToBoardPixelY(x - 1, y + 1) - 5}>{name}</text>
+                x={gridToBoardPixelX(x - 1, y + 2)}
+                y={gridToBoardPixelY(x - 1, y + 2) - 5}>{name}</text>
           {goods}
         </g>,
       )
@@ -189,8 +167,8 @@ const PlayBoard = (props) => {
       L ${gridToBoardPixelBoth(x, y + 1)}
       L ${gridToBoardPixelBoth(x - 1, y)}`}/>
           <text style={{ font: "30px sans-serif" }}
-                x={gridToBoardPixelX(x - 1, y + 1)}
-                y={gridToBoardPixelY(x - 1, y + 1) - 5}>{name}</text>
+                x={gridToBoardPixelX(x - 1, y + 2)}
+                y={gridToBoardPixelY(x - 1, y + 2) - 5}>{name}</text>
           {goods}
         </g>,
       )
@@ -258,7 +236,7 @@ const PlayBoard = (props) => {
       key={index}
       x1={gridToBoardPixelX(x1, y1)} y1={gridToBoardPixelY(x1, y1)}
       x2={gridToBoardPixelX(x2, y2)} y2={gridToBoardPixelY(x2, y2)}
-      style={{ stroke: action.data.color, strokeWidth: 4 }}
+      style={{ stroke: playerColors[action.data.playerNumber], strokeWidth: 4 }}
     />)
   }
 
@@ -279,7 +257,7 @@ const PlayBoard = (props) => {
   }
 
   function moveTrain(action, i) {
-    const train = action.data.color
+    const train = playerColors[action.data.playerNumber]
     const [x, y] = action.data.to
 
     trainIndicators[train] = <svg key={i} x={gridToBoardPixelX(x, y)-60}
@@ -369,6 +347,9 @@ const PlayBoard = (props) => {
           {smallCityIndicators}
         </g>
         <g>
+          {Object.values(trainIndicators)}
+        </g>
+        <g>
           {points}
         </g>
         <g>
@@ -376,9 +357,6 @@ const PlayBoard = (props) => {
         </g>
         <g>
           {rivers}
-        </g>
-        <g>
-          {Object.values(trainIndicators)}
         </g>
         <g>
           {clickPoints}

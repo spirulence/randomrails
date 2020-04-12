@@ -94,7 +94,7 @@ def build_new_map(game):
     sequence_number = 0
 
     # generate all cities
-    goods_list = list(random_goods(30, 35))
+    goods_list = list(random_goods(25, 30))
 
     major = random_separate_map_points(6, border=5, distance_between=8)
     medium = list(only_distant_locations(random_separate_map_points(30, border=3, distance_between=7), major))
@@ -105,10 +105,10 @@ def build_new_map(game):
         cities.append(("add_major_city", location, random.sample(goods_list, random.choice([0, 0, 1]))))
     for location in medium:
         cities.append(
-            ("add_medium_city", location, random.sample(goods_list, random.choice([0, 0, 1, 1, 1, 1, 2, 2, 2]))))
+            ("add_medium_city", location, random.sample(goods_list, random.choice([0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 3, 3]))))
     for location in small:
         cities.append(
-            ("add_small_city", location, random.sample(goods_list, random.choice([0, 0, 1, 1, 1, 1, 2, 2, 2]))))
+            ("add_small_city", location, random.sample(goods_list, random.choice([0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 3, 3]))))
 
     city_names = random_city_names(len(cities))
 
@@ -167,13 +167,13 @@ def build_new_map(game):
 
 
 def random_joincode():
-    return secrets.token_hex(32)
-
-
-def random_color():
-    return f"rgb({random.randint(30, 255)},{random.randint(30, 255)},{random.randint(30, 255)})"
+    return secrets.token_urlsafe(32)
 
 
 def build_player_slots(game, creator):
-    PlayerSlot(game_id=game.id, user_id=creator.id, color="#ff2234", role="creator", index=1).save()
-    [PlayerSlot(game_id=game.id, color=random_color(), joincode=random_joincode(), role="guest", index=i+1).save() for i in range(5)]
+    options = [
+        "#00ffcc", "#0B8A00", "#ffbf00", "#00bfff", "#0000ff", "#bf00ff", "#9900cc", "#cc0099", "#660066",
+    ]
+
+    PlayerSlot(game_id=game.id, user_id=creator.id, color=options[0], role="creator", index=1).save()
+    [PlayerSlot(game_id=game.id, color=options[i+1], joincode=random_joincode(), role="guest", index=i+2).save() for i in range(5)]

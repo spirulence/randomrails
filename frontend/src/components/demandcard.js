@@ -27,37 +27,24 @@ const DemandCard = (props) => {
     goodsNames[emoji.hexcode + ".svg"] = emoji.annotation
   })
 
-  const [demandOne, demandTwo, demandThree] = props.demands;
-  const [carrying, setCarrying] = useState([false, false, false])
+  function demandList(demand){
+    let isFillable = props.card.id in props.fillable && props.fillable[props.card.id].good === demand.good && props.fillable[props.card.id].city === demand.destination
+    return (<div style={{ display: "inline-block" }}>
+      <img width={80} src={goodsIcons[demand.good]}/>
+      <h4>{goodsNames[demand.good].split(":")[0]}</h4>
+      <h5>to {demand.destination}</h5>
+      <h2>$ {demand.price}</h2>
+      { isFillable ? <button onClick={() => {props.fillAction(demand.good)}}>Complete</button> : <></>  }
+    </div>)
+  }
 
   return (
     <div style={{ display: "inline-block", margin: "5px", backgroundColor: "#ccc" }}>
-      <div style={{ display: "inline-block" }}>
-        <img width={80} src={goodsIcons[demandOne.good]}/>
-        <h4>{goodsNames[demandOne.good].split(":")[0]}</h4>
-        <h5>to {demandOne.destination}</h5>
-        <h2>$ {demandOne.price}</h2>
-        <button onClick={() => {setCarrying([!carrying[0], carrying[1], carrying[2]])}}>{carrying[0] ? "Carrying" : "Not Carrying"}</button>
-        <button onClick={() => {props.removeMe()}}>Complete</button>
-      </div>
+      {demandList(props.card.demands[0])}
       <h3 style={{ display: "inline-block", margin: "20px" }}>OR</h3>
-      <div style={{ display: "inline-block" }}>
-        <img width={80} src={goodsIcons[demandTwo.good]}/>
-        <h4>{goodsNames[demandTwo.good].split(":")[0]}</h4>
-        <h5>to {demandTwo.destination}</h5>
-        <h2>$ {demandTwo.price}</h2>
-        <button onClick={() => {setCarrying([carrying[0], !carrying[1], carrying[2]])}}>{carrying[1] ? "Carrying" : "Not Carrying"}</button>
-        <button onClick={() => {props.removeMe()}}>Complete</button>
-      </div>
+      {demandList(props.card.demands[1])}
       <h3 style={{ display: "inline-block", margin: "20px" }}>OR</h3>
-      <div style={{ display: "inline-block" }}>
-        <img width={80} src={goodsIcons[demandThree.good]}/>
-        <h4>{goodsNames[demandThree.good].split(":")[0]}</h4>
-        <h5>to {demandThree.destination}</h5>
-        <h2>$ {demandThree.price}</h2>
-        <button onClick={() => {setCarrying([carrying[0], carrying[1], !carrying[2]])}}>{carrying[2] ? "Carrying" : "Not Carrying"}</button>
-        <button onClick={() => {props.removeMe()}}>Complete</button>
-      </div>
+      {demandList(props.card.demands[2])}
     </div>
   )
 }

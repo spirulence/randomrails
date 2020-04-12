@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 class Game(models.Model):
     title = models.CharField(max_length=160)
 
+    # def __str
+
 
 class PlayerSlot(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
