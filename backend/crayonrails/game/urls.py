@@ -3,15 +3,15 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
     path('new', views.game_new, name='game_new'),
+    path('<int:game_id>/join/<str:joincode>', views.game_join, name='game_new'),
+
     path('<int:game_id>/slots', views.slots_view_all, name='game_slots_view_all'),
     path('<int:game_id>/slots/joincodes', views.slots_view_joincodes, name='game_slots_view_joincodes'),
     path('<int:game_id>/slot/mine/', views.slot_view_mine, name='game_slot_view_mine'),
-    path('<int:game_id>/slot/<int:player_number>/', views.slot_view, name='game_slot_view'),
     path('<int:game_id>/slot/<int:player_number>/set-color/<str:color>', views.slot_set_color,
          name='game_slot_set_color'),
-    path('<int:game_id>/join/<str:joincode>', views.game_join, name='game_new'),
+
     path('<int:game_id>/actions', views.actions, name='actions'),
     path('<int:game_id>/actions/last', views.action_last, name='actions_last'),
     path('<int:game_id>/actions/demand/draw', views.action_demand_draw, name='action_draw_demand'),

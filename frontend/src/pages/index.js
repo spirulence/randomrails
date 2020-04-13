@@ -188,23 +188,7 @@ const IndexPage = () => {
 
   function adjustMoney() {
     return <div style={{ display: "inline-block", marginLeft: "5px" }}>
-      {/*<button onClick={() => {*/}
-      {/*  setMoney(money - 10)*/}
-      {/*}} style={{ display: "inline-block" }}>-$10M*/}
-      {/*</button>*/}
-      {/*<button onClick={() => {*/}
-      {/*  setMoney(money - 1)*/}
-      {/*}} style={{ display: "inline-block" }}>-$1M*/}
-      {/*</button>*/}
       <h3 style={{ display: "inline-block" }}>${money}M</h3>
-      {/*<button onClick={() => {*/}
-      {/*  setMoney(money + 1)*/}
-      {/*}} style={{ display: "inline-block" }}>+$1M*/}
-      {/*</button>*/}
-      {/*<button onClick={() => {*/}
-      {/*  setMoney(money + 10)*/}
-      {/*}} style={{ display: "inline-block" }}>+$10M*/}
-      {/*</button>*/}
     </div>
   }
 

@@ -1,10 +1,9 @@
 import json
-import random
-from random import randint
-import secrets
 import pathlib
+import random
 
-from .models import GameAction, PlayerSlot
+from ..utils.distance import distances
+from ...models import GameAction
 
 MAP_WIDTH = 87
 MAP_HEIGHT = 50
@@ -12,19 +11,9 @@ MAP_HEIGHT = 50
 
 def random_map_point(border=0):
     return [
-        randint(border, MAP_WIDTH - border),
-        randint(border, MAP_HEIGHT - border)
+        random.randint(border, MAP_WIDTH - border),
+        random.randint(border, MAP_HEIGHT - border)
     ]
-
-
-def manhattan_distance(location1, location2):
-    [[x1, y1], [x2, y2]] = location1, location2
-    return max(abs(x1 - x2), abs(y1 - y2))
-
-
-def distances(location, other_locations):
-    for other in other_locations:
-        yield manhattan_distance(location, other)
 
 
 def random_separate_map_points(target_number, border=0, distance_between=1):
@@ -140,40 +129,3 @@ def build_new_map(game):
             }))
         game_action.save()
         sequence_number += 1
-
-    # generate rivers
-    # river_seeds = list(set(tuple(random_map_point(border=-1)) for i in range(50)))
-    #
-    # rivers = []
-    #
-    # for points in (random.sample(river_seeds, 3) for i in range(3)):
-    #     points.sort(key=lambda point: (point[1], point[0]))
-    #     keypoints = []
-    #     for i1, point in enumerate(points[:-1]):
-    #         point2 = points[i1 + 1]
-    #         keypoints.extend(list(directed_random_walk(point, point2))[:-1])
-    #     rivers.append(keypoints)
-    #
-    # for river in rivers:
-    #     game_action = GameAction(
-    #         game_id=game.id,
-    #         sequence_number=sequence_number,
-    #         type="add_river",
-    #         data=json.dumps({
-    #             "locations": river
-    #         }))
-    #     game_action.save()
-    #     sequence_number += 1
-
-
-def random_joincode():
-    return secrets.token_urlsafe(32)
-
-
-def build_player_slots(game, creator):
-    options = [
-        "#00ffcc", "#0B8A00", "#ffbf00", "#00bfff", "#0000ff", "#bf00ff", "#9900cc", "#cc0099", "#660066",
-    ]
-
-    PlayerSlot(game_id=game.id, user_id=creator.id, color=options[0], role="creator", index=1).save()
-    [PlayerSlot(game_id=game.id, color=options[i+1], joincode=random_joincode(), role="guest", index=i+2).save() for i in range(5)]

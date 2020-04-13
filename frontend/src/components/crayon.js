@@ -4,7 +4,7 @@ const CrayonChooser = (props) => {
   const [isSelectingColor, setIsSelectingColor] = useState(false);
 
   const options = [
-    "#ff4000", "#0B8A00", "#ffbf00", "#00bfff", "#0000ff", "#bf00ff", "#9900cc", "#cc0099", "#660066", "#00ffcc"
+    "#00ffcc", "#0B8A00", "#ffbf00", "#00bfff", "#0000ff", "#bf00ff", "#9900cc", "#cc0099", "#660066",
   ]
 
   const optionSquares = []
