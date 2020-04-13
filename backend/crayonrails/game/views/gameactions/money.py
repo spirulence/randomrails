@@ -9,9 +9,15 @@ from ...models import GameAction, PlayerSlot
 
 
 @require_POST
-def action_adjust_money(request, game_id, player, amount):
+def action_adjust_money(request, game_id, player, sign, amount):
     if not is_player(request, game_id):
         return HttpResponseForbidden()
+
+    if sign not in ("plus", "minus"):
+        return HttpResponseBadRequest("invalid sign supplied")
+
+    if sign == "minus":
+        amount = -amount
 
     request_user_slot = PlayerSlot.objects.get(game_id=game_id, user_id=request.user.id)
     slot_to_adjust = PlayerSlot.objects.get(game_id=game_id, index=player)

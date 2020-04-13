@@ -114,7 +114,7 @@ const PlayBoard = (props) => {
                              r={radius}/>)
       clickPoints.unshift(<circle key={`${i}-${j}-2`} onClick={() => {
         reportClick(i, j)
-      }} opacity={0} cx={gridToBoardPixelX(i, j)} cy={gridToBoardPixelY(i, j)} r={spaceBetween * .4}/>)
+      }} opacity={0} cx={gridToBoardPixelX(i, j)} cy={gridToBoardPixelY(i, j)} r={spaceBetween * .85}/>)
     }
   }
 

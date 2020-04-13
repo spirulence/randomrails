@@ -15,7 +15,7 @@ urlpatterns = [
     path('<int:game_id>/actions', views.actions, name='actions'),
     path('<int:game_id>/actions/last', views.action_last, name='actions_last'),
     path('<int:game_id>/actions/demand/draw', views.action_demand_draw, name='action_draw_demand'),
-    path('<int:game_id>/actions/adjust-money/player/<int:player>/add/<int:add_amount>', views.action_adjust_money,
+    path('<int:game_id>/actions/adjust-money/player/<int:player>/<str:sign>/<int:amount>', views.action_adjust_money,
          name='action_add_money'),
     path('<int:game_id>/actions/add/track/<int:x1>/<int:y1>/to/<int:x2>/<int:y2>', views.action_add_track,
          name='action_add_track'),
