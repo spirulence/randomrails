@@ -1,0 +1,5096 @@
+{
+  "result": [
+    {
+      "sequenceNumber": 0,
+      "type": "add_major_city",
+      "data": {
+        "name": "Wichita",
+        "location": [
+          77,
+          28
+        ],
+        "available_goods": []
+      }
+    },
+    {
+      "sequenceNumber": 1,
+      "type": "add_major_city",
+      "data": {
+        "name": "Gilbertsville",
+        "location": [
+          54,
+          32
+        ],
+        "available_goods": [
+          "1F3E2.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 2,
+      "type": "add_major_city",
+      "data": {
+        "name": "Lovilia",
+        "location": [
+          40,
+          18
+        ],
+        "available_goods": [
+          "1F37F.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 3,
+      "type": "add_major_city",
+      "data": {
+        "name": "Spray",
+        "location": [
+          78,
+          12
+        ],
+        "available_goods": [
+          "1F46B-1F3FC.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 4,
+      "type": "add_medium_city",
+      "data": {
+        "name": "Thornville",
+        "location": [
+          25,
+          32
+        ],
+        "available_goods": [
+          "1F9DA-200D-2640-FE0F.svg",
+          "1F64E-1F3FE.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 5,
+      "type": "add_medium_city",
+      "data": {
+        "name": "Paxtonia",
+        "location": [
+          61,
+          19
+        ],
+        "available_goods": [
+          "1F64B-1F3FB-200D-2640-FE0F.svg",
+          "1F64E-1F3FE.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 6,
+      "type": "add_medium_city",
+      "data": {
+        "name": "Wright",
+        "location": [
+          75,
+          21
+        ],
+        "available_goods": [
+          "1F64B-1F3FB-200D-2640-FE0F.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 7,
+      "type": "add_medium_city",
+      "data": {
+        "name": "Pine Air",
+        "location": [
+          70,
+          47
+        ],
+        "available_goods": [
+          "1F64E-1F3FE.svg",
+          "1F4CF.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 8,
+      "type": "add_medium_city",
+      "data": {
+        "name": "Sequoia Crest",
+        "location": [
+          27,
+          45
+        ],
+        "available_goods": [
+          "1F191.svg",
+          "1F9E9.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 9,
+      "type": "add_medium_city",
+      "data": {
+        "name": "Lanesboro",
+        "location": [
+          52,
+          8
+        ],
+        "available_goods": [
+          "1F37F.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 10,
+      "type": "add_medium_city",
+      "data": {
+        "name": "Humptulips",
+        "location": [
+          18,
+          11
+        ],
+        "available_goods": [
+          "E080.svg",
+          "1F64E-1F3FE.svg",
+          "1F469-1F3FD-200D-1F91D-200D-1F469-1F3FC.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 11,
+      "type": "add_medium_city",
+      "data": {
+        "name": "Markleeville",
+        "location": [
+          29,
+          21
+        ],
+        "available_goods": [
+          "1F4CF.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 12,
+      "type": "add_medium_city",
+      "data": {
+        "name": "La Harpe",
+        "location": [
+          49,
+          37
+        ],
+        "available_goods": [
+          "1F191.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 13,
+      "type": "add_medium_city",
+      "data": {
+        "name": "Sheep Springs",
+        "location": [
+          37,
+          32
+        ],
+        "available_goods": [
+          "1F191.svg",
+          "1F468-1F3FB-200D-1F373.svg",
+          "1F9D8-1F3FC.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 14,
+      "type": "add_medium_city",
+      "data": {
+        "name": "McLemoresville",
+        "location": [
+          5,
+          25
+        ],
+        "available_goods": []
+      }
+    },
+    {
+      "sequenceNumber": 15,
+      "type": "add_medium_city",
+      "data": {
+        "name": "Antwerp",
+        "location": [
+          52,
+          20
+        ],
+        "available_goods": [
+          "1F9D1-1F3FB-200D-1F3A8.svg",
+          "1F201.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 16,
+      "type": "add_medium_city",
+      "data": {
+        "name": "Choteau",
+        "location": [
+          14,
+          32
+        ],
+        "available_goods": [
+          "1F486-200D-2640-FE0F.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 17,
+      "type": "add_medium_city",
+      "data": {
+        "name": "Harvey",
+        "location": [
+          38,
+          6
+        ],
+        "available_goods": [
+          "1F468-1F3FB-200D-1F373.svg",
+          "1F640.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 18,
+      "type": "add_small_city",
+      "data": {
+        "name": "Melbourne Village",
+        "location": [
+          29,
+          9
+        ],
+        "available_goods": [
+          "1F486-200D-2640-FE0F.svg",
+          "1F9D7-1F3FE.svg",
+          "1F64B-1F3FB-200D-2640-FE0F.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 19,
+      "type": "add_small_city",
+      "data": {
+        "name": "Acworth",
+        "location": [
+          53,
+          27
+        ],
+        "available_goods": [
+          "1F468-1F3FB-200D-1F373.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 20,
+      "type": "add_small_city",
+      "data": {
+        "name": "Ravenden",
+        "location": [
+          57,
+          42
+        ],
+        "available_goods": [
+          "1F9DA-200D-2640-FE0F.svg",
+          "1F9D7-1F3FE.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 21,
+      "type": "add_small_city",
+      "data": {
+        "name": "Venetian Village",
+        "location": [
+          55,
+          6
+        ],
+        "available_goods": [
+          "1F9D8-1F3FC-200D-2642-FE0F.svg",
+          "1F487-1F3FD-200D-2640-FE0F.svg",
+          "1F9D1-1F3FC-200D-1F3ED.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 22,
+      "type": "add_small_city",
+      "data": {
+        "name": "Larwill",
+        "location": [
+          8,
+          8
+        ],
+        "available_goods": [
+          "1F9D1-1F3FB-200D-1F3A8.svg",
+          "1F64B-1F3FB-200D-2640-FE0F.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 23,
+      "type": "add_small_city",
+      "data": {
+        "name": "Whiteland",
+        "location": [
+          48,
+          9
+        ],
+        "available_goods": [
+          "1F64B-1F3FB-200D-2640-FE0F.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 24,
+      "type": "add_small_city",
+      "data": {
+        "name": "Piney View",
+        "location": [
+          64,
+          37
+        ],
+        "available_goods": [
+          "1F9D8-1F3FC-200D-2642-FE0F.svg",
+          "1F46B-1F3FC.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 25,
+      "type": "add_small_city",
+      "data": {
+        "name": "Tahlequah",
+        "location": [
+          59,
+          13
+        ],
+        "available_goods": [
+          "1F201.svg",
+          "1F469-1F3FD-200D-1F91D-200D-1F469-1F3FC.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 26,
+      "type": "add_small_city",
+      "data": {
+        "name": "Glennallen",
+        "location": [
+          32,
+          38
+        ],
+        "available_goods": [
+          "1F64B-1F3FB-200D-2640-FE0F.svg",
+          "1F64E-1F3FE.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 27,
+      "type": "add_small_city",
+      "data": {
+        "name": "Mildred",
+        "location": [
+          78,
+          47
+        ],
+        "available_goods": [
+          "1F191.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 28,
+      "type": "add_small_city",
+      "data": {
+        "name": "Markesan",
+        "location": [
+          82,
+          32
+        ],
+        "available_goods": [
+          "E080.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 29,
+      "type": "add_small_city",
+      "data": {
+        "name": "Delaware Water Gap",
+        "location": [
+          35,
+          47
+        ],
+        "available_goods": [
+          "1F486-200D-2640-FE0F.svg",
+          "1F9D1-1F3FC-200D-1F3ED.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 30,
+      "type": "add_small_city",
+      "data": {
+        "name": "Wells",
+        "location": [
+          33,
+          24
+        ],
+        "available_goods": [
+          "1F37F.svg",
+          "1F9D8-1F3FC.svg",
+          "1F9E9.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 31,
+      "type": "add_small_city",
+      "data": {
+        "name": "Pampa",
+        "location": [
+          47,
+          46
+        ],
+        "available_goods": [
+          "1F487-1F3FD-200D-2640-FE0F.svg",
+          "1F486-200D-2640-FE0F.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 32,
+      "type": "add_small_city",
+      "data": {
+        "name": "Hughestown",
+        "location": [
+          79,
+          16
+        ],
+        "available_goods": [
+          "1F486-200D-2640-FE0F.svg",
+          "1F468-1F3FB-200D-1F373.svg",
+          "1F46B-1F3FC.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 33,
+      "type": "add_small_city",
+      "data": {
+        "name": "Dolgeville",
+        "location": [
+          17,
+          42
+        ],
+        "available_goods": [
+          "E097.svg",
+          "1F640.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 34,
+      "type": "add_small_city",
+      "data": {
+        "name": "Lake Crystal",
+        "location": [
+          15,
+          7
+        ],
+        "available_goods": [
+          "1F9D8-1F3FC.svg",
+          "1F64B-1F3FB-200D-2640-FE0F.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 35,
+      "type": "add_small_city",
+      "data": {
+        "name": "Tooele",
+        "location": [
+          24,
+          3
+        ],
+        "available_goods": [
+          "1F9DA-200D-2640-FE0F.svg",
+          "1F487-1F3FD-200D-2640-FE0F.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 36,
+      "type": "add_small_city",
+      "data": {
+        "name": "Overgaard",
+        "location": [
+          4,
+          37
+        ],
+        "available_goods": [
+          "1F9D8-1F3FC.svg",
+          "1F3E2.svg",
+          "1F468-1F3FB-200D-1F373.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 37,
+      "type": "add_small_city",
+      "data": {
+        "name": "Smyrna",
+        "location": [
+          67,
+          25
+        ],
+        "available_goods": [
+          "1F468-1F3FB-200D-1F373.svg"
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 38,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          69,
+          50
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 39,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          39,
+          21
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 40,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          63,
+          31
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 41,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          70,
+          21
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 42,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          16,
+          44
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 43,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          60,
+          22
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 44,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          56,
+          37
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 45,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          32,
+          9
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 46,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          81,
+          2
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 47,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          71,
+          13
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 48,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          73,
+          4
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 49,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          38,
+          13
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 50,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          34,
+          6
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 51,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          21,
+          12
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 52,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          6,
+          23
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 53,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          42,
+          44
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 54,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          43,
+          45
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 55,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          46,
+          38
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 56,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          54,
+          15
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 57,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          37,
+          14
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 58,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          3,
+          12
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 59,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          85,
+          8
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 60,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          68,
+          50
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 61,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          84,
+          40
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 62,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          65,
+          8
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 63,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          66,
+          1
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 64,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          42,
+          10
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 65,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          1,
+          11
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 66,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          12,
+          39
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 67,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          11,
+          31
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 68,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          61,
+          41
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 69,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          16,
+          33
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 70,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          71,
+          39
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 71,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          83,
+          4
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 72,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          29,
+          33
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 73,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          67,
+          17
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 74,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          64,
+          30
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 75,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          72,
+          31
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 76,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          20,
+          33
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 77,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          45,
+          29
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 78,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          63,
+          47
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 79,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          79,
+          6
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 80,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          61,
+          28
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 81,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          7,
+          2
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 82,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          10,
+          19
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 83,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          62,
+          5
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 84,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          71,
+          29
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 85,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          82,
+          38
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 86,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          72,
+          29
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 87,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          7,
+          21
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 88,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          64,
+          2
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 89,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          10,
+          31
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 90,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          66,
+          48
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 91,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          37,
+          21
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 92,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          14,
+          37
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 93,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          55,
+          38
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 94,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          67,
+          49
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 95,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          71,
+          19
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 96,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          44,
+          37
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 97,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          79,
+          0
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 98,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          71,
+          32
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 99,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          75,
+          2
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 100,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          40,
+          44
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 101,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          41,
+          9
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 102,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          33,
+          5
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 103,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          73,
+          41
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 104,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          67,
+          3
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 105,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          55,
+          28
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 106,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          62,
+          45
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 107,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          70,
+          21
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 108,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          47,
+          37
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 109,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          42,
+          44
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 110,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          73,
+          31
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 111,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          31,
+          34
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 112,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          85,
+          41
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 113,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          51,
+          25
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 114,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          67,
+          6
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 115,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          65,
+          45
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 116,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          70,
+          11
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 117,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          68,
+          50
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 118,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          47,
+          27
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 119,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          81,
+          2
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 120,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          85,
+          8
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 121,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          72,
+          38
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 122,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          35,
+          7
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 123,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          1,
+          14
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 124,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          15,
+          34
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 125,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          64,
+          47
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 126,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          68,
+          17
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 127,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          69,
+          18
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 128,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          45,
+          47
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 129,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          80,
+          4
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 130,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          65,
+          2
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 131,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          45,
+          37
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 132,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          29,
+          34
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 133,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          41,
+          8
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 134,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          10,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 135,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          7,
+          0
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 136,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          86,
+          41
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 137,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          59,
+          24
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 138,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          70,
+          33
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 139,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          40,
+          10
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 140,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          83,
+          8
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 141,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          75,
+          4
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 142,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          41,
+          11
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 143,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          33,
+          7
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 144,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          66,
+          40
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 145,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          63,
+          7
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 146,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          69,
+          50
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 147,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          21,
+          10
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 148,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          40,
+          23
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 149,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          67,
+          18
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 150,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          70,
+          23
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 151,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          54,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 152,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          85,
+          7
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 153,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          43,
+          10
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 154,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          43,
+          46
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 155,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          36,
+          7
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 156,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          55,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 157,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          69,
+          40
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 158,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          40,
+          13
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 159,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          13,
+          37
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 160,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          65,
+          47
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 161,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          69,
+          17
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 162,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          45,
+          46
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 163,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          58,
+          21
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 164,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          4,
+          22
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 165,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          32,
+          4
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 166,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          61,
+          3
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 167,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          61,
+          39
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 168,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          73,
+          13
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 169,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          23,
+          12
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 170,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          45,
+          36
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 171,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          64,
+          49
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 172,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          69,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 173,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          87,
+          10
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 174,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          72,
+          30
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 175,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          80,
+          6
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 176,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          64,
+          3
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 177,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          56,
+          35
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 178,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          38,
+          23
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 179,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          71,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 180,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          82,
+          42
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 181,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          75,
+          3
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 182,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          84,
+          8
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 183,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          34,
+          7
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 184,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          63,
+          6
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 185,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          40,
+          22
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 186,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          41,
+          23
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 187,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 188,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          47,
+          38
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 189,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          71,
+          23
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 190,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          48,
+          39
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 191,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          85,
+          42
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 192,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          3,
+          9
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 193,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          21,
+          35
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 194,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          51,
+          26
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 195,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          67,
+          7
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 196,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          70,
+          12
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 197,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          21,
+          12
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 198,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          60,
+          3
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 199,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          66,
+          19
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 200,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          62,
+          26
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 201,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          85,
+          9
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 202,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          2,
+          11
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 203,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          66,
+          32
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 204,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          78,
+          6
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 205,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          73,
+          12
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 206,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          11,
+          37
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 207,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          54,
+          35
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 208,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          66,
+          9
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 209,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          12,
+          38
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 210,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          64,
+          48
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 211,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          39,
+          32
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 212,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          80,
+          5
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 213,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          58,
+          23
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 214,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          81,
+          6
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 215,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          27,
+          35
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 216,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          38,
+          22
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 217,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          61,
+          5
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 218,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          62,
+          6
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 219,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          72,
+          19
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 220,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          45,
+          38
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 221,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          68,
+          21
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 222,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          82,
+          41
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 223,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          4,
+          14
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 224,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          64,
+          28
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 225,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          38,
+          12
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 226,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          7,
+          24
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 227,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          18,
+          33
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 228,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          41,
+          22
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 229,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          11,
+          30
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 230,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          44,
+          27
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 231,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          64,
+          5
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 232,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          45,
+          28
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 233,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          65,
+          6
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 234,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          56,
+          37
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 235,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          83,
+          9
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 236,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          21,
+          34
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 237,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          41,
+          12
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 238,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          71,
+          12
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 239,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          63,
+          8
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 240,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          62,
+          48
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 241,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          64,
+          8
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 242,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          22,
+          11
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 243,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          47,
+          40
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 244,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          2,
+          10
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 245,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          43,
+          47
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 246,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          70,
+          37
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 247,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          71,
+          2
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 248,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          6,
+          21
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 249,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          62,
+          38
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 250,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          66,
+          8
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 251,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          70,
+          14
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 252,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          39,
+          31
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 253,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          27,
+          34
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 254,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          62,
+          28
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 255,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          54,
+          24
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 256,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          36,
+          11
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 257,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          5,
+          23
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 258,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          62,
+          5
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 259,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          73,
+          14
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 260,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          54,
+          37
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 261,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          5,
+          0
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 262,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          6,
+          1
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 263,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          83,
+          41
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 264,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          54,
+          14
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 265,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          84,
+          42
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 266,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          65,
+          28
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 267,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          80,
+          7
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 268,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          18,
+          32
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 269,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          8,
+          24
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 270,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          81,
+          8
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 271,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          19,
+          33
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 272,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          11,
+          29
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 273,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          12,
+          30
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 274,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          57,
+          37
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 275,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          69,
+          11
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 276,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          61,
+          7
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 277,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 278,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          44,
+          39
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 279,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          65,
+          18
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 280,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          34,
+          8
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 281,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          64,
+          30
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 282,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          38,
+          14
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 283,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          18,
+          35
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 284,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          72,
+          11
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 285,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          45,
+          30
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 286,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          7,
+          3
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 287,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          8,
+          4
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 288,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          56,
+          16
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 289,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          3,
+          10
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 290,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          79,
+          5
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 291,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          71,
+          37
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 292,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          63,
+          33
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 293,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          60,
+          27
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 294,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          34,
+          11
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 295,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          37,
+          16
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 296,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          63,
+          10
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 297,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          21,
+          13
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 298,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          60,
+          4
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 299,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          10,
+          39
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 300,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          82,
+          0
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 301,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          44,
+          9
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 302,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          51,
+          17
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 303,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          79,
+          8
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 304,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          66,
+          10
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 305,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          13,
+          40
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 306,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          54,
+          13
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 307,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          61,
+          29
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 308,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          73,
+          39
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 309,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          20,
+          33
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 310,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          66,
+          0
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 311,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          35,
+          12
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 312,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          13,
+          30
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 313,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          16,
+          35
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 314,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          57,
+          36
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 315,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          36,
+          13
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 316,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          62,
+          7
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 317,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          20,
+          10
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 318,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          68,
+          22
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 319,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          5,
+          2
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 320,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          54,
+          16
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 321,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          41,
+          46
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 322,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          12,
+          19
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 323,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          31,
+          32
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 324,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          65,
+          30
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 325,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          7,
+          25
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 326,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          18,
+          34
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 327,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          19,
+          35
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 328,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          11,
+          31
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 329,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          39,
+          13
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 330,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          65,
+          7
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 331,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          56,
+          38
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 332,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          14,
+          41
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 333,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          46,
+          30
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 334,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          69,
+          13
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 335,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          72,
+          23
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 336,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          42,
+          9
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 337,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          22,
+          35
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 338,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          60,
+          39
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 339,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          72,
+          13
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 340,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          64,
+          9
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 341,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          53,
+          13
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 342,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          44,
+          44
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 343,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          70,
+          38
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 344,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          17,
+          32
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 345,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          71,
+          39
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 346,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          52,
+          25
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 347,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          67,
+          10
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 348,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          13,
+          39
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 349,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          70,
+          15
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 350,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          59,
+          42
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 351,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          82,
+          2
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 352,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          74,
+          3
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 353,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          44,
+          11
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 354,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          36,
+          12
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 355,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          9,
+          31
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 356,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          62,
+          42
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 357,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          69,
+          22
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 358,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          65,
+          29
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 359,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          55,
+          15
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 360,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          5,
+          14
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 361,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          9,
+          21
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 362,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          62,
+          32
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 363,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          12,
+          31
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 364,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          46,
+          29
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 365,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          69,
+          12
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 366,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          18,
+          46
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 367,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          5,
+          4
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 368,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          11,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 369,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          84,
+          10
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 370,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          22,
+          34
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 371,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          1,
+          11
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 372,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          38,
+          15
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 373,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          11,
+          33
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 374,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          45,
+          31
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 375,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          15,
+          44
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 376,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          19,
+          14
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 377,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          71,
+          38
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 378,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          8,
+          18
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 379,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          72,
+          2
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 380,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          70,
+          50
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 381,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          17,
+          44
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 382,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          63,
+          47
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 383,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          72,
+          15
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 384,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          29,
+          31
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 385,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          3,
+          14
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 386,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          70,
+          40
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 387,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          10,
+          30
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 388,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          13,
+          41
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 389,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          59,
+          21
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 390,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          28,
+          33
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 391,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          62,
+          31
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 392,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          66,
+          1
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 393,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          32,
+          8
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 394,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          67,
+          2
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 395,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          55,
+          27
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 396,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          42,
+          43
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 397,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          54,
+          17
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 398,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          31,
+          33
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 399,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          1,
+          10
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 400,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          65,
+          31
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 401,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          69,
+          37
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 402,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          39,
+          14
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 403,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          31,
+          10
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 404,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          32,
+          11
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 405,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          9,
+          0
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 406,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          19,
+          13
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 407,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          53,
+          24
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 408,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          72,
+          37
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 409,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          35,
+          6
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 410,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          68,
+          3
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 411,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          1,
+          13
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 412,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          60,
+          40
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 413,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          37,
+          29
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 414,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          68,
+          16
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 415,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          44,
+          45
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 416,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          3,
+          13
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 417,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          70,
+          39
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 418,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          59,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 419,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          70,
+          29
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 420,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          28,
+          32
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 421,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          71,
+          30
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 422,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          63,
+          26
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 423,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          82,
+          39
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 424,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          83,
+          4
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 425,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          29,
+          33
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 426,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          52,
+          16
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 427,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          10,
+          19
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 428,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          34,
+          4
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 429,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          55,
+          26
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 430,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          9,
+          32
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 431,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          10,
+          32
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 432,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          43,
+          29
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 433,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          55,
+          39
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 434,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          6,
+          3
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 435,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          85,
+          3
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 436,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          43,
+          42
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 437,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          70,
+          32
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 438,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          66,
+          3
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 439,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          32,
+          10
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 440,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          66,
+          39
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 441,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          36,
+          16
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 442,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          68,
+          48
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 443,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          69,
+          49
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 444,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          73,
+          32
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 445,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          85,
+          6
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 446,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          43,
+          9
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 447,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          35,
+          5
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 448,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          65,
+          33
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 449,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          69,
+          39
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 450,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          65,
+          46
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 451,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          69,
+          16
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 452,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          15,
+          45
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 453,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          80,
+          2
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 454,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          60,
+          29
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 455,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          65,
+          0
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 456,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          15,
+          35
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 457,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          23,
+          11
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 458,
+      "type": "add_mountain",
+      "data": {
+        "location": [
+          68,
+          18
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 459,
+      "type": "adjust_money",
+      "data": {
+        "playerNumber": 1,
+        "amount": 10
+      }
+    },
+    {
+      "sequenceNumber": 460,
+      "type": "adjust_money",
+      "data": {
+        "playerNumber": 1,
+        "amount": -1
+      }
+    },
+    {
+      "sequenceNumber": 461,
+      "type": "add_track",
+      "data": {
+        "playerNumber": 1,
+        "from": [
+          42,
+          20
+        ],
+        "to": [
+          41,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 462,
+      "type": "adjust_money",
+      "data": {
+        "playerNumber": 1,
+        "amount": -1
+      }
+    },
+    {
+      "sequenceNumber": 463,
+      "type": "add_track",
+      "data": {
+        "playerNumber": 1,
+        "from": [
+          43,
+          20
+        ],
+        "to": [
+          42,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 464,
+      "type": "adjust_money",
+      "data": {
+        "playerNumber": 1,
+        "amount": -1
+      }
+    },
+    {
+      "sequenceNumber": 465,
+      "type": "add_track",
+      "data": {
+        "playerNumber": 1,
+        "from": [
+          44,
+          20
+        ],
+        "to": [
+          43,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 466,
+      "type": "adjust_money",
+      "data": {
+        "playerNumber": 1,
+        "amount": -1
+      }
+    },
+    {
+      "sequenceNumber": 467,
+      "type": "add_track",
+      "data": {
+        "playerNumber": 1,
+        "from": [
+          45,
+          20
+        ],
+        "to": [
+          44,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 468,
+      "type": "adjust_money",
+      "data": {
+        "playerNumber": 1,
+        "amount": -1
+      }
+    },
+    {
+      "sequenceNumber": 469,
+      "type": "add_track",
+      "data": {
+        "playerNumber": 1,
+        "from": [
+          46,
+          20
+        ],
+        "to": [
+          45,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 470,
+      "type": "adjust_money",
+      "data": {
+        "playerNumber": 1,
+        "amount": -1
+      }
+    },
+    {
+      "sequenceNumber": 471,
+      "type": "add_track",
+      "data": {
+        "playerNumber": 1,
+        "from": [
+          47,
+          20
+        ],
+        "to": [
+          46,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 472,
+      "type": "adjust_money",
+      "data": {
+        "playerNumber": 1,
+        "amount": -1
+      }
+    },
+    {
+      "sequenceNumber": 473,
+      "type": "add_track",
+      "data": {
+        "playerNumber": 1,
+        "from": [
+          48,
+          20
+        ],
+        "to": [
+          47,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 474,
+      "type": "adjust_money",
+      "data": {
+        "playerNumber": 1,
+        "amount": -1
+      }
+    },
+    {
+      "sequenceNumber": 475,
+      "type": "add_track",
+      "data": {
+        "playerNumber": 1,
+        "from": [
+          49,
+          20
+        ],
+        "to": [
+          48,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 476,
+      "type": "adjust_money",
+      "data": {
+        "playerNumber": 1,
+        "amount": -1
+      }
+    },
+    {
+      "sequenceNumber": 477,
+      "type": "add_track",
+      "data": {
+        "playerNumber": 1,
+        "from": [
+          50,
+          20
+        ],
+        "to": [
+          49,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 478,
+      "type": "adjust_money",
+      "data": {
+        "playerNumber": 1,
+        "amount": -1
+      }
+    },
+    {
+      "sequenceNumber": 479,
+      "type": "add_track",
+      "data": {
+        "playerNumber": 1,
+        "from": [
+          51,
+          20
+        ],
+        "to": [
+          50,
+          20
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 480,
+      "type": "demand_draw",
+      "data": {
+        "playerNumber": 1,
+        "demandCardId": 480,
+        "demands": [
+          {
+            "good": "1F3E2.svg",
+            "destination": "Lovilia",
+            "price": 18
+          },
+          {
+            "good": "1F9D8-1F3FC.svg",
+            "destination": "Glennallen",
+            "price": 5
+          },
+          {
+            "good": "1F9DA-200D-2640-FE0F.svg",
+            "destination": "Markleeville",
+            "price": 15
+          }
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 481,
+      "type": "demand_draw",
+      "data": {
+        "playerNumber": 1,
+        "demandCardId": 481,
+        "demands": [
+          {
+            "good": "1F468-1F3FB-200D-1F373.svg",
+            "destination": "Larwill",
+            "price": 30
+          },
+          {
+            "good": "1F640.svg",
+            "destination": "Acworth",
+            "price": 17
+          },
+          {
+            "good": "1F468-1F3FB-200D-1F373.svg",
+            "destination": "Paxtonia",
+            "price": 8
+          }
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 482,
+      "type": "demand_draw",
+      "data": {
+        "playerNumber": 1,
+        "demandCardId": 482,
+        "demands": [
+          {
+            "good": "1F9D7-1F3FE.svg",
+            "destination": "Paxtonia",
+            "price": 21
+          },
+          {
+            "good": "1F191.svg",
+            "destination": "Wells",
+            "price": 10
+          },
+          {
+            "good": "1F64E-1F3FE.svg",
+            "destination": "Mildred",
+            "price": 5
+          }
+        ]
+      }
+    },
+    {
+      "sequenceNumber": 483,
+      "type": "move_train",
+      "data": {
+        "playerNumber": 1,
+        "to": [
+          40,
+          18
+        ]
+      }
+    }
+  ]
+}

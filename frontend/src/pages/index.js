@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react"
-import { graphql, Link, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import base64 from "react-native-base64"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
 import PlayBoard from "../components/board"
 import CrayonChooser from "../components/crayon"
 import DemandCard from "../components/demandcard"
 import HostingTools from "../components/hostingtools"
 import { default as moji } from "../components/openmoji"
+import * as gamestate from "../gamestate"
 
 
 const IndexPage = () => {
@@ -122,15 +121,12 @@ const IndexPage = () => {
 
   const demandCards = demandsDrawn.filter((card) => !demandsCompletedOrDiscarded[card.id])
 
-  const myTrainActions = actions.filter((action) => (action.type === "move_train" && action.data.playerNumber === player.playerNumber))
-
-
   const goodsCarriedObject = {}
 
   actions.filter(
     (action) => (action.type === "good_pickup" && action.data.playerNumber === player.playerNumber),
   ).forEach((action) => {
-    const good = action.data.good;
+    const good = action.data.good
     goodsCarriedObject[good] = goodsCarriedObject[good] || 0
     goodsCarriedObject[good] += 1
   })
@@ -138,38 +134,28 @@ const IndexPage = () => {
   actions.filter(
     (action) => (action.type === "good_delivered" && action.data.playerNumber === player.playerNumber),
   ).forEach((action) => {
-    const good = action.data.good;
+    const good = action.data.good
     goodsCarriedObject[good] -= 1
   })
 
   const goodsCarried = []
 
   Object.keys(goodsCarriedObject).forEach((good) => {
-    if (goodsCarriedObject[good] > 0){
+    if (goodsCarriedObject[good] > 0) {
       for (let i = 0; i < goodsCarriedObject[good]; i++) {
         goodsCarried.unshift(good)
       }
     }
   })
 
-  // const goodsDelivered = actions.filter(
-  //   (action) => (action.type === "good_delivered" && action.data.playerNumber === player.playerNumber),
-  // ).map((action) => (action.data.pickupId))
-  //
-  // const goodsCarried = actions.filter(
-  //   (action) => (action.type === "good_pickup" && action.data.playerNumber === player.playerNumber),
-  // ).filter(action => !goodsDelivered.includes(action.sequenceNumber)).map((action) => (action.data.good))
-
-
-  let myTrainLocation = null
+  let myTrainLocation = gamestate.trainLocations(actions)[player.playerNumber]
   let goodsAtLocation = []
   let demandsFillableAtLocation = {}
-  let dumpable = false;
+  let dumpable = false
 
-  if (myTrainActions.length > 0) {
-    myTrainLocation = myTrainActions[myTrainActions.length - 1].data.to
+  if (myTrainLocation !== undefined) {
     const citiesAtLocation = actions.filter((action) => action.data.location && action.data.location[0] === myTrainLocation[0] && action.data.location[1] === myTrainLocation[1])
-    if(citiesAtLocation.length > 0){
+    if (citiesAtLocation.length > 0) {
       dumpable = true
     }
     goodsAtLocation = citiesAtLocation.flatMap((cityAction) => {
@@ -179,7 +165,7 @@ const IndexPage = () => {
       demandCard.demands.forEach((demand) => {
         citiesAtLocation.filter((city) => city.data.name === demand.destination).forEach((city) => {
           if (goodsCarried.includes(demand.good)) {
-            demandsFillableAtLocation[demandCard.id] = {good: demand.good, city: demand.destination}
+            demandsFillableAtLocation[demandCard.id] = { good: demand.good, city: demand.destination }
           }
         })
       })
@@ -204,7 +190,7 @@ const IndexPage = () => {
   }
 
   function makeDemandCards() {
-    return <div style={{backgroundColor: "#ddd", padding: "5px"}}>
+    return <div style={{ backgroundColor: "#ddd", padding: "5px" }}>
       <h4>Demand Cards</h4>
       {demandCards.map((demandCard, index) => {
         return <DemandCard key={index} card={demandCard} fillable={demandsFillableAtLocation} fillAction={(good) => {
@@ -218,11 +204,16 @@ const IndexPage = () => {
   }
 
   function moveTrain() {
-    return inputMode === "add_track" ? <button onClick={() => {
-      setInputMode("move_train")
-    }}>Move Train</button> : <button onClick={() => {
-      setInputMode("add_track")
-    }}>Add Track</button>
+    return <div style={{display: "inline", marginRight: "5px"}}>
+      <button style={{display: "inline"}} disabled={inputMode === "move_train"} onClick={() => {
+        setInputMode("move_train")
+      }}>Move Train
+      </button>
+      <button style={{display: "inline"}} disabled={inputMode === "add_track"} onClick={() => {
+        setInputMode("add_track")
+      }}>Add Track
+      </button>
+    </div>
   }
 
   function toggleHostingTools() {
@@ -245,18 +236,19 @@ const IndexPage = () => {
       }}>Pickup
       </button>
     </div>)
-    return goods.length === 0 ? <></> : <div style={{ backgroundColor: "#ddd", display: "inline-block", margin: "5px" }}>
-      <div>
-        {goods}
+    return goods.length === 0 ? <></> :
+      <div style={{ backgroundColor: "#ddd", display: "inline-block", margin: "5px" }}>
+        <div>
+          {goods}
+        </div>
       </div>
-    </div>
   }
 
   function trainCargo() {
     const goodsIndicators = goodsCarried.map((good, index) => {
-      return <div key={index} style={{ display: "inline-block", margin: "3px"}}>
+      return <div key={index} style={{ display: "inline-block", margin: "3px" }}>
         <img style={{ display: "inline-block", margin: "0" }} width={60} src={goodsIcons[good]}/>
-        {dumpable ? <button style={{display: "block"}} onClick={() => {
+        {dumpable ? <button style={{ display: "block" }} onClick={() => {
           fetch(`/game/${gameId}/actions/good/dump/${good}/`, { method: "POST" }).then(() => {
             setNeedToFetch(true)
           })
@@ -264,14 +256,16 @@ const IndexPage = () => {
         }>Dump</button> : <></>}
       </div>
     })
-    if(goodsIndicators.length === 0){
+    if (goodsIndicators.length === 0) {
       return <></>
     }
 
     return <div style={{ backgroundColor: "#ddd", display: "inline-block", margin: "5px 5px 5px 0" }}>
-      <h4 style={{textAlign: "center",
+      <h4 style={{
+        textAlign: "center",
         marginTop: "5px",
-        marginBottom: "3px"}}>Cargo</h4>
+        marginBottom: "3px",
+      }}>Cargo</h4>
       <div>
         {goodsIndicators}
       </div>
@@ -282,9 +276,9 @@ const IndexPage = () => {
     <Layout>
       <PlayBoard actions={actions} setNeedToFetch={setNeedToFetch} gameId={gameId} players={players}
                  inputMode={inputMode}>
-        <div style={{zIndex: 1, position: "relative"}}>
+        <div style={{ zIndex: 1, position: "relative" }}>
           {hostingTools()}
-          <div style={{position: "fixed", bottom: "0%", backgroundColor: "#ddd", padding: "5px"}}>
+          <div style={{ position: "fixed", bottom: "0%", backgroundColor: "#ddd", padding: "5px" }}>
             <CrayonChooser crayon={player.color} setCrayon={(color) => {
               fetch(`/game/${gameId}/slot/${player.playerNumber}/set-color/${base64.encode(color)}/`, { method: "POST" }).then(
                 (response) => {
@@ -297,7 +291,7 @@ const IndexPage = () => {
             {moveTrain()}
             {toggleHostingTools()}
           </div>
-          <div style={{position: "fixed", bottom: "60px"}}>
+          <div style={{ position: "fixed", bottom: "60px" }}>
             {trainCargo()}
             {pickupGoods()}
             {makeDemandCards()}

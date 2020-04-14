@@ -35,8 +35,8 @@ const HostingTools = (props) => {
   }
 
   const slotHtml = slots.map((slot, index) => {
-    return <div key={index}>
-      <p>
+    return <div key={index} >
+      <p style={{marginBottom: "3px"}}>
         <div style={{
           display: "inline-block",
           backgroundColor: slot.color,
@@ -50,7 +50,7 @@ const HostingTools = (props) => {
   })
 
   return (
-    <div style={{ display: props.show ? "block" : "none" }}>
+    <div style={{ display: props.show ? "block" : "none", backgroundColor: "#ddd" }}>
       <h5>Hosting Tools</h5>
       {slotHtml}
     </div>
