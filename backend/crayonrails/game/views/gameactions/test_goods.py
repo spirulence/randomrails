@@ -248,3 +248,26 @@ class GoodDeliver(TestCase):
         self.assertListEqual(get_current_goods_carried(self.game.id, self.slot.index)["stuff"], [])
 
         self.assertEqual(get_demand_cards_holding(self.game.id, self.slot.index), set())
+
+    def test_player_on_city_more_than_one_demand_same_good_same_card(self):
+        request = self.factory.post("")
+
+        request.user = self.player
+
+        actiontypes.good_pickup(self.game.id, sequence_number=4, player_number=self.slot.index, good="stuff").save()
+        actiontypes.demand_draw(self.game.id, sequence_number=5, player_number=self.slot.index,
+                                demands=[{"good": "stuff", "destination": "City Two", "price": 5}, {"good": "stuff", "destination": "City One", "price": 5}]).save()
+        actiontypes.move_train(self.game.id, sequence_number=6, player_number=self.slot.index, location=[2, 3]).save()
+
+        self.assertEqual(get_demand_cards_holding(self.game.id, self.slot.index), {5})
+        self.assertEqual(get_money_for_player(self.game.id, self.slot.index), 0)
+        self.assertListEqual(get_current_goods_carried(self.game.id, self.slot.index)["stuff"], [4])
+
+        response = action_good_deliver(request, self.game.id, "stuff", 5)
+        self.assertEqual(response.status_code, 200)
+
+        self.assertEqual(get_money_for_player(self.game.id, self.slot.index), 5)
+
+        self.assertListEqual(get_current_goods_carried(self.game.id, self.slot.index)["stuff"], [])
+
+        self.assertEqual(get_demand_cards_holding(self.game.id, self.slot.index), set())

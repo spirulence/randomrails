@@ -188,7 +188,7 @@ const IndexPage = () => {
 
   function adjustMoney() {
     return <div style={{ display: "inline-block", marginLeft: "5px" }}>
-      <h3 style={{ display: "inline-block" }}>${money}M</h3>
+      <h3 style={{ display: "inline-block", marginBottom: "5px" }}>${money}M</h3>
     </div>
   }
 
@@ -204,8 +204,8 @@ const IndexPage = () => {
   }
 
   function makeDemandCards() {
-    return <div>
-      <h3>Demand Cards</h3>
+    return <div style={{backgroundColor: "#ddd", padding: "5px"}}>
+      <h4>Demand Cards</h4>
       {demandCards.map((demandCard, index) => {
         return <DemandCard key={index} card={demandCard} fillable={demandsFillableAtLocation} fillAction={(good) => {
           fetch(`/game/${gameId}/actions/good/deliver/${good}/card/${demandCard.id}`, { method: "POST" }).then(() => {
@@ -237,8 +237,7 @@ const IndexPage = () => {
 
   function pickupGoods() {
     const goods = goodsAtLocation.map((value, index) => <div key={index} style={{ display: "inline-block" }}>
-      <h4>{goodsNames[value].split(":")[0]}</h4>
-      <img style={{ display: "block" }} width={80} src={goodsIcons[value]}/>
+      <img style={{ display: "block", margin: "0 auto 0" }} width={40} src={goodsIcons[value]}/>
       <button style={{ display: "block" }} onClick={() => {
         fetch(`/game/${gameId}/actions/good/pickup/${value}`, { method: "POST" }).then(() => {
           setNeedToFetch(true)
@@ -247,7 +246,6 @@ const IndexPage = () => {
       </button>
     </div>)
     return goods.length === 0 ? <></> : <div style={{ backgroundColor: "#ddd", display: "inline-block", margin: "5px" }}>
-      <h4>Pickups</h4>
       <div>
         {goods}
       </div>
@@ -256,10 +254,9 @@ const IndexPage = () => {
 
   function trainCargo() {
     const goodsIndicators = goodsCarried.map((good, index) => {
-      return <div key={index} style={{ display: "inline-block", margin: "5px" }}>
-        <h4>{goodsNames[good].split(":")[0]}</h4>
-        <img style={{ display: "inline-block" }} width={80} src={goodsIcons[good]}/>
-        {dumpable ? <button onClick={() => {
+      return <div key={index} style={{ display: "inline-block", margin: "3px"}}>
+        <img style={{ display: "inline-block", margin: "0" }} width={60} src={goodsIcons[good]}/>
+        {dumpable ? <button style={{display: "block"}} onClick={() => {
           fetch(`/game/${gameId}/actions/good/dump/${good}`, { method: "POST" }).then(() => {
             setNeedToFetch(true)
           })
@@ -267,8 +264,14 @@ const IndexPage = () => {
         }>Dump</button> : <></>}
       </div>
     })
-    return <div style={{ backgroundColor: "#ddd", display: "inline-block", margin: "5px" }}>
-      <h4>Cargo</h4>
+    if(goodsIndicators.length === 0){
+      return <></>
+    }
+
+    return <div style={{ backgroundColor: "#ddd", display: "inline-block", margin: "5px 5px 5px 0" }}>
+      <h4 style={{textAlign: "center",
+        marginTop: "5px",
+        marginBottom: "3px"}}>Cargo</h4>
       <div>
         {goodsIndicators}
       </div>
@@ -277,28 +280,30 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <SEO title="Home"/>
-      {hostingTools()}
-      {makeDemandCards()}
-      <div>
-        <CrayonChooser crayon={player.color} setCrayon={(color) => {
-          fetch(`/game/${gameId}/slot/${player.playerNumber}/set-color/${base64.encode(color)}`, { method: "POST" }).then(
-            (response) => {
-              setNeedToFetchPlayers(true)
-            },
-          )
-        }}/>
-        {adjustMoney()}
-        {drawDemand()}
-        {moveTrain()}
-        {toggleHostingTools()}
-      </div>
-      <div>
-        {trainCargo()}
-        {pickupGoods()}
-      </div>
       <PlayBoard actions={actions} setNeedToFetch={setNeedToFetch} gameId={gameId} players={players}
-                 inputMode={inputMode}/>
+                 inputMode={inputMode}>
+        <div style={{zIndex: 1, position: "relative"}}>
+          {hostingTools()}
+          <div style={{position: "fixed", bottom: "0%", backgroundColor: "#ddd", padding: "5px"}}>
+            <CrayonChooser crayon={player.color} setCrayon={(color) => {
+              fetch(`/game/${gameId}/slot/${player.playerNumber}/set-color/${base64.encode(color)}`, { method: "POST" }).then(
+                (response) => {
+                  setNeedToFetchPlayers(true)
+                },
+              )
+            }}/>
+            {adjustMoney()}
+            {drawDemand()}
+            {moveTrain()}
+            {toggleHostingTools()}
+          </div>
+          <div style={{position: "fixed", bottom: "60px"}}>
+            {trainCargo()}
+            {pickupGoods()}
+            {makeDemandCards()}
+          </div>
+        </div>
+      </PlayBoard>
     </Layout>
   )
 }

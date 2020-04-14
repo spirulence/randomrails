@@ -26,5 +26,7 @@ urlpatterns = [
     path('<int:game_id>/actions/good/deliver/<str:good_id>/card/<int:card_id>', views.action_good_deliver,
          name='action_deliver_good'),
     path('<int:game_id>/actions/good/dump/<str:good_id>', views.action_good_dump,
-         name='action_dump_good')
+         name='action_dump_good'),
+
+    path('<int:game_id>/map/render', views.map_render)
 ]

@@ -25,7 +25,6 @@ const PlayBoard = (props) => {
   `)
 
 
-
   const goodsIcons = {}
   data.goods.edges.forEach((edge) => {
     goodsIcons[edge.node.name + ".svg"] = edge.node.publicURL
@@ -46,13 +45,35 @@ const PlayBoard = (props) => {
   const setNeedToFetch = props.setNeedToFetch
   const players = props.players
   const [selected, setSelected] = useState(null)
+  const [zoom, setZoom] = useState(1.0)
+  const [containerSize, setContainerSize] = useState(null)
+  const [viewPoint, setViewPoint] = useState([3500 / 2, 2000 / 2])
+  const [mouseDown, setMouseDown] = useState(false);
+  const [mouseDownStartingPoint, setMouseDownStartingPoint] = useState({});
 
   const playerColors = []
   players.forEach((player) => {
     playerColors[player.playerNumber] = player.color
   })
 
-  function reportClick(x, y) {
+  function reportClick(clientX, clientY) {
+    const baseImage = document.getElementById("base-image").getBoundingClientRect();
+
+    const boardLeftToViewLeft = baseImage.x;
+    const boardTopToViewTop = baseImage.y;
+
+    const boardUnscaledX = clientX - boardLeftToViewLeft;
+    const boardUnscaledY = clientY - boardTopToViewTop;
+
+    const boardX = boardUnscaledX / zoom;
+    const boardY = boardUnscaledY / zoom;
+
+    const y = Math.round((boardY / spaceBetween) - 0.5);
+    let x = Math.round((boardX / spaceBetween) - 0.5);
+    if (y % 2 === 1) {
+      x = Math.round((boardX / spaceBetween) - 1.0);
+    }
+
     if (selected != null) {
       if (props.inputMode === "move_train") {
         fetch(`/game/${gameId}/actions/move-train/${x}/${y}`, { method: "POST" }).then(() => {
@@ -106,18 +127,6 @@ const PlayBoard = (props) => {
     return y * spaceBetween + spaceBetween / 2
   }
 
-  const points = []
-  const clickPoints = []
-  for (let i = 0; i < columns; i++) {
-    for (let j = 0; j < rows; j++) {
-      points.unshift(<circle key={`${i}-${j}`} cx={gridToBoardPixelX(i, j)} cy={gridToBoardPixelY(i, j)}
-                             r={radius}/>)
-      clickPoints.unshift(<circle key={`${i}-${j}-2`} onClick={() => {
-        reportClick(i, j)
-      }} opacity={0} cx={gridToBoardPixelX(i, j)} cy={gridToBoardPixelY(i, j)} r={spaceBetween * .85}/>)
-    }
-  }
-
   const selectionCircle = selected !== null ? <g>
     <circle cx={gridToBoardPixelX(selected[0], selected[1])} cy={gridToBoardPixelY(selected[0], selected[1])}
             r={radius * 3} stroke="grey" fill="none"/>
@@ -150,7 +159,7 @@ const PlayBoard = (props) => {
       L ${gridToBoardPixelBoth(x, y + 1)}
       L ${gridToBoardPixelBoth(x - 1, y + 1)}
       L ${gridToBoardPixelBoth(x - 1, y)}`}/>
-          <text style={{ font: "30px sans-serif" }}
+          <text style={{ font: "30px sans-serif", userSelect: "none" }}
                 x={gridToBoardPixelX(x - 1, y + 2)}
                 y={gridToBoardPixelY(x - 1, y + 2) - 5}>{name}</text>
           {goods}
@@ -166,7 +175,7 @@ const PlayBoard = (props) => {
       L ${gridToBoardPixelBoth(x + 1, y + 1)}
       L ${gridToBoardPixelBoth(x, y + 1)}
       L ${gridToBoardPixelBoth(x - 1, y)}`}/>
-          <text style={{ font: "30px sans-serif" }}
+          <text style={{ font: "30px sans-serif", userSelect: "none" }}
                 x={gridToBoardPixelX(x - 1, y + 2)}
                 y={gridToBoardPixelY(x - 1, y + 2) - 5}>{name}</text>
           {goods}
@@ -190,7 +199,7 @@ const PlayBoard = (props) => {
         <rect x={gridToBoardPixelX(x, y) - spaceBetween * .3}
               y={gridToBoardPixelY(x, y) - spaceBetween * .3} width={spaceBetween * .6} height={spaceBetween * .6}
               style={{ fill: "rgb(255,0,0)" }}/>
-        <text style={{ font: "30px sans-serif" }}
+        <text style={{ font: "30px sans-serif", userSelect: "none" }}
               x={gridToBoardPixelX(x - 2, y + 1)}
               y={gridToBoardPixelY(x - 2, y + 1) - 5}>{name}</text>
         {goods}
@@ -212,7 +221,7 @@ const PlayBoard = (props) => {
         <circle cx={gridToBoardPixelX(x, y)}
                 cy={gridToBoardPixelY(x, y)} r={spaceBetween * .3}
                 style={{ fill: "rgb(255,0,0)" }}/>
-        <text style={{ font: "30px sans-serif" }}
+        <text style={{ font: "30px sans-serif", userSelect: "none" }}
               x={gridToBoardPixelX(x - 2, y + 1)}
               y={gridToBoardPixelY(x - 2, y + 1) - 5}>{name}</text>
         {goods}
@@ -260,31 +269,32 @@ const PlayBoard = (props) => {
     const train = playerColors[action.data.playerNumber]
     const [x, y] = action.data.to
 
-    trainIndicators[train] = <svg key={i} x={gridToBoardPixelX(x, y)-60}
-                                  y={gridToBoardPixelY(x, y)-150}>
+    trainIndicators[train] = <svg key={i} x={gridToBoardPixelX(x, y) - 60}
+                                  y={gridToBoardPixelY(x, y) - 150}>
       <g transform="scale(2,-2) translate(0,-100)" fill={train}>
         <path
-  d="M 1.000000 1.500000 L 6.000000 6.500000 L 6.000000 16.500000 L 11.000000 16.500000 L 11.000000 11.500000 L 26.000000 11.500000 L 26.000000 16.500000 L 41.000000 16.500000 L 41.000000 1.500000 L 2.325757 1.500000 Z"
-  transform="scale(1.000000,1.000000) translate(4.000000,16.000000)" opacity="1.000000"/>
+          d="M 1.000000 1.500000 L 6.000000 6.500000 L 6.000000 16.500000 L 11.000000 16.500000 L 11.000000 11.500000 L 26.000000 11.500000 L 26.000000 16.500000 L 41.000000 16.500000 L 41.000000 1.500000 L 2.325757 1.500000 Z"
+          transform="scale(1.000000,1.000000) translate(4.000000,16.000000)" opacity="1.000000"/>
         <path
-  d="M 6.000000 4.000000 C 6.000000 5.380712 4.880712 6.500000 3.500000 6.500000 C 2.119288 6.500000 1.000000 5.380712 1.000000 4.000000 C 1.000000 2.619288 2.119288 1.500000 3.500000 1.500000 C 4.880712 1.500000 6.000000 2.619288 6.000000 4.000000 Z"
-  transform="scale(1.000000,1.000000) translate(9.000000,11.000000)" opacity="1.000000"/>
+          d="M 6.000000 4.000000 C 6.000000 5.380712 4.880712 6.500000 3.500000 6.500000 C 2.119288 6.500000 1.000000 5.380712 1.000000 4.000000 C 1.000000 2.619288 2.119288 1.500000 3.500000 1.500000 C 4.880712 1.500000 6.000000 2.619288 6.000000 4.000000 Z"
+          transform="scale(1.000000,1.000000) translate(9.000000,11.000000)" opacity="1.000000"/>
         <path
-  d="M 6.000000 4.000000 C 6.000000 5.380712 4.880712 6.500000 3.500000 6.500000 C 2.119288 6.500000 1.000000 5.380712 1.000000 4.000000 C 1.000000 2.619288 2.119288 1.500000 3.500000 1.500000 C 4.880712 1.500000 6.000000 2.619288 6.000000 4.000000 Z"
-  transform="scale(1.000000,1.000000) translate(29.000000,11.000000)" opacity="1.000000"/>
+          d="M 6.000000 4.000000 C 6.000000 5.380712 4.880712 6.500000 3.500000 6.500000 C 2.119288 6.500000 1.000000 5.380712 1.000000 4.000000 C 1.000000 2.619288 2.119288 1.500000 3.500000 1.500000 C 4.880712 1.500000 6.000000 2.619288 6.000000 4.000000 Z"
+          transform="scale(1.000000,1.000000) translate(29.000000,11.000000)" opacity="1.000000"/>
         <path
-  d="M 6.797190 4.000000 C 6.797190 5.380712 5.677902 6.500000 4.297190 6.500000 C 2.916478 6.500000 1.797190 5.380712 1.797190 4.000000 C 1.797190 2.619288 2.916478 1.500000 4.297190 1.500000 C 5.677902 1.500000 6.797190 2.619288 6.797190 4.000000 Z"
-  transform="scale(1.000000,1.000000) translate(34.000000,11.000000)" opacity="1.000000"/>
+          d="M 6.797190 4.000000 C 6.797190 5.380712 5.677902 6.500000 4.297190 6.500000 C 2.916478 6.500000 1.797190 5.380712 1.797190 4.000000 C 1.797190 2.619288 2.916478 1.500000 4.297190 1.500000 C 5.677902 1.500000 6.797190 2.619288 6.797190 4.000000 Z"
+          transform="scale(1.000000,1.000000) translate(34.000000,11.000000)" opacity="1.000000"/>
       </g>
     </svg>
   }
 
   const rivers = []
+
   function addRiver(collection, action, i) {
     collection.unshift(<g key={i}>
       <polyline points={action.data.locations.map((l) => {
-  return `${gridToBoardPixelX(l[0])}, ${gridToBoardPixelX(l[1])}`
-}).join(",")} style={{stroke: "#7fecff", strokeWidth: "6px", fill: "none"}}/>
+        return `${gridToBoardPixelX(l[0])}, ${gridToBoardPixelX(l[1])}`
+      }).join(",")} style={{ stroke: "#7fecff", strokeWidth: "6px", fill: "none" }}/>
     </g>)
   }
 
@@ -292,47 +302,83 @@ const PlayBoard = (props) => {
     const action = actions[i]
     if (action.type === "add_major_city") {
       addMajorCity(majorCityIndicators, action, i)
-      addToGoodsCheatSheet(action, i)
     } else if (action.type === "add_medium_city") {
       addMediumCity(mediumCityIndicators, action, i)
-      addToGoodsCheatSheet(action, i)
     } else if (action.type === "add_small_city") {
       addSmallCity(smallCityIndicators, action, i)
-      addToGoodsCheatSheet(action, i)
     } else if (action.type === "add_mountain") {
       addMountain(mountainIndicators, action, i)
     } else if (action.type === "add_track") {
       addTrack(trackSegments, action, i)
     } else if (action.type === "move_train") {
       moveTrain(action, i)
-    }else if (action.type === "add_river") {
+    } else if (action.type === "add_river") {
       addRiver(rivers, action, i)
     }
   }
 
-  const availableLoadsList = []
-  Object.keys(availableLoads).sort().forEach((load) => {
-    availableLoadsList.push(<div style={{ display: "inline-block", margin: "20px" }} key={load}>
-      <h4>{load}</h4>
-      <p>{availableLoads[load].join(", ")}</p>
-    </div>)
-  })
+  useEffect(() => {
+    const container = document.getElementById("ui-container")
+    setContainerSize([container.clientWidth, container.clientHeight])
 
-  const citiesList = []
-  Object.keys(cities).sort().forEach((city) => {
-    citiesList.push(<div style={{ display: "inline-block", margin: "20px" }} key={city}>
-      <h4>{city}</h4>
-      <p>{cities[city].join(", ")}</p>
-    </div>)
-  })
+    window.addEventListener("resize", () => {
+      const container = document.getElementById("ui-container")
+      setContainerSize([container.clientWidth, container.clientHeight])
+    })
+  }, [])
+
+  useEffect(() => {
+    if (containerSize !== null) {
+      const element = document.getElementById("playboard")
+      const left = viewPoint[0] - (containerSize[0] / 2) / zoom
+      const top = viewPoint[1] - (containerSize[1] / 2) / zoom
+
+      element.setAttribute("viewBox", `${left} ${top} ${containerSize[0] / zoom} ${containerSize[1] / zoom}`)
+    }
+  }, [zoom, containerSize, viewPoint])
 
   return (
-    <div>
-      <svg viewBox="0 0 3500 2000"
+    <div onMouseDown={(event) => {
+           setMouseDown(true)
+           setMouseDownStartingPoint({
+             mouse: {x: event.screenX, y: event.screenY},
+             viewPoint: {x: viewPoint[0], y: viewPoint[1]}
+           });
+         }}
+         onMouseUp={() => {
+           setMouseDown(false)
+         }}
+         onMouseMove={(event) => {
+           if(mouseDown){
+             const mouseDeltaX = event.screenX - mouseDownStartingPoint.mouse.x
+             const mouseDeltaY = event.screenY - mouseDownStartingPoint.mouse.y
+             setViewPoint([mouseDownStartingPoint.viewPoint.x - mouseDeltaX, mouseDownStartingPoint.viewPoint.y - mouseDeltaY])
+           }
+         }}
+         onWheel={(event) => {
+           const newZoom = Math.max(Math.min(zoom + event.deltaY * -0.001, 3.5), .1)
+           setZoom(newZoom)
+         }}
+         id="ui-container"
+         style={{
+           position: "fixed",
+           top: 0,
+           left: 0,
+           height: "100%",
+           width: "100%",
+         }}>
+      {props.children}
+      <svg id="playboard"
+           onClick={(event) => {reportClick(event.clientX, event.clientY)}}
            style={{
-             border: "1px solid black",
+             position: "fixed",
+             top: 0,
+             left: 0,
+             height: "100%",
+             width: "100%",
              cursor: props.inputMode === "add_track" ? `url("${data.trackCursor.publicURL}") 4 2, pointer` : `url("${data.trainCursor.publicURL}") 2 5, default`,
            }}>
+        <image id="base-image" href={`/game/${gameId}/map/render`}/>
         {selectionCircle}
         <g>
           {trackSegments}
@@ -350,26 +396,12 @@ const PlayBoard = (props) => {
           {Object.values(trainIndicators)}
         </g>
         <g>
-          {points}
-        </g>
-        <g>
-          {mountainIndicators}
-        </g>
-        <g>
           {rivers}
         </g>
-        <g>
-          {clickPoints}
-        </g>
+        {/*<g>*/}
+        {/*  {clickPoints}*/}
+        {/*</g>*/}
       </svg>
-      <div>
-        <h2>Available Loads</h2>
-        {availableLoadsList}
-      </div>
-      <div>
-        <h2>Cities</h2>
-        {citiesList}
-      </div>
     </div>
   )
 }

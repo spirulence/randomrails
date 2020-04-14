@@ -69,22 +69,20 @@ def action_good_deliver(request, game_id, good_id, card_id):
     except GameAction.DoesNotExist:
         return HttpResponseBadRequest("that demand card doesn't exist")
 
-    price = 0
-    destination = None
-    for demand in json.loads(card_action.data)["demands"]:
-        if demand["good"] == good_id:
-            price = demand["price"]
-            destination = demand["destination"]
+    possible_demands = dict((d["destination"], d["price"]) for d in json.loads(card_action.data)["demands"] if d["good"] == good_id)
 
-    if destination is None:
+    if possible_demands is None:
         return HttpResponseBadRequest("that demand card doesn't have a destination for that good")
 
-    cities = get_cities_map(game_id)
-    destination_location = cities[destination]
     current_location = get_current_train_location(game_id, player_number)
+    cities = [name for name, location in get_cities_map(game_id).items() if location == current_location]
 
-    if destination_location != current_location:
+    if not cities or cities[0] not in possible_demands:
         return HttpResponseBadRequest("you're not at the destination")
+
+    city = cities[0]
+
+    price = possible_demands[city]
 
     pickup_ids_available_to_deliver = get_current_goods_carried(game_id, player_number)[good_id]
 
