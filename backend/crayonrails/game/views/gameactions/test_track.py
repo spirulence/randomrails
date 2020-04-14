@@ -88,6 +88,20 @@ class AddTrack(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(get_money_for_player(game_id=self.game.id, player_number=self.player_slot.index), 4)
 
+    def test_unique(self):
+        request = self.factory.post("")
+
+        request.user = self.player
+
+        actiontypes.money_adjust(game_id=self.game.id, sequence_number=2, player_number=self.player_slot.index,
+                                 amount=5).save()
+
+        response = action_add_track(request, self.game.id, 5, 7, 6, 7)
+        self.assertEqual(response.status_code, 200)
+
+        response = action_add_track(request, self.game.id, 6, 7, 5, 7)
+        self.assertEqual(response.status_code, 400)
+
     def test_mountain(self):
         request = self.factory.post("")
 

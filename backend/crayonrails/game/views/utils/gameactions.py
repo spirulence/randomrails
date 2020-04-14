@@ -67,3 +67,15 @@ def get_demand_cards_holding(game_id, player_number):
                           GameAction.objects.filter(game_id=game_id, type="demand_discarded")))
 
     return draw_ids - discard_ids
+
+
+def get_existing_track(game_id):
+    track = {}
+
+    for action in GameAction.objects.filter(game_id=game_id, type="add_track"):
+        data = json.loads(action.data)
+        unsorted = [tuple(data["from"]), tuple(data["to"])]
+        points = tuple(sorted(unsorted))
+        track[points] = data["playerNumber"]
+
+    return track

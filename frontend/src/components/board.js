@@ -37,8 +37,6 @@ const PlayBoard = (props) => {
 
   const spaceBetween = 40
   const radius = 3
-  const columns = 87
-  const rows = 50
 
   const gameId = props.gameId
   const actions = props.actions
@@ -76,12 +74,12 @@ const PlayBoard = (props) => {
 
     if (selected != null) {
       if (props.inputMode === "move_train") {
-        fetch(`/game/${gameId}/actions/move-train/${x}/${y}`, { method: "POST" }).then(() => {
+        fetch(`/game/${gameId}/actions/move-train/${x}/${y}/`, { method: "POST" }).then(() => {
           setNeedToFetch(true)
         })
       } else if (props.inputMode === "add_track") {
         if (areAdjacent(selected, [x, y])) {
-          fetch(`/game/${gameId}/actions/add/track/${x}/${y}/to/${selected[0]}/${selected[1]}`, { method: "POST" }).then(() => {
+          fetch(`/game/${gameId}/actions/add/track/${x}/${y}/to/${selected[0]}/${selected[1]}/`, { method: "POST" }).then(() => {
             setNeedToFetch(true)
           })
         }
@@ -140,6 +138,8 @@ const PlayBoard = (props) => {
   const trackSegments = []
   const trainIndicators = {}
 
+  const cityFill = "rgba(255,0,0,0.65)"
+
   function addMajorCity(collection, action, index) {
     const [x, y] = action.data.location
     const name = action.data.name
@@ -152,7 +152,7 @@ const PlayBoard = (props) => {
     if (y % 2 === 0) {
       collection.unshift(
         <g key={index}>
-          <path fill={"red"}
+          <path fill={cityFill}
                 d={`M ${gridToBoardPixelBoth(x - 1, y - 1)} 
       L ${gridToBoardPixelBoth(x, y - 1)} 
       L ${gridToBoardPixelBoth(x + 1, y)}
@@ -168,7 +168,7 @@ const PlayBoard = (props) => {
     } else {
       collection.unshift(
         <g key={index}>
-          <path fill={"red"}
+          <path fill={cityFill}
                 d={`M ${gridToBoardPixelBoth(x, y - 1)} 
       L ${gridToBoardPixelBoth(x + 1, y - 1)} 
       L ${gridToBoardPixelBoth(x + 1, y)}
@@ -198,7 +198,7 @@ const PlayBoard = (props) => {
       <g key={index}>
         <rect x={gridToBoardPixelX(x, y) - spaceBetween * .3}
               y={gridToBoardPixelY(x, y) - spaceBetween * .3} width={spaceBetween * .6} height={spaceBetween * .6}
-              style={{ fill: "rgb(255,0,0)" }}/>
+              style={{ fill: cityFill }}/>
         <text style={{ font: "30px sans-serif", userSelect: "none" }}
               x={gridToBoardPixelX(x - 2, y + 1)}
               y={gridToBoardPixelY(x - 2, y + 1) - 5}>{name}</text>
@@ -220,7 +220,7 @@ const PlayBoard = (props) => {
       <g key={index}>
         <circle cx={gridToBoardPixelX(x, y)}
                 cy={gridToBoardPixelY(x, y)} r={spaceBetween * .3}
-                style={{ fill: "rgb(255,0,0)" }}/>
+                style={{ fill: cityFill }}/>
         <text style={{ font: "30px sans-serif", userSelect: "none" }}
               x={gridToBoardPixelX(x - 2, y + 1)}
               y={gridToBoardPixelY(x - 2, y + 1) - 5}>{name}</text>
@@ -398,9 +398,6 @@ const PlayBoard = (props) => {
         <g>
           {rivers}
         </g>
-        {/*<g>*/}
-        {/*  {clickPoints}*/}
-        {/*</g>*/}
       </svg>
     </div>
   )

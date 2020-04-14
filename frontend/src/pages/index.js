@@ -54,8 +54,8 @@ const IndexPage = () => {
   useEffect(() => {
       if (gameId !== "0" && needToFetchPlayers) {
         async function f() {
-          const myJson = await (await fetch(`/game/${gameId}/slot/mine`)).json()
-          const allJson = await (await fetch(`/game/${gameId}/slots`)).json()
+          const myJson = await (await fetch(`/game/${gameId}/slot/mine/`)).json()
+          const allJson = await (await fetch(`/game/${gameId}/slots/`)).json()
           setPlayer(myJson.result)
           setPlayers(allJson.result)
 
@@ -69,7 +69,7 @@ const IndexPage = () => {
 
   useEffect(() => {
     if (needToFetch && gameId !== "0") {
-      fetch(`/game/${gameId}/actions`).then(
+      fetch(`/game/${gameId}/actions/`).then(
         (response) => {
           return response.json()
         },
@@ -82,7 +82,7 @@ const IndexPage = () => {
 
   useEffect(() => {
     let interval = setInterval(() => {
-      fetch(`/game/${gameId}/actions/last`).then(
+      fetch(`/game/${gameId}/actions/last/`).then(
         (response) => {
           return response.json()
         },
@@ -195,7 +195,7 @@ const IndexPage = () => {
   function drawDemand() {
     return <div style={{ display: "inline-block", marginLeft: "5px", marginRight: "5px" }}>
       <button onClick={() => {
-        fetch(`/game/${gameId}/actions/demand/draw`, { method: "POST" }).then(() => {
+        fetch(`/game/${gameId}/actions/demand/draw/`, { method: "POST" }).then(() => {
           setNeedToFetch(true)
         })
       }}>Draw Demand Card
@@ -208,7 +208,7 @@ const IndexPage = () => {
       <h4>Demand Cards</h4>
       {demandCards.map((demandCard, index) => {
         return <DemandCard key={index} card={demandCard} fillable={demandsFillableAtLocation} fillAction={(good) => {
-          fetch(`/game/${gameId}/actions/good/deliver/${good}/card/${demandCard.id}`, { method: "POST" }).then(() => {
+          fetch(`/game/${gameId}/actions/good/deliver/${good}/card/${demandCard.id}/`, { method: "POST" }).then(() => {
             setNeedToFetch(true)
           })
         }
@@ -239,7 +239,7 @@ const IndexPage = () => {
     const goods = goodsAtLocation.map((value, index) => <div key={index} style={{ display: "inline-block" }}>
       <img style={{ display: "block", margin: "0 auto 0" }} width={40} src={goodsIcons[value]}/>
       <button style={{ display: "block" }} onClick={() => {
-        fetch(`/game/${gameId}/actions/good/pickup/${value}`, { method: "POST" }).then(() => {
+        fetch(`/game/${gameId}/actions/good/pickup/${value}/`, { method: "POST" }).then(() => {
           setNeedToFetch(true)
         })
       }}>Pickup
@@ -257,7 +257,7 @@ const IndexPage = () => {
       return <div key={index} style={{ display: "inline-block", margin: "3px"}}>
         <img style={{ display: "inline-block", margin: "0" }} width={60} src={goodsIcons[good]}/>
         {dumpable ? <button style={{display: "block"}} onClick={() => {
-          fetch(`/game/${gameId}/actions/good/dump/${good}`, { method: "POST" }).then(() => {
+          fetch(`/game/${gameId}/actions/good/dump/${good}/`, { method: "POST" }).then(() => {
             setNeedToFetch(true)
           })
         }
@@ -286,7 +286,7 @@ const IndexPage = () => {
           {hostingTools()}
           <div style={{position: "fixed", bottom: "0%", backgroundColor: "#ddd", padding: "5px"}}>
             <CrayonChooser crayon={player.color} setCrayon={(color) => {
-              fetch(`/game/${gameId}/slot/${player.playerNumber}/set-color/${base64.encode(color)}`, { method: "POST" }).then(
+              fetch(`/game/${gameId}/slot/${player.playerNumber}/set-color/${base64.encode(color)}/`, { method: "POST" }).then(
                 (response) => {
                   setNeedToFetchPlayers(true)
                 },

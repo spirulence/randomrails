@@ -8,29 +8,12 @@ from svglib.svglib import svg2rlg
 from .utils.permissions import is_player
 from ..models import GameAction
 
-spaceBetween = 40
-circleRadius = 3
 columns = 87
 rows = 50
+
+spaceBetween = 40
+circleRadius = 3
 mountainSize = spaceBetween / 4
-
-# function
-# gridToBoardPixelX(x, y)
-# {
-# if (y % 2 === 0)
-# {
-# return x * spaceBetween + spaceBetween / 2
-# } else {
-# return x * spaceBetween + spaceBetween
-# }
-# }
-#
-# function
-# gridToBoardPixelY(x, y)
-# {
-# return y * spaceBetween + spaceBetween / 2
-# }
-
 
 def grid_to_board_x(x, y):
     if y % 2 == 0:

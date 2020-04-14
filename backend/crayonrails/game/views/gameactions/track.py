@@ -4,6 +4,7 @@ from django.http import HttpResponseForbidden, HttpResponseBadRequest, JsonRespo
 from django.views.decorators.http import require_POST
 
 from ..utils.adjacency import are_adjacent
+from ..utils.gameactions import get_existing_track
 from ..utils.permissions import is_player
 from ...models import PlayerSlot, GameAction
 
@@ -52,6 +53,10 @@ def action_add_track(request, game_id, x1, y1, x2, y2):
 
     if not are_adjacent((x1, y1), (x2, y2)):
         return HttpResponseBadRequest("points are not adjacent")
+
+    track_key = tuple(sorted([(x1, y1), (x2, y2)]))
+    if track_key in get_existing_track(game_id):
+        return HttpResponseBadRequest("already track there")
 
     slot = PlayerSlot.objects.get(game_id=game_id, user_id=request.user.id)
     terrain = compute_terrain(game_id)

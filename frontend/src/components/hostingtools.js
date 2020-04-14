@@ -12,7 +12,7 @@ const HostingTools = (props) => {
 
   useEffect(() => {
     if (needToFetch) {
-      fetch(`/game/${gameId}/slots/joincodes`).then(
+      fetch(`/game/${gameId}/slots/joincodes/`).then(
         (response) => {
           return response.json()
         },
@@ -25,7 +25,7 @@ const HostingTools = (props) => {
 
   function moneyButtons(slot) {
     return [-50, -10, -5, -1, 1, 5, 10, 50].map((amount) => (<button key={amount} onClick={() => {
-      fetch(`/game/${gameId}/actions/adjust-money/player/${slot.playerNumber}/${amount > 0 ? "plus" : "minus"}/${Math.abs(amount)}`, { method: "POST" }).then(
+      fetch(`/game/${gameId}/actions/adjust-money/player/${slot.playerNumber}/${amount > 0 ? "plus" : "minus"}/${Math.abs(amount)}/`, { method: "POST" }).then(
         (response) => {
           setNeedToFetch(true)
         },
