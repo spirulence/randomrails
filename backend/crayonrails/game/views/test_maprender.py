@@ -24,7 +24,7 @@ class RenderHashTest(TestCase):
             username="playerjoe"
         )
 
-        self.player_slot = PlayerSlot(game_id=self.game.id, index=1, user_id=self.player.id, role="guest")
+        self.player_slot = PlayerSlot(game_id=self.game.id, user_id=self.player.id, role="guest")
         self.player_slot.save()
 
         self.factory = RequestFactory()

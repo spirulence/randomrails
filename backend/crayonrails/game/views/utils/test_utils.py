@@ -4,27 +4,8 @@ from django.test import TestCase, RequestFactory
 from .gameactions import get_goods_map, get_cities_map
 from ..gameactions import actiontypes
 from ...models import Game, PlayerSlot
-from .build_player_slots import build_player_slots
 from .distance import manhattan_distance, distances
 from .adjacency import are_adjacent
-
-
-class BuildPlayerSlots(TestCase):
-    def setUp(self) -> None:
-        self.creator = User.objects.create_user("creatorjoe")
-        self.game = Game()
-        self.game.save()
-
-    def test(self):
-        build_player_slots(self.game, self.creator)
-
-        self.assertEqual(len(PlayerSlot.objects.filter(game_id=self.game.id, role="creator")), 1)
-        self.assertEqual(len(PlayerSlot.objects.filter(game_id=self.game.id, role="guest")), 5)
-        self.assertEqual(len(PlayerSlot.objects.filter(game_id=self.game.id)), 6)
-        self.assertListEqual(list(sorted(s.color for s in PlayerSlot.objects.filter(game_id=self.game.id))),
-                             ['#0000ff', '#00bfff', '#00ffcc', '#0b8a00', '#bf00ff', '#ffbf00'])
-        self.assertEqual(6, len(set(s.joincode for s in PlayerSlot.objects.filter(game_id=self.game.id))))
-        self.assertEqual(PlayerSlot.objects.get(game_id=self.game.id, role="creator").joincode, "")
 
 
 class ManhattanDistance(TestCase):

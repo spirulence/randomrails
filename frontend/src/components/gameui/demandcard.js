@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { default as moji } from "./openmoji"
+import { default as moji } from "../openmoji"
 import { graphql, useStaticQuery } from "gatsby"
 
 const DemandCard = (props) => {
@@ -28,16 +28,22 @@ const DemandCard = (props) => {
   })
 
   function demandList(demand){
-    let isFillable = props.card.id in props.fillable && props.fillable[props.card.id].good === demand.good && props.fillable[props.card.id].city === demand.destination
+    let isFillable = false;
+    console.log(props.fillable)
+    props.fillable.forEach((fillableDemand) => {
+      if (props.card.id === fillableDemand.card && demand.id === fillableDemand.demand){
+        isFillable = true
+      }
+    })
+
     return (<div style={{ display: "block" }}>
       <div style={{ display: "inline-block" }}>
         <img style={{ margin: 0 }} width={60} src={goodsIcons[demand.good]}/>
-        { isFillable ? <button onClick={() => {props.fillAction(demand.good)}}>Complete</button> : <></>  }
       </div>
       <div style={{ display: "inline-block" }}>
         <h6 style={{margin: "5px", fontSize: "12px"}}>{goodsNames[demand.good].split(":")[0]}</h6>
         <h6 style={{margin: "5px", fontSize: "13px"}}>to {demand.destination}</h6>
-        <h4 style={{margin: "5px"}}>$ {demand.price}</h4>
+        <h4 style={{margin: "5px"}}>$ {demand.price} { isFillable ? <button onClick={() => {props.fillAction(demand.good)}}>Deliver</button> : <></>  }</h4>
       </div>
     </div>)
   }

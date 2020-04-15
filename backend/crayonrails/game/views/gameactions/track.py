@@ -3,6 +3,7 @@ import json
 from django.http import HttpResponseForbidden, HttpResponseBadRequest, JsonResponse
 from django.views.decorators.http import require_POST
 
+from . import actiontypes
 from ..utils.adjacency import are_adjacent
 from ..utils.gameactions import get_existing_track
 from ..utils.permissions import is_player
@@ -42,7 +43,7 @@ def compute_track_cost(terrain, x1, y1, x2, y2):
 
 def get_player_current_money(slot):
     player_money_actions = (action for action in GameAction.objects.filter(game_id=slot.game_id, type="adjust_money") if
-                            json.loads(action.data)["playerNumber"] == slot.index)
+                            json.loads(action.data)["playerId"] == slot.id)
     return sum(json.loads(action.data)["amount"] for action in player_money_actions)
 
 
@@ -67,27 +68,23 @@ def action_add_track(request, game_id, x1, y1, x2, y2):
 
     next_sequence_number = GameAction.objects.filter(game_id=game_id).order_by('-sequence_number').first().sequence_number + 1
 
-    money_action = GameAction(
+    money_action = actiontypes.money_adjust(
         game_id=game_id,
         sequence_number=next_sequence_number,
-        type="adjust_money",
-        data=json.dumps({
-            "playerNumber": slot.index,
-            "amount": -cost
-        }))
+        player_id=slot.id,
+        amount=-cost
+    )
     money_action.save()
 
     next_sequence_number += 1
 
-    game_action = GameAction(
+    game_action = actiontypes.add_track(
         game_id=game_id,
         sequence_number=next_sequence_number,
-        type="add_track",
-        data=json.dumps({
-            "playerNumber": slot.index,
-            "from": [x1, y1],
-            "to": [x2, y2]
-        }))
+        player_id=slot.id,
+        track_from=[x1, y1],
+        track_to=[x2, y2]
+    )
     game_action.save()
     return JsonResponse({
         "result": "success"

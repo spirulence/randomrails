@@ -1,6 +1,10 @@
 import React, { useState } from "react"
+import { colorForPlayer } from "../../gamestate"
 
 const CrayonChooser = (props) => {
+  const playerId = props.playerId
+  const actions = props.actions
+
   const [isSelectingColor, setIsSelectingColor] = useState(false);
 
   const options = [
@@ -17,7 +21,7 @@ const CrayonChooser = (props) => {
       <div style={{ display: "inline-block" }}>
         <button onClick={() => {
           setIsSelectingColor(true)
-        }} style={{ backgroundColor: props.crayon }}>Switch Color
+        }} style={{ backgroundColor: colorForPlayer(actions, playerId) }}>Switch Color
         </button>
       </div>
     )

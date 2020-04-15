@@ -65,7 +65,7 @@ class Maps(TestCase):
         goods = get_goods_map(self.game.id)
         cities = get_cities_map(self.game.id)
 
-        PlayerSlot(game_id=self.game.id, index=0, user_id=request.user.id, role="guest").save()
+        PlayerSlot(game_id=self.game.id, user_id=request.user.id, role="guest").save()
 
         response = action_demand_draw(request, game_id=self.game.id)
         self.assertEqual(response.status_code, 200)
@@ -75,7 +75,7 @@ class Maps(TestCase):
 
         self.assertEqual(game_action.type, "demand_draw")
         self.assertEqual(game_action.type, "demand_draw")
-        self.assertEqual(game_action_data["playerNumber"], 0)
+        self.assertEqual(game_action_data["playerId"], 1)
         self.assertEqual(game_action_data["demandCardId"], game_action.sequence_number)
         self.assertEqual(len(game_action_data["demands"]), 3)
         self.assertIn(game_action_data["demands"][0]["good"], goods)
@@ -88,7 +88,7 @@ class Maps(TestCase):
             username="regularjoe"
         )
 
-        PlayerSlot(game_id=self.game.id, index=0, user_id=request.user.id, role="guest").save()
+        PlayerSlot(game_id=self.game.id, user_id=request.user.id, role="guest").save()
 
         self.assertEqual(action_demand_draw(request, game_id=self.game.id).status_code, 200)
         self.assertEqual(action_demand_draw(request, game_id=self.game.id).status_code, 200)

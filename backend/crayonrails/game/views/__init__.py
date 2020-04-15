@@ -1,4 +1,5 @@
 from .game import *
-from .slots import *
 from .gameactions import *
 from .maprender import *
+from .invites import *
+

@@ -11,16 +11,28 @@ class Game(models.Model):
 
 class PlayerSlot(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
-    index = models.IntegerField()
-    disabled = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    screenname = models.CharField(max_length=255, default="")
     role = models.CharField(max_length=100)
-    color = models.CharField(max_length=100)
-    joincode = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"Game {self.game_id} - P{self.index}:{self.screenname}"
+        return f"{self.id}: Game {self.game_id} - {self.role}"
+
+
+class Invite(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    code = models.CharField(max_length=100)
+    expires_at = models.DateTimeField()
+
+    def __str__(self):
+        return f"Invite to Game {self.game_id}"
+
+
+class LobbyAccess(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"LobbyAccess for Game {self.game_id} and {self.user}"
 
 
 class GameAction(models.Model):

@@ -25,10 +25,10 @@ class AddTrack(TestCase):
             username="playerjoe"
         )
 
-        self.creator_slot = PlayerSlot(game_id=self.game.id, index=0, user_id=self.creator.id, role="creator")
+        self.creator_slot = PlayerSlot(game_id=self.game.id, user_id=self.creator.id, role="creator")
         self.creator_slot.save()
 
-        self.player_slot = PlayerSlot(game_id=self.game.id, index=1, user_id=self.player.id, role="guest")
+        self.player_slot = PlayerSlot(game_id=self.game.id, user_id=self.player.id, role="guest")
         self.player_slot.save()
 
         self.factory = RequestFactory()
@@ -54,7 +54,7 @@ class AddTrack(TestCase):
 
         request.user = self.player
 
-        actiontypes.money_adjust(game_id=self.game.id, sequence_number=2, player_number=self.player_slot.index, amount=5).save()
+        actiontypes.money_adjust(game_id=self.game.id, sequence_number=2, player_id=self.player_slot.id, amount=5).save()
 
         response = action_add_track(request, self.game.id, 5, 7, 6, 7)
         self.assertEqual(response.status_code, 200)
@@ -64,7 +64,7 @@ class AddTrack(TestCase):
 
         request.user = self.player
 
-        actiontypes.money_adjust(game_id=self.game.id, sequence_number=2, player_number=self.player_slot.index, amount=5).save()
+        actiontypes.money_adjust(game_id=self.game.id, sequence_number=2, player_id=self.player_slot.id, amount=5).save()
 
         response = action_add_track(request, self.game.id, 19, 7, 6, 7)
         self.assertEqual(response.status_code, 400)
@@ -82,18 +82,18 @@ class AddTrack(TestCase):
 
         request.user = self.player
 
-        actiontypes.money_adjust(game_id=self.game.id, sequence_number=2, player_number=self.player_slot.index,
+        actiontypes.money_adjust(game_id=self.game.id, sequence_number=2, player_id=self.player_slot.id,
                                  amount=5).save()
         response = action_add_track(request, self.game.id, 5, 7, 6, 7)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(get_money_for_player(game_id=self.game.id, player_number=self.player_slot.index), 4)
+        self.assertEqual(get_money_for_player(game_id=self.game.id, player_id=self.player_slot.id), 4)
 
     def test_unique(self):
         request = self.factory.post("")
 
         request.user = self.player
 
-        actiontypes.money_adjust(game_id=self.game.id, sequence_number=2, player_number=self.player_slot.index,
+        actiontypes.money_adjust(game_id=self.game.id, sequence_number=2, player_id=self.player_slot.id,
                                  amount=5).save()
 
         response = action_add_track(request, self.game.id, 5, 7, 6, 7)
@@ -107,19 +107,19 @@ class AddTrack(TestCase):
 
         request.user = self.player
 
-        actiontypes.money_adjust(game_id=self.game.id, sequence_number=2, player_number=self.player_slot.index,
+        actiontypes.money_adjust(game_id=self.game.id, sequence_number=2, player_id=self.player_slot.id,
                                  amount=5).save()
         response = action_add_track(request, self.game.id, 6, 5, 6, 6)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(get_money_for_player(game_id=self.game.id, player_number=self.player_slot.index), 3)
+        self.assertEqual(get_money_for_player(game_id=self.game.id, player_id=self.player_slot.id), 3)
 
     def test_medium_city(self):
         request = self.factory.post("")
 
         request.user = self.player
 
-        actiontypes.money_adjust(game_id=self.game.id, sequence_number=2, player_number=self.player_slot.index,
+        actiontypes.money_adjust(game_id=self.game.id, sequence_number=2, player_id=self.player_slot.id,
                                  amount=5).save()
         response = action_add_track(request, self.game.id, 6, 5, 5, 5)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(get_money_for_player(game_id=self.game.id, player_number=self.player_slot.index), 3)
+        self.assertEqual(get_money_for_player(game_id=self.game.id, player_id=self.player_slot.id), 3)

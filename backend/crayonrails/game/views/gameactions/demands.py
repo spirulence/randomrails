@@ -11,7 +11,7 @@ from ..utils.permissions import is_player
 from ...models import GameAction, PlayerSlot
 
 
-def single_demand(game_id):
+def single_demand(game_id, demand_id):
     goods = get_goods_map(game_id)
     cities = get_cities_map(game_id)
     good = random.choice(list(goods.keys()))
@@ -23,7 +23,8 @@ def single_demand(game_id):
     demand = {
         "good": good,
         "destination": city,
-        "price": money
+        "price": money,
+        "id": demand_id
     }
     return demand
 
@@ -34,15 +35,14 @@ def action_demand_draw(request, game_id):
         return HttpResponseForbidden()
 
     slot = PlayerSlot.objects.get(game_id=game_id, user_id=request.user.id)
-    player_number = slot.index
 
     player_demands_drawn = [action for action in
                             GameAction.objects.filter(game_id=game_id, type="demand_draw").order_by('-sequence_number')
-                            if json.loads(action.data)["playerNumber"] == player_number]
+                            if json.loads(action.data)["playerId"] == slot.id]
     player_demands_discarded = [action for action in
                                 GameAction.objects.filter(game_id=game_id, type="demand_discarded").order_by(
                                     '-sequence_number')
-                                if json.loads(action.data)["playerNumber"] == player_number]
+                                if json.loads(action.data)["playerId"] == slot.id]
 
     if len(player_demands_drawn) >= (len(player_demands_discarded) + 3):
         return HttpResponseBadRequest("already have max number of demand cards")
@@ -54,9 +54,9 @@ def action_demand_draw(request, game_id):
         sequence_number=next_sequence_number,
         type="demand_draw",
         data=json.dumps({
-            "playerNumber": player_number,
+            "playerId": slot.id,
             "demandCardId": next_sequence_number,
-            "demands": [single_demand(game_id), single_demand(game_id), single_demand(game_id)]
+            "demands": [single_demand(game_id, f"{next_sequence_number}-0"), single_demand(game_id, f"{next_sequence_number}-1"), single_demand(game_id, f"{next_sequence_number}-2")]
         }))
     game_action.save()
     return JsonResponse({

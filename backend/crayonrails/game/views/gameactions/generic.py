@@ -19,12 +19,12 @@ def actions(request, game_id):
     })
 
 
-def action_last(request, game_id):
+def actions_after(request, game_id, sequence_number):
     if not is_player(request, game_id):
         return HttpResponseForbidden()
 
-    a = last_game_action(game_id)
-    actions_result = {"sequenceNumber": a.sequence_number, "type": a.type, "data": json.loads(a.data)}
+    query = GameAction.objects.filter(game_id=game_id, sequence_number__gt=sequence_number).order_by('sequence_number')
+    actions_result = [{"sequenceNumber": a.sequence_number, "type": a.type, "data": json.loads(a.data)} for a in query]
 
     return JsonResponse({
         "result": actions_result

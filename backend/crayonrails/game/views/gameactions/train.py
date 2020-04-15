@@ -20,7 +20,7 @@ def action_move_train(request, game_id, x, y):
         sequence_number=next_sequence_number,
         type="move_train",
         data=json.dumps({
-            "playerNumber": slot.index,
+            "playerId": slot.id,
             "to": [x, y]
         }))
     game_action.save()

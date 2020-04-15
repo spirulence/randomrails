@@ -1,0 +1,1 @@
+standard_colors = ["#00ffcc","#0B8A00","#ffd60f", "#ff775a", "#0000ff", "#bf00ff","#6c1499"]
