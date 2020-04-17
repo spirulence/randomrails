@@ -1,3 +1,6 @@
+import { gridToBoardPixelX, gridToBoardPixelY } from "./components/boardlayers/common"
+import React from "react"
+
 export const types = {
   MOVE_TRAIN: "move_train",
   PLAYER_JOINED: "player_joined",
@@ -10,7 +13,8 @@ export const types = {
   DEMAND_DRAW: "demand_draw",
   DEMAND_DISCARDED: "demand_discarded",
   GOOD_PICKUP: "good_pickup",
-  GOOD_DELIVERED: "good_delivered"
+  GOOD_DELIVERED: "good_delivered",
+  ERASE_TRACK: "erase_track",
 }
 
 export function ofType(actions, type) {
@@ -25,6 +29,39 @@ export function trainLocations(actions) {
   })
 
   return locations
+}
+
+export function goodSuppliers(actions, good) {
+  const suppliers = []
+
+  ofType(actions, types.ADD_MAJOR_CITY).forEach(action => {
+    const [x, y] = action.data.location
+    action.data.available_goods.map(goodSupplied => {
+      if (good === goodSupplied) {
+        suppliers.unshift({ x: x, y: y })
+      }
+    })
+  })
+
+  ofType(actions, types.ADD_MEDIUM_CITY).forEach(action => {
+    const [x, y] = action.data.location
+    action.data.available_goods.map(goodSupplied => {
+      if (good === goodSupplied) {
+        suppliers.unshift({ x: x, y: y })
+      }
+    })
+  })
+
+  ofType(actions, types.ADD_SMALL_CITY).forEach(action => {
+    const [x, y] = action.data.location
+    action.data.available_goods.map(goodSupplied => {
+      if (good === goodSupplied) {
+        suppliers.unshift({ x: x, y: y })
+      }
+    })
+  })
+
+  return suppliers
 }
 
 export function currentPlayers(actions){

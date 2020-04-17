@@ -3,6 +3,7 @@ import GoodsLayer from "./boardlayers/goods"
 import TrainsLayer from "./boardlayers/trains"
 import CitiesLayer from "./boardlayers/cities"
 import TrackLayer from "./boardlayers/track"
+import HighlightsLayer from "./boardlayers/highlights"
 import { areAdjacent, spaceBetween } from "./boardlayers/common"
 import SelectionCircle from "./boardlayers/selection"
 import { graphql, useStaticQuery } from "gatsby"
@@ -22,13 +23,14 @@ const PlayBoard = (props) => {
   const gameId = props.gameId
   const actions = props.actions
   const setNeedToFetch = props.setNeedToFetch
+  const highlightGood = props.highlightGood
+  const highlightCity = props.highlightCity
 
   const [selected, setSelected] = useState(null)
   const [zoom, setZoom] = useState(1.0)
   const [containerSize, setContainerSize] = useState(null)
   const [viewPoint, setViewPoint] = useState([3500 / 2, 2000 / 2])
-  const [mouseDown, setMouseDown] = useState(false)
-  const [mouseDownStartingPoint, setMouseDownStartingPoint] = useState({})
+  const [scroll, setScroll]  = useState(null)
 
   function reportClick(clientX, clientY) {
     const baseImage = document.getElementById("base-image").getBoundingClientRect()
@@ -59,6 +61,12 @@ const PlayBoard = (props) => {
             setNeedToFetch(true)
           })
         }
+      } else if (props.inputMode === "erase_track") {
+        if (areAdjacent(selected, [x, y])) {
+          fetch(`/game/${gameId}/actions/erase/track/${x}/${y}/to/${selected[0]}/${selected[1]}/`, { method: "POST" }).then(() => {
+            setNeedToFetch(true)
+          })
+        }
       }
     }
 
@@ -85,29 +93,35 @@ const PlayBoard = (props) => {
     }
   }, [zoom, containerSize, viewPoint])
 
+  useEffect(() => {
+    const timeout = setInterval(() => {
+      if (scroll !== null) {
+        setViewPoint([viewPoint[0] + scroll.x, viewPoint[1] + scroll.y])
+      }
+    }, 25)
+    return () => {clearInterval(timeout)}
+  }, [viewPoint, scroll])
+
   return (
-    <div onMouseDown={(event) => {
-      setMouseDown(true)
-      setMouseDownStartingPoint({
-        mouse: { x: event.screenX, y: event.screenY },
-        viewPoint: { x: viewPoint[0], y: viewPoint[1] },
-      })
-    }}
-         onMouseUp={() => {
-           setMouseDown(false)
-         }}
-         onMouseMove={(event) => {
-           if (mouseDown) {
-             const mouseDeltaX = event.screenX - mouseDownStartingPoint.mouse.x
-             const mouseDeltaY = event.screenY - mouseDownStartingPoint.mouse.y
-             setViewPoint([mouseDownStartingPoint.viewPoint.x - mouseDeltaX, mouseDownStartingPoint.viewPoint.y - mouseDeltaY])
+    <div id="ui-container" tabIndex={1}
+         onKeyDown={(event) => {
+           if (event.keyCode === 37) {
+             setScroll({ x: -20, y: 0 })
+           }else if(event.keyCode === 39){
+             setScroll({ x: 20, y: 0 })
+           }else if (event.keyCode === 38) {
+             setScroll({ x: 0, y: -20 })
+           }else if(event.keyCode === 40){
+             setScroll({ x: 0, y: 20 })
            }
+         }}
+         onKeyUp={() => {
+           setScroll(null)
          }}
          onWheel={(event) => {
            const newZoom = Math.max(Math.min(zoom + event.deltaY * -0.001, 3.5), .1)
            setZoom(newZoom)
          }}
-         id="ui-container"
          style={{
            position: "fixed",
            top: 0,
@@ -134,6 +148,7 @@ const PlayBoard = (props) => {
         <CitiesLayer actions={actions}/>
         <GoodsLayer actions={actions}/>
         <TrainsLayer actions={actions}/>
+        <HighlightsLayer actions={actions} highlightCity={highlightCity} highlightGood={highlightGood}/>
       </svg>
     </div>
   )

@@ -3,8 +3,12 @@ import * as gamestate from "../../gamestate"
 import { gridToBoardPixelX, gridToBoardPixelY } from "./common"
 import { currentPlayers } from "../../gamestate"
 
-function addTrack(collection, action, colors) {
+function addTrack(collection, action, colors, dontDraw) {
   const [[x1, y1], [x2, y2]] = [action.data.from, action.data.to]
+  if(dontDraw.includes(`${x1},${y1},${x2},${y2}`) || dontDraw.includes(`${x2},${y2},${x1},${y1}`)){
+    return
+  }
+
   collection.unshift(<line
     key={action.sequenceNumber}
     x1={gridToBoardPixelX(x1, y1)} y1={gridToBoardPixelY(x1, y1)}
@@ -22,9 +26,17 @@ const TrackLayer = (props) => {
 
   const trackSegments = []
 
-  gamestate.ofType(actions, gamestate.types.ADD_TRACK).forEach(action => {
-    addTrack(trackSegments, action, playerColors)
+  const dontDraw = []
+
+  gamestate.ofType(actions, gamestate.types.ERASE_TRACK).forEach(action => {
+    const [[x1, y1], [x2, y2]] = [action.data.from, action.data.to]
+    dontDraw.unshift(`${x1},${y1},${x2},${y2}`)
   })
+
+  gamestate.ofType(actions, gamestate.types.ADD_TRACK).forEach(action => {
+    addTrack(trackSegments, action, playerColors, dontDraw)
+  })
+
 
   return (<g>
     {trackSegments}

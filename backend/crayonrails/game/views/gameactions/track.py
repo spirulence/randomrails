@@ -6,7 +6,7 @@ from django.views.decorators.http import require_POST
 from . import actiontypes
 from ..utils.adjacency import are_adjacent
 from ..utils.gameactions import get_existing_track
-from ..utils.permissions import is_player
+from ..utils.permissions import is_player, is_creator
 from ...models import PlayerSlot, GameAction
 
 
@@ -79,6 +79,45 @@ def action_add_track(request, game_id, x1, y1, x2, y2):
     next_sequence_number += 1
 
     game_action = actiontypes.add_track(
+        game_id=game_id,
+        sequence_number=next_sequence_number,
+        player_id=slot.id,
+        track_from=[x1, y1],
+        track_to=[x2, y2]
+    )
+    game_action.save()
+    return JsonResponse({
+        "result": "success"
+    })
+
+
+@require_POST
+def action_erase_track(request, game_id, x1, y1, x2, y2):
+    if not is_creator(request, game_id):
+        return HttpResponseForbidden()
+
+    if not are_adjacent((x1, y1), (x2, y2)):
+        return HttpResponseBadRequest("points are not adjacent")
+
+    track_key = tuple(sorted([(x1, y1), (x2, y2)]))
+    if track_key not in get_existing_track(game_id):
+        return HttpResponseBadRequest("no track there")
+
+    slot = PlayerSlot.objects.get(game_id=game_id, user_id=request.user.id)
+
+    next_sequence_number = GameAction.objects.filter(game_id=game_id).order_by('-sequence_number').first().sequence_number + 1
+
+    # money_action = actiontypes.money_adjust(
+    #     game_id=game_id,
+    #     sequence_number=next_sequence_number,
+    #     player_id=slot.id,
+    #     amount=+cost
+    # )
+    # money_action.save()
+    #
+    # next_sequence_number += 1
+
+    game_action = actiontypes.erase_track(
         game_id=game_id,
         sequence_number=next_sequence_number,
         player_id=slot.id,

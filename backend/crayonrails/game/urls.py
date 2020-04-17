@@ -17,6 +17,8 @@ urlpatterns = [
          name='action_add_money'),
     path('<int:game_id>/actions/add/track/<int:x1>/<int:y1>/to/<int:x2>/<int:y2>/', views.action_add_track,
          name='action_add_track'),
+    path('<int:game_id>/actions/erase/track/<int:x1>/<int:y1>/to/<int:x2>/<int:y2>/', views.action_erase_track,
+         name='action_erase_track'),
     path('<int:game_id>/actions/move-train/<int:x>/<int:y>/', views.action_move_train,
          name='action_move_train'),
     path('<int:game_id>/actions/good/pickup/<str:good_id>/', views.action_good_pickup,
@@ -25,6 +27,8 @@ urlpatterns = [
          name='action_deliver_good'),
     path('<int:game_id>/actions/good/dump/<str:good_id>/', views.action_good_dump,
          name='action_dump_good'),
+    path('<int:game_id>/actions/flow/start/', views.start_game, name='action_start_game'),
+    path('<int:game_id>/actions/flow/advance/turn/', views.start_game, name='action_start_game'),
 
     path('<int:game_id>/map/render/', views.map_render),
 

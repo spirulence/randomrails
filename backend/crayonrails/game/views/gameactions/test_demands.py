@@ -34,7 +34,7 @@ class Maps(TestCase):
         self.factory = RequestFactory()
 
     def test_single_demand(self):
-        result = single_demand(self.game.id)
+        result = single_demand(self.game.id, demand_id=0)
         self.assertIn(result["good"], ["stuff", "stuff2", "stuff3", "stuff4"])
 
     def test_draw_demand_anonymous(self):

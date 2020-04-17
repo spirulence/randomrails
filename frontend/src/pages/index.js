@@ -32,7 +32,6 @@ const IndexPage = () => {
   }, [])
 
   function join(color){
-    console.log(color)
     fetch(`/game/${gameId}/join/${base64.encode(color)}/screenName1/`, {method: "POST"})
       .then(() => {
         fetch(`/game/${gameId}/my-membership/`)

@@ -100,3 +100,33 @@ def get_color_status(game_id):
         current_in_use[data["playerId"]] = data["newColor"]
 
     return [{"color": color, "available": color not in current_in_use.values()} for color in standard_colors]
+
+
+def is_started(game_id):
+    try:
+        GameAction.objects.get(game_id=game_id, type="start_game")
+        return True
+    except GameAction.DoesNotExist:
+        return False
+
+
+def get_current_turn(game_id):
+    most_recently_started = GameAction.objects.filter(game_id=game_id, type="start_turn").order_by("-sequence_number").first()
+    return json.loads(most_recently_started.data)["playOrder"]
+
+
+def get_play_order_for_player(game_id, player_id):
+    for action in GameAction.objects.filter(game_id=game_id, type="player_joined"):
+        data = json.loads(action.data)
+        if data["playerId"] == player_id:
+            return data["playOrder"]
+
+
+def get_max_play_order(game_id):
+    maximum = 0
+
+    for action in GameAction.objects.filter(game_id=game_id, type="player_joined"):
+        data = json.loads(action.data)
+        maximum = max(data["playOrder"], maximum)
+
+    return maximum

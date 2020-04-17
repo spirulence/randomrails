@@ -132,3 +132,42 @@ def add_track(game_id, sequence_number, player_id, track_from, track_to):
             "from": track_from,
             "to": track_to
         }))
+
+
+def erase_track(game_id, sequence_number, player_id, track_from, track_to):
+    return GameAction(
+        game_id=game_id,
+        sequence_number=sequence_number,
+        type="erase_track",
+        data=json.dumps({
+            "playerId": player_id,
+            "from": track_from,
+            "to": track_to
+        }))
+
+
+
+def start_game(game_id, sequence_number):
+    return GameAction(
+        game_id=game_id,
+        sequence_number=sequence_number,
+        type="start_game",
+        data=json.dumps({}))
+
+
+def start_round(game_id, sequence_number):
+    return GameAction(
+        game_id=game_id,
+        sequence_number=sequence_number,
+        type="start_round",
+        data=json.dumps({}))
+
+
+def start_turn(game_id, sequence_number, play_order):
+    return GameAction(
+        game_id=game_id,
+        sequence_number=sequence_number,
+        type="start_turn",
+        data=json.dumps({
+            "playOrder": play_order
+        }))
