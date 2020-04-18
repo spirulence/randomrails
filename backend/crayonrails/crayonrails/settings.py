@@ -25,7 +25,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ['DEBUG'].lower() == "true"
 
-ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '192.168.1.206', '192.168.1.231', '192.168.1.40', 'randomrails.com']
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '192.168.1.206', '192.168.1.231', '192.168.1.40', 'randomrails.com', 'randomrails-develop-hgoulcrblq-uc.a.run.app']
 
 
 # Application definition
