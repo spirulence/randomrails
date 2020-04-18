@@ -7,12 +7,12 @@ verify_ssl = true
 
 [packages]
 django = "*"
-psycopg2-binary = "*"
 django-cors-headers = "*"
 whitenoise = "*"
 svglib = "*"
 gunicorn = "*"
 python-dotenv = "*"
+mysqlclient = "*"
 
 [requires]
 python_version = "3.8"

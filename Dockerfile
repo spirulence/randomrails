@@ -13,7 +13,7 @@ WORKDIR /app
 
 COPY ./backend /app
 
-RUN pip install pipenv && pipenv install --deploy --system
+RUN apt-get update && apt-get install -y build-essential default-libmysqlclient-dev && pip install pipenv && pipenv install --deploy --system
 
 COPY --from=frontend-builder /app/public /app/crayonrails/game/static
 
