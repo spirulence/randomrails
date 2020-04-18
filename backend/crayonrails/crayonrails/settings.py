@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'mr)^gfhc(s0-%_kkxfo_z(@t_!0a^@=dq$s43phxmzfw#0m3^9'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ['DEBUG'].lower() == "true"
 
-ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '192.168.1.206', '192.168.1.231', '192.168.1.40', '0a807ab6.ngrok.io']
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '192.168.1.206', '192.168.1.231', '192.168.1.40', 'randomrails.com']
 
 
 # Application definition
@@ -79,8 +79,11 @@ WSGI_APPLICATION = 'crayonrails.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE':   os.environ["DATABASE_ENGINE"],
+        'NAME':     os.environ["DATABASE_NAME"],
+        'USER':     os.environ["DATABASE_USER"],
+        'PASSWORD': os.environ["DATABASE_PASSWORD"],
+        'HOST':     os.environ["DATABASE_HOST"],
     }
 }
 
@@ -128,3 +131,6 @@ WHITENOISE_INDEX_FILE = True
 CORS_ORIGIN_WHITELIST = [
     "http://127.0.0.1:8001"
 ]
+
+CSRF_COOKIE_SECURE = os.environ['CSRF_COOKIE_SECURE'].lower() == "true"
+SESSION_COOKIE_SECURE = os.environ['SESSION_COOKIE_SECURE'].lower() == "true"

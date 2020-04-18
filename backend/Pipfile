@@ -11,6 +11,8 @@ psycopg2-binary = "*"
 django-cors-headers = "*"
 whitenoise = "*"
 svglib = "*"
+gunicorn = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.8"
