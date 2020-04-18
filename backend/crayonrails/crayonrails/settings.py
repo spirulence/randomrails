@@ -20,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ['DEBUG'].lower() == "true"
+DEBUG = os.environ.get('DEBUG', 'FALSE').lower() == "true"
 
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '192.168.1.206', '192.168.1.231', '192.168.1.40', 'randomrails.com', 'randomrails-develop-hgoulcrblq-uc.a.run.app']
 
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'django.contrib.staticfiles',
+    'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
@@ -79,12 +79,12 @@ WSGI_APPLICATION = 'crayonrails.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE':   os.environ["DATABASE_ENGINE"],
-        'NAME':     os.environ["DATABASE_NAME"],
-        'USER':     os.environ["DATABASE_USER"],
-        'PASSWORD': os.environ["DATABASE_PASSWORD"],
-        'HOST':     os.environ["DATABASE_HOST"],
-        'PORT':     os.environ["DATABASE_PORT"],
+        'ENGINE':   os.environ.get("DATABASE_ENGINE", ''),
+        'NAME':     os.environ.get("DATABASE_NAME", ''),
+        'USER':     os.environ.get("DATABASE_USER", ''),
+        'PASSWORD': os.environ.get("DATABASE_PASSWORD", ''),
+        'HOST':     os.environ.get("DATABASE_HOST", ''),
+        'PORT':     os.environ.get("DATABASE_PORT", ''),
     }
 }
 
@@ -133,5 +133,7 @@ CORS_ORIGIN_WHITELIST = [
     "http://127.0.0.1:8001"
 ]
 
-CSRF_COOKIE_SECURE = os.environ['CSRF_COOKIE_SECURE'].lower() == "true"
-SESSION_COOKIE_SECURE = os.environ['SESSION_COOKIE_SECURE'].lower() == "true"
+CSRF_COOKIE_SECURE = os.environ.get('CSRF_COOKIE_SECURE', 'True').lower() == "true"
+SESSION_COOKIE_SECURE = os.environ.get('SESSION_COOKIE_SECURE', 'True').lower() == "true"
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

@@ -1,4 +1,8 @@
+.git/
 frontend/.cache/
+frontend/.idea/
 frontend/node_modules/
 frontend/public/
-.git/
+backend/.idea/
+backend/crayonrails/db.sqlite3
+backend/crayonrails/game/static/
