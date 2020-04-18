@@ -39,7 +39,7 @@ class GameAction(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     type = models.CharField(max_length=200)
     sequence_number = models.BigIntegerField()
-    data = models.CharField(max_length=255)
+    data = models.TextField()
 
     def __str__(self):
         return f"Game {self.game_id} - A{self.sequence_number}:{self.type}"
