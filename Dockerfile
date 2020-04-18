@@ -5,7 +5,7 @@ WORKDIR /app
 COPY ./frontend /app
 
 RUN yarn install
-RUN yarn run build
+RUN yarn run build --prefix-paths
 
 FROM python:3.8-slim
 
