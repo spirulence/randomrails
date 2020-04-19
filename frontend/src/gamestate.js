@@ -211,10 +211,12 @@ export function currentTurn(actions, playerId){
     }
   }
 
+  const myPlayOrder = playerId in players ? players[playerId].playOrder : -1
+
   return {
     playOrder: mostRecentStart.data.playOrder,
     playerName: "somebody",
-    isYou: players[playerId].playOrder === mostRecentStart.data.playOrder
+    isYou: myPlayOrder === mostRecentStart.data.playOrder
   }
 }
 
