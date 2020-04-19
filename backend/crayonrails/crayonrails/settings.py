@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from pathlib import Path
 
 from dotenv import load_dotenv
 
@@ -45,8 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'django.contrib.staticfiles',
 ]
+
+if os.environ.get("PRODUCTION_STATICFILES", "FALSE").lower() == "true":
+    INSTALLED_APPS.append('django.contrib.staticfiles')
 
 MIDDLEWARE = [
     # 'corsheaders.middleware.CorsMiddleware',
