@@ -1,5 +1,10 @@
 import base64 from "react-native-base64"
 
+export function discardAllDemands(gameId) {
+  fetch(`/game/${gameId}/actions/demand/discard/all/`, { method: "POST" })
+}
+
+
 export function advanceTurn(gameId) {
   fetch(`/game/${gameId}/actions/flow/advance/turn/`, { method: "POST" })
 }
@@ -66,4 +71,8 @@ export function setMyColor(gameId, playerId, color){
 
 export function startGame(gameId){
   fetch(`/game/${gameId}/actions/flow/start/`, { method: "POST" })
+}
+
+export function undoTrack(gameId){
+  fetch(`/game/${gameId}/actions/undo/track/last/`, { method: "POST" })
 }

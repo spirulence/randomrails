@@ -136,3 +136,43 @@ def action_erase_track(request, game_id, x1, y1, x2, y2):
     return JsonResponse({
         "result": "success"
     })
+
+
+@require_POST
+def action_undo_last_track(request, game_id):
+    if not is_player(request, game_id):
+        return HttpResponseForbidden()
+
+    if not is_players_turn(request, game_id):
+        return HttpResponseBadRequest("it is not your turn")
+
+    slot = PlayerSlot.objects.get(game_id=game_id, user_id=request.user.id)
+
+    last_action = GameAction.objects.filter(game_id=game_id).order_by('-sequence_number').first()
+
+    if last_action.type != "add_track":
+        return HttpResponseBadRequest("can only undo track if it is the last action taken")
+
+    next_sequence_number = last_action.sequence_number + 1
+
+    money_action = actiontypes.money_adjust(
+        game_id=game_id,
+        sequence_number=next_sequence_number,
+        player_id=slot.id,
+        amount=json.loads(last_action.data)["spent"]
+    )
+    money_action.save()
+
+    next_sequence_number += 1
+
+    game_action = actiontypes.erase_track(
+        game_id=game_id,
+        sequence_number=next_sequence_number,
+        player_id=slot.id,
+        track_from=json.loads(last_action.data)["from"],
+        track_to=json.loads(last_action.data)["to"]
+    )
+    game_action.save()
+    return JsonResponse({
+        "result": "success"
+    })

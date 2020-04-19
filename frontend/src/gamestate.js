@@ -1,6 +1,8 @@
 import { gridToBoardPixelX, gridToBoardPixelY } from "./components/boardlayers/common"
 import React from "react"
 
+
+
 export const types = {
   MOVE_TRAIN: "move_train",
   PLAYER_JOINED: "player_joined",
@@ -21,6 +23,13 @@ export const types = {
 
 export function ofType(actions, type) {
   return actions.filter((action) => action.type === type)
+}
+
+export function isBeginningOfTurn(actions) {
+  if (actions.length === 0){
+    return false
+  }
+  return actions[actions.length - 1].type === types.START_TURN
 }
 
 export function trainLocations(actions) {

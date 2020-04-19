@@ -47,12 +47,12 @@ const Game = (props) => {
         <div style={{ position: "fixed", bottom: "0%", backgroundColor: "#ddd", padding: "5px" }}>
           <CrayonChooser playerId={myPlayerId} actions={actions} setCrayon={(color) => {setMyColor(gameId, myPlayerId, color)}}/>
           <MoneyDisplay playerId={myPlayerId} actions={actions}/>
-          <button style={{marginRight: "3px", marginLeft:"3px"}} onClick={() => {gameapi.drawDemandCard(gameId)}}>Draw Demand Card</button>
           <button style={{display: "inline"}} disabled={inputMode === "none"} onClick={() => {setInputMode("none")}}>None</button>
           <button style={{display: "inline"}} disabled={inputMode === "move_train"} onClick={() => {setInputMode("move_train")}}>Move Train</button>
           <button style={{display: "inline"}} disabled={inputMode === "add_track"} onClick={() => {setInputMode("add_track")}}>Add Track</button>
           <button style={{display: "inline"}} disabled={inputMode === "erase_track"} onClick={() => {setInputMode("erase_track")}}>Erase Track</button>
           <button style={{marginRight: "3px", marginLeft:"3px"}} onClick={() => {setShowHostingTools(!showHostingTools)}}>Toggle Host Tools</button>
+          <button style={{display: "inline"}} disabled={inputMode !== "add_track"} onClick={() => {gameapi.undoTrack(gameId)}}>Undo Add Track</button>
         </div>
         <div style={{ position: "fixed", bottom: "60px" }}>
           <TrainCargo actions={actions} playerId={myPlayerId} gameId={gameId}/>
