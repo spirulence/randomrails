@@ -123,7 +123,7 @@ def player_changed_color(game_id, sequence_number, player_id, new_color):
         }))
 
 
-def add_track(game_id, sequence_number, player_id, track_from, track_to):
+def add_track(game_id, sequence_number, player_id, track_from, track_to, spent):
     return GameAction(
         game_id=game_id,
         sequence_number=sequence_number,
@@ -131,7 +131,8 @@ def add_track(game_id, sequence_number, player_id, track_from, track_to):
         data=json.dumps({
             "playerId": player_id,
             "from": track_from,
-            "to": track_to
+            "to": track_to,
+            "spent": spent
         }))
 
 

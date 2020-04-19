@@ -13,7 +13,7 @@ const TrainsLayer = (props) => {
 
     trainIndicators[action.data.playerId] = <svg key={action.data.playerId} x={gridToBoardPixelX(x, y) - 60}
                                                  y={gridToBoardPixelY(x, y) - 150}>
-      <g transform="scale(2,-2) translate(0,-100)" fill={trainColor}>
+      <g transform="scale(2,-2) translate(3,-100)" fill={trainColor}>
         <path
           d="M 1.000000 1.500000 L 6.000000 6.500000 L 6.000000 16.500000 L 11.000000 16.500000 L 11.000000 11.500000 L 26.000000 11.500000 L 26.000000 16.500000 L 41.000000 16.500000 L 41.000000 1.500000 L 2.325757 1.500000 Z"
           transform="scale(1.000000,1.000000) translate(4.000000,16.000000)" opacity="1.000000"/>

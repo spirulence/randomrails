@@ -2,7 +2,6 @@ from django.contrib.auth.models import User, AnonymousUser
 from django.test import TestCase, RequestFactory
 
 from .train import action_move_train
-from ..utils.gameactions import get_money_for_player
 from ...models import Game, PlayerSlot
 from . import actiontypes
 
@@ -31,7 +30,7 @@ class MoveTrain(TestCase):
         self.player_slot = PlayerSlot(game_id=self.game.id, user_id=self.player.id, role="guest")
         self.player_slot.save()
 
-        actiontypes.add_track(game.id, sequence_number=2, track_from=[6, 5], track_to=[5, 5], player_id=self.player_slot.id).save()
+        actiontypes.add_track(game.id, sequence_number=2, track_from=[6, 5], track_to=[5, 5], spent=1, player_id=self.player_slot.id).save()
 
         actiontypes.player_joined(game_id=self.game.id, sequence_number=3, play_order=0, screen_name="host",
                                   player_id=self.creator_slot.id).save()

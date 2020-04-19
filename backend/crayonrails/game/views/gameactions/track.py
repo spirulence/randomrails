@@ -6,7 +6,7 @@ from django.views.decorators.http import require_POST
 from . import actiontypes
 from ..utils.gameflow import is_players_turn
 from ..utils.adjacency import are_adjacent
-from ..utils.gameactions import get_existing_track
+from ..utils.gameactions import get_existing_track, get_remaining_track_money
 from ..utils.permissions import is_player, is_creator
 from ...models import PlayerSlot, GameAction
 
@@ -70,6 +70,9 @@ def action_add_track(request, game_id, x1, y1, x2, y2):
     if cost > player_money:
         return HttpResponseBadRequest("you don't have enough money")
 
+    if cost > get_remaining_track_money(game_id):
+        return HttpResponseBadRequest("you don't have enough track building allowance")
+
     next_sequence_number = GameAction.objects.filter(game_id=game_id).order_by('-sequence_number').first().sequence_number + 1
 
     money_action = actiontypes.money_adjust(
@@ -86,6 +89,7 @@ def action_add_track(request, game_id, x1, y1, x2, y2):
         game_id=game_id,
         sequence_number=next_sequence_number,
         player_id=slot.id,
+        spent=cost,
         track_from=[x1, y1],
         track_to=[x2, y2]
     )

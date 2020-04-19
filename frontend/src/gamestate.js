@@ -235,3 +235,26 @@ export function trainMovementThisTurn(actions) {
 
   return movement
 }
+
+export function trackBuiltThisTurn(actions) {
+  let mostRecentStart = null
+
+  ofType(actions, types.START_TURN)
+    .forEach(action => {
+      mostRecentStart = action
+    })
+
+  if (mostRecentStart === null) {
+    return 0
+  }
+
+  let spent = 0
+
+  ofType(actions, types.ADD_TRACK)
+    .filter(action => action.sequenceNumber > mostRecentStart.sequenceNumber)
+    .forEach(action => {
+      spent += action.data.spent;
+    })
+
+  return spent
+}

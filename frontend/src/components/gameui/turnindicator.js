@@ -27,7 +27,7 @@ const TurnIndicator = (props) => {
   const yourTurn = <div>
     <h2>Your Turn!</h2>
     <h4>Moved Train {gamestate.trainMovementThisTurn(actions)}/12</h4>
-    <h4>Built Track 0/25</h4>
+    <h4>Built Track {gamestate.trackBuiltThisTurn(actions)}/25</h4>
     <button onClick={() => {gameapi.advanceTurn(gameId)}}>End Turn</button>
   </div>
 

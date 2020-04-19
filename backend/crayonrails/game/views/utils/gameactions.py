@@ -156,3 +156,15 @@ def get_remaining_train_movement(game_id):
         movement_left -= json.loads(action.data)["movementUsed"]
 
     return movement_left
+
+
+def get_remaining_track_money(game_id):
+    most_recently_started = GameAction.objects.filter(game_id=game_id, type="start_turn").order_by(
+        "-sequence_number").first()
+
+    money_left = 25
+    for action in GameAction.objects.filter(game_id=game_id, type="add_track",
+                                            sequence_number__gt=most_recently_started.sequence_number):
+        money_left -= json.loads(action.data)["spent"]
+
+    return money_left
