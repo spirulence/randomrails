@@ -12,7 +12,8 @@ whitenoise = "*"
 svglib = "*"
 gunicorn = "*"
 python-dotenv = "*"
-mysqlclient = "*"
+mysqlclient = {version = "*", sys_platform = "== 'linux'"}
+networkx = "*"
 
 [requires]
 python_version = "3.8"

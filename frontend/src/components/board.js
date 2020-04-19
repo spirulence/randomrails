@@ -25,6 +25,7 @@ const PlayBoard = (props) => {
   const setNeedToFetch = props.setNeedToFetch
   const highlightGood = props.highlightGood
   const highlightCity = props.highlightCity
+  const inputMode = props.inputMode
 
   const [selected, setSelected] = useState(null)
   const [zoom, setZoom] = useState(1.0)
@@ -102,6 +103,11 @@ const PlayBoard = (props) => {
     return () => {clearInterval(timeout)}
   }, [viewPoint, scroll])
 
+  const cursors = {
+    "add_track": `url("${data.trackCursor.publicURL}") 4 2, pointer`,
+    "move_train": `url("${data.trainCursor.publicURL}") 2 5, default`
+  }
+
   return (
     <div id="ui-container" tabIndex={1}
          onKeyDown={(event) => {
@@ -140,7 +146,7 @@ const PlayBoard = (props) => {
              left: 0,
              height: "100%",
              width: "100%",
-             cursor: props.inputMode === "add_track" ? `url("${data.trackCursor.publicURL}") 4 2, pointer` : `url("${data.trainCursor.publicURL}") 2 5, default`,
+             cursor: props.inputMode in cursors ? cursors[props.inputMode] : `default`,
            }}>
         <image id="base-image" href={`/game/${gameId}/map/render`}/>
         <SelectionCircle selected={selected}/>
@@ -148,7 +154,7 @@ const PlayBoard = (props) => {
         <CitiesLayer actions={actions}/>
         <GoodsLayer actions={actions}/>
         <TrainsLayer actions={actions}/>
-        <HighlightsLayer actions={actions} highlightCity={highlightCity} highlightGood={highlightGood}/>
+        <HighlightsLayer actions={actions} gameId={gameId} highlightCity={highlightCity} highlightGood={highlightGood} highlightMovement={inputMode === "move_train"}/>
       </svg>
     </div>
   )

@@ -5,6 +5,22 @@ from .colors import standard_colors
 from ...models import GameAction
 
 
+def get_current_track(game_id):
+    track = set()
+
+    for action in GameAction.objects.filter(game_id=game_id, type__in=["add_track", "erase_track"]).order_by('sequence_number'):
+        if action.type == "add_track":
+            (x1, y1), (x2, y2) = sorted((json.loads(action.data)["from"], json.loads(action.data)["to"]))
+            track.add((x1, y1, x2, y2))
+        if action.type == "erase_track":
+            (x1, y1), (x2, y2) = sorted((json.loads(action.data)["from"], json.loads(action.data)["to"]))
+            try:
+                track.remove((x1, y1, x2, y2))
+            except KeyError:
+                pass
+
+    return track
+
 def last_game_action(game_id):
     return GameAction.objects.filter(game_id=game_id).order_by('-sequence_number').first()
 
@@ -130,3 +146,13 @@ def get_max_play_order(game_id):
         maximum = max(data["playOrder"], maximum)
 
     return maximum
+
+
+def get_remaining_train_movement(game_id):
+    most_recently_started = GameAction.objects.filter(game_id=game_id, type="start_turn").order_by("-sequence_number").first()
+
+    movement_left = 12
+    for action in GameAction.objects.filter(game_id=game_id, type="move_train", sequence_number__gt=most_recently_started.sequence_number):
+        movement_left -= json.loads(action.data)["movementUsed"]
+
+    return movement_left

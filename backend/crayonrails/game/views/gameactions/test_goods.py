@@ -38,6 +38,13 @@ class GoodPickup(TestCase):
 
         self.factory = RequestFactory()
 
+        actiontypes.player_joined(game_id=self.game.id, sequence_number=3, play_order=0, screen_name="player",
+                                  player_id=self.slot.id).save()
+
+        actiontypes.start_game(game.id, sequence_number=4).save()
+
+        actiontypes.start_turn(game.id, sequence_number=5, play_order=0).save()
+
     def test_anonymous(self):
         request = self.factory.post("")
 
@@ -111,6 +118,13 @@ class GoodDump(TestCase):
         self.slot.save()
 
         self.factory = RequestFactory()
+
+        actiontypes.player_joined(game_id=self.game.id, sequence_number=3, play_order=0, screen_name="player",
+                                  player_id=self.slot.id).save()
+
+        actiontypes.start_game(game.id, sequence_number=4).save()
+
+        actiontypes.start_turn(game.id, sequence_number=5, play_order=0).save()
 
     def test_anonymous(self):
         request = self.factory.post("")
@@ -188,6 +202,13 @@ class GoodDeliver(TestCase):
         self.slot.save()
 
         self.factory = RequestFactory()
+
+        actiontypes.player_joined(game_id=self.game.id, sequence_number=3, play_order=0, screen_name="player",
+                                  player_id=self.slot.id).save()
+
+        actiontypes.start_game(game.id, sequence_number=4).save()
+
+        actiontypes.start_turn(game.id, sequence_number=5, play_order=0).save()
 
     def test_anonymous(self):
         request = self.factory.post("")

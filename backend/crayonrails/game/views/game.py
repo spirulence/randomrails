@@ -31,7 +31,8 @@ def game_new(request):
             game_id=new_game.id,
             sequence_number=last_game_action(game_id=new_game.id).sequence_number + 1,
             player_id=slot.id,
-            play_order=0
+            play_order=0,
+            screen_name="host"
         ).save()
         actiontypes.player_changed_color(
             game_id=new_game.id,
@@ -111,7 +112,8 @@ def game_join(request, game_id, color, screen_name):
         game_id=game_id,
         sequence_number=last_game_action(game_id=game_id).sequence_number + 1,
         player_id=slot.id,
-        play_order=next_play_order
+        play_order=next_play_order,
+        screen_name=screen_name
     ).save()
     actiontypes.player_changed_color(
         game_id=game_id,

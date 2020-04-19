@@ -31,6 +31,17 @@ class MoveTrain(TestCase):
         self.player_slot = PlayerSlot(game_id=self.game.id, user_id=self.player.id, role="guest")
         self.player_slot.save()
 
+        actiontypes.add_track(game.id, sequence_number=2, track_from=[6, 5], track_to=[5, 5], player_id=self.player_slot.id).save()
+
+        actiontypes.player_joined(game_id=self.game.id, sequence_number=3, play_order=0, screen_name="host",
+                                  player_id=self.creator_slot.id).save()
+
+        actiontypes.player_joined(game_id=self.game.id, sequence_number=4, play_order=1, screen_name="player",
+                                  player_id=self.player_slot.id).save()
+
+        actiontypes.start_game(game.id, sequence_number=5).save()
+
+
         self.factory = RequestFactory()
 
     def test_anonymous(self):
@@ -53,6 +64,8 @@ class MoveTrain(TestCase):
         request = self.factory.post("")
 
         request.user = self.player
+
+        actiontypes.start_turn(self.game.id, sequence_number=5, play_order=1).save()
 
         response = action_move_train(request, self.game.id, 5, 5)
         self.assertEqual(response.status_code, 200)

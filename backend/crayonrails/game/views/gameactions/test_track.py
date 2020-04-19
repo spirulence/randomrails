@@ -33,6 +33,16 @@ class AddTrack(TestCase):
 
         self.factory = RequestFactory()
 
+        actiontypes.player_joined(game_id=self.game.id, sequence_number=2, play_order=0, screen_name="host",
+                                  player_id=self.creator_slot.id).save()
+
+        actiontypes.player_joined(game_id=self.game.id, sequence_number=3, play_order=1, screen_name="player",
+                                  player_id=self.player_slot.id).save()
+
+        actiontypes.start_game(game.id, sequence_number=4).save()
+
+        actiontypes.start_turn(game.id, sequence_number=5, play_order=1).save()
+
     def test_anonymous(self):
         request = self.factory.post("")
 

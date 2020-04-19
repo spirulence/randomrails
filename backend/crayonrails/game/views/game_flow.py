@@ -29,7 +29,7 @@ def advance_turn(request, game_id):
     if not is_player(request, game_id):
         return HttpResponseForbidden("you aren't in this game")
 
-    if not is_players_turn(game_id, request):
+    if not is_players_turn(request, game_id):
         return HttpResponseBadRequest("it's not your turn right now")
 
     new_play_order = get_players_turn(game_id, request) + 1

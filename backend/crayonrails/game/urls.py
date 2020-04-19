@@ -28,7 +28,9 @@ urlpatterns = [
     path('<int:game_id>/actions/good/dump/<str:good_id>/', views.action_good_dump,
          name='action_dump_good'),
     path('<int:game_id>/actions/flow/start/', views.start_game, name='action_start_game'),
-    path('<int:game_id>/actions/flow/advance/turn/', views.start_game, name='action_start_game'),
+    path('<int:game_id>/actions/flow/advance/turn/', views.advance_turn, name='action_advance_turn_game'),
+
+    path('<int:game_id>/networks/train/destinations/', views.get_train_destinations, name='get_train_destination'),
 
     path('<int:game_id>/map/render/', views.map_render),
 

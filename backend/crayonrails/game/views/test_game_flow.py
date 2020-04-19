@@ -60,7 +60,7 @@ class AdvanceTurn(TestCase):
         self.creator_slot = PlayerSlot(game_id=self.game.id, user_id=self.creator.id, role="creator")
         self.creator_slot.save()
 
-        actiontypes.player_joined(game_id=self.game.id, sequence_number=0, play_order=0, player_id=self.creator_slot.id).save()
+        actiontypes.player_joined(game_id=self.game.id, sequence_number=0, play_order=0, screen_name="host", player_id=self.creator_slot.id).save()
 
         self.player = User.objects.create_user(
             username="playerjoe"
@@ -69,7 +69,7 @@ class AdvanceTurn(TestCase):
         self.player_slot = PlayerSlot(game_id=self.game.id, user_id=self.player.id, role="guest")
         self.player_slot.save()
 
-        actiontypes.player_joined(game_id=self.game.id, sequence_number=1, play_order=1, player_id=self.player_slot.id).save()
+        actiontypes.player_joined(game_id=self.game.id, sequence_number=1, play_order=1, screen_name="player", player_id=self.player_slot.id).save()
 
         actiontypes.start_game(
             game_id=self.game.id,

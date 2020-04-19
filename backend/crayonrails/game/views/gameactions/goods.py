@@ -8,6 +8,7 @@ from . import actiontypes
 from ..utils.gameactions import get_current_train_location, get_goods_map, last_game_action, get_cities_map, \
     get_current_goods_carried
 from ..utils.permissions import is_player
+from ..utils.gameflow import is_players_turn
 from ...models import PlayerSlot, GameAction
 
 
@@ -15,6 +16,9 @@ from ...models import PlayerSlot, GameAction
 def action_good_pickup(request, game_id, good_id):
     if not is_player(request, game_id):
         return HttpResponseForbidden()
+
+    if not is_players_turn(request, game_id):
+        return HttpResponseBadRequest("it is not your turn")
 
     slot = PlayerSlot.objects.get(game_id=game_id, user_id=request.user.id)
 
@@ -38,6 +42,9 @@ def action_good_dump(request, game_id, good_id):
     if not is_player(request, game_id):
         return HttpResponseForbidden()
 
+    if not is_players_turn(request, game_id):
+        return HttpResponseBadRequest("it is not your turn")
+
     slot = PlayerSlot.objects.get(game_id=game_id, user_id=request.user.id)
 
     available_to_dump = get_current_goods_carried(game_id, slot.id)[good_id]
@@ -58,6 +65,9 @@ def action_good_dump(request, game_id, good_id):
 def action_good_deliver(request, game_id, good_id, card_id):
     if not is_player(request, game_id):
         return HttpResponseForbidden()
+
+    if not is_players_turn(request, game_id):
+        return HttpResponseBadRequest("it is not your turn")
 
     slot = PlayerSlot.objects.get(game_id=game_id, user_id=request.user.id)
 

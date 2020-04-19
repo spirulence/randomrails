@@ -100,14 +100,15 @@ def add_mountain(game_id, sequence_number, location):
         }))
 
 
-def player_joined(game_id, sequence_number, player_id, play_order):
+def player_joined(game_id, sequence_number, player_id, play_order, screen_name):
     return GameAction(
         game_id=game_id,
         sequence_number=sequence_number,
         type="player_joined",
         data=json.dumps({
             "playerId": player_id,
-            "playOrder": play_order
+            "playOrder": play_order,
+            "screenName": screen_name
         }))
 
 
@@ -144,7 +145,6 @@ def erase_track(game_id, sequence_number, player_id, track_from, track_to):
             "from": track_from,
             "to": track_to
         }))
-
 
 
 def start_game(game_id, sequence_number):

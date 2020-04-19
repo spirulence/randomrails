@@ -2,7 +2,7 @@ from ...models import PlayerSlot
 from . import gameactions
 
 
-def is_players_turn(game_id, request):
+def is_players_turn(request, game_id):
     player_turn = get_players_turn(game_id, request)
     current_turn = gameactions.get_current_turn(game_id)
     return player_turn == current_turn

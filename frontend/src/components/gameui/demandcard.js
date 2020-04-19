@@ -31,7 +31,6 @@ const DemandCard = (props) => {
 
   function demandList(demand){
     let isFillable = false;
-    console.log(props.fillable)
     props.fillable.forEach((fillableDemand) => {
       if (props.card.id === fillableDemand.card && demand.id === fillableDemand.demand){
         isFillable = true

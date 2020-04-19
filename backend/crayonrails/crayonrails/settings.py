@@ -15,8 +15,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-if Path(".") / ".env":
-    load_dotenv()
+if os.environ.get("ENV", "local") == "local":
+    load_dotenv(".env.local")
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    # 'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [

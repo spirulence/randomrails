@@ -1,5 +1,16 @@
 import base64 from "react-native-base64"
 
+export function advanceTurn(gameId) {
+  fetch(`/game/${gameId}/actions/flow/advance/turn/`, { method: "POST" })
+}
+
+export function fetchMovementDestinations(gameId, setDestinations) {
+  fetch(`/game/${gameId}/networks/train/destinations/`)
+    .then(response => response.json())
+    .then(data => {setDestinations(data.result)})
+}
+
+
 export function fetchMyPlayerId(gameId, setMyPlayerId) {
   fetch(`/game/${gameId}/my-player-id/`).then(
     (response) => {
@@ -51,4 +62,8 @@ export function drawDemandCard(gameId) {
 
 export function setMyColor(gameId, playerId, color){
   fetch(`/game/${gameId}/slot/${playerId}/set-color/${base64.encode(color)}/`, { method: "POST" })
+}
+
+export function startGame(gameId){
+  fetch(`/game/${gameId}/actions/flow/start/`, { method: "POST" })
 }

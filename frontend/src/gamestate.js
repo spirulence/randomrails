@@ -15,6 +15,8 @@ export const types = {
   GOOD_PICKUP: "good_pickup",
   GOOD_DELIVERED: "good_delivered",
   ERASE_TRACK: "erase_track",
+  START_TURN: "start_turn",
+  START_GAME: "start_game",
 }
 
 export function ofType(actions, type) {
@@ -70,7 +72,8 @@ export function currentPlayers(actions){
   ofType(actions, types.PLAYER_JOINED).forEach((action) => {
     players[action.data.playerId] = {
       playOrder: action.data.playOrder,
-      playerId: action.data.playerId
+      playerId: action.data.playerId,
+      playerName: action.data.screenName
     }
   })
 
@@ -179,4 +182,56 @@ export function demandsFillable(actions, playerId){
   })
 
   return fillable
+}
+
+export function currentTurn(actions, playerId){
+  let mostRecentStart = null
+
+  ofType(actions, types.START_TURN)
+    .forEach(action => {
+      mostRecentStart = action
+    })
+
+  const players = currentPlayers(actions)
+
+  if (mostRecentStart === null || Object.keys(players).length === 0){
+    return {
+      playOrder: 0,
+      playerName: "",
+      isYou: false
+    }
+  }
+
+  return {
+    playOrder: mostRecentStart.data.playOrder,
+    playerName: "somebody",
+    isYou: players[playerId].playOrder === mostRecentStart.data.playOrder
+  }
+}
+
+export function gameIsStarted(actions) {
+  return ofType(actions, types.START_GAME).length > 0
+}
+
+export function trainMovementThisTurn(actions) {
+  let mostRecentStart = null
+
+  ofType(actions, types.START_TURN)
+    .forEach(action => {
+      mostRecentStart = action
+    })
+
+  if (mostRecentStart === null) {
+    return 0
+  }
+
+  let movement = 0
+
+  ofType(actions, types.MOVE_TRAIN)
+    .filter(action => action.sequenceNumber > mostRecentStart.sequenceNumber)
+    .forEach(action => {
+      movement += action.data.movementUsed;
+    })
+
+  return movement
 }

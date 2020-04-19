@@ -4,6 +4,7 @@ from django.http import HttpResponseForbidden, HttpResponseBadRequest, JsonRespo
 from django.views.decorators.http import require_POST
 
 from . import actiontypes
+from ..utils.gameflow import is_players_turn
 from ..utils.adjacency import are_adjacent
 from ..utils.gameactions import get_existing_track
 from ..utils.permissions import is_player, is_creator
@@ -51,6 +52,9 @@ def get_player_current_money(slot):
 def action_add_track(request, game_id, x1, y1, x2, y2):
     if not is_player(request, game_id):
         return HttpResponseForbidden()
+
+    if not is_players_turn(request, game_id):
+        return HttpResponseBadRequest("it is not your turn")
 
     if not are_adjacent((x1, y1), (x2, y2)):
         return HttpResponseBadRequest("points are not adjacent")

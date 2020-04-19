@@ -9,6 +9,7 @@ import { setMyColor } from "../gameapi"
 import DemandCards from "./gameui/demands"
 import PickupGoods from "./gameui/goods"
 import TrainCargo from "./gameui/cargo"
+import TurnIndicator from "./gameui/turnindicator"
 
 const Game = (props) => {
   const gameId = props.gameId
@@ -16,7 +17,7 @@ const Game = (props) => {
   const [actions, setActions] = useState([]);
   const [myPlayerId, setMyPlayerId] = useState(null);
   const [showHostingTools, setShowHostingTools] = useState(false);
-  const [inputMode, setInputMode] = useState("move_train")
+  const [inputMode, setInputMode] = useState("none")
   const [highlightCity, setHighlightCity] = useState(null)
   const [highlightGood, setHighlightGood] = useState(null)
 
@@ -57,6 +58,9 @@ const Game = (props) => {
           <TrainCargo actions={actions} playerId={myPlayerId} gameId={gameId}/>
           <PickupGoods actions={actions} playerId={myPlayerId} gameId={gameId}/>
           <DemandCards actions={actions} playerId={myPlayerId} gameId={gameId} highlightCity={highlightCity} highlightGood={highlightGood} setHighlightCity={setHighlightCity} setHighlightGood={setHighlightGood}/>
+        </div>
+        <div style={{ position: "fixed", bottom: "0", right: "0", backgroundColor: "#ddd", padding: "5px" }}>
+          <TurnIndicator actions={actions} playerId={myPlayerId} gameId={gameId}/>
         </div>
       </div>
     </PlayBoard>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import * as gameapi from "../../gameapi"
 import * as gamestate from "../../gamestate"
 import { createInviteCode } from "../../gameapi"
+import { gameIsStarted } from "../../gamestate"
 
 const HostingTools = (props) => {
   const gameId = props.gameId
@@ -47,9 +48,14 @@ const HostingTools = (props) => {
       </div>
     })
 
+
+
   return (
     <div style={{ display: props.show ? "block" : "none", backgroundColor: "#ddd" }}>
       <h5>Hosting Tools</h5>
+      {gameIsStarted(actions) ? <></> : <button onClick={() => {
+        gameapi.startGame(gameId)
+      }}>Start Game</button>}
       <p>Invite others! {joincodePrefix + joincode}</p>
       {playersHtml}
     </div>

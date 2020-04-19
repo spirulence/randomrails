@@ -52,7 +52,7 @@ def invite_use(request, game_id, invite_code):
             lobby_access.save()
         return redirect(f"/static/?game_id={game_id}")
     else:
-        user = User.objects.create_user(f"{invite.id}-{game_id}")
+        user = User.objects.create_user(f"{invite.id}-{game_id}-{secrets.token_hex(8)}")
         lobby_access = LobbyAccess(game_id=game_id, user_id=user.id)
         lobby_access.save()
         login(request, user)
