@@ -19,6 +19,6 @@ COPY --from=frontend-builder /app/public /app/crayonrails/game/static
 
 WORKDIR /app/crayonrails
 
-RUN SECRET_KEY=secretforstatic python manage.py collectstatic
+RUN SECRET_KEY=secretforstatic PRODUCTION_STATICFILES=true python manage.py collectstatic
 
 CMD python manage.py migrate && gunicorn crayonrails.wsgi
