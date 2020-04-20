@@ -6,7 +6,7 @@ from django.views.decorators.http import require_POST
 from . import actiontypes
 from ..utils.gameflow import is_players_turn
 from ..utils.adjacency import are_adjacent
-from ..utils.gameactions import get_existing_track, get_remaining_track_money
+from ..utils.gameactions import get_existing_track, get_remaining_track_money, get_current_track
 from ..utils.permissions import is_player, is_creator
 from ...models import PlayerSlot, GameAction
 
@@ -60,7 +60,7 @@ def action_add_track(request, game_id, x1, y1, x2, y2):
         return HttpResponseBadRequest("points are not adjacent")
 
     track_key = tuple(sorted([(x1, y1), (x2, y2)]))
-    if track_key in get_existing_track(game_id):
+    if track_key in get_current_track(game_id):
         return HttpResponseBadRequest("already track there")
 
     slot = PlayerSlot.objects.get(game_id=game_id, user_id=request.user.id)
@@ -108,7 +108,7 @@ def action_erase_track(request, game_id, x1, y1, x2, y2):
         return HttpResponseBadRequest("points are not adjacent")
 
     track_key = tuple(sorted([(x1, y1), (x2, y2)]))
-    if track_key not in get_existing_track(game_id):
+    if track_key not in get_current_track(game_id):
         return HttpResponseBadRequest("no track there")
 
     slot = PlayerSlot.objects.get(game_id=game_id, user_id=request.user.id)

@@ -42,6 +42,7 @@ urlpatterns = [
     path('<int:game_id>/networks/train/destinations/', views.get_train_destinations, name='get_train_destination'),
 
     path('<int:game_id>/map/render/', views.map_render),
+    # path('<int:game_id>/voronoi/render/', views.voronoi_render),
 
     path('<int:game_id>/invite/use/<str:invite_code>/', views.invite_use, name='invite_use'),
     path('<int:game_id>/invite/create/', views.invite_create, name='invite_create'),

@@ -3,11 +3,8 @@ import * as gamestate from "../../gamestate"
 import { gridToBoardPixelX, gridToBoardPixelY } from "./common"
 import { currentPlayers } from "../../gamestate"
 
-function addTrack(collection, action, colors, dontDraw) {
+function addTrack(collection, action, colors) {
   const [[x1, y1], [x2, y2]] = [action.data.from, action.data.to]
-  if(dontDraw.includes(`${x1},${y1},${x2},${y2}`) || dontDraw.includes(`${x2},${y2},${x1},${y1}`)){
-    return
-  }
 
   collection.unshift(<line
     key={action.sequenceNumber}
@@ -24,19 +21,23 @@ const TrackLayer = (props) => {
     playerColors[player.playerId] = player.color
   })
 
-  const trackSegments = []
+  const trackStatus = {}
 
-  const dontDraw = []
-
-  gamestate.ofType(actions, gamestate.types.ERASE_TRACK).forEach(action => {
+  gamestate.ofMultipleTypes(actions, [gamestate.types.ADD_TRACK, gamestate.types.ERASE_TRACK]).forEach(action => {
     const [[x1, y1], [x2, y2]] = [action.data.from, action.data.to]
-    dontDraw.unshift(`${x1},${y1},${x2},${y2}`)
+    if (action.type === gamestate.types.ADD_TRACK) {
+      trackStatus[`${x1},${y1},${x2},${y2}`] = action
+    } else if (action.type === gamestate.types.ERASE_TRACK) {
+      trackStatus[`${x1},${y1},${x2},${y2}`] = undefined
+    }
   })
 
-  gamestate.ofType(actions, gamestate.types.ADD_TRACK).forEach(action => {
-    addTrack(trackSegments, action, playerColors, dontDraw)
-  })
-
+  const trackSegments = []
+  Object.values(trackStatus)
+    .filter(action => action !== undefined)
+    .forEach(action => {
+      addTrack(trackSegments, action, playerColors)
+    })
 
   return (<g>
     {trackSegments}

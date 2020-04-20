@@ -18,11 +18,15 @@ export const types = {
   GOOD_DELIVERED: "good_delivered",
   ERASE_TRACK: "erase_track",
   START_TURN: "start_turn",
-  START_GAME: "start_game",
+  START_GAME: "start_game", ADD_COUNTRY: "add_country",
 }
 
 export function ofType(actions, type) {
   return actions.filter((action) => action.type === type)
+}
+
+export function ofMultipleTypes(actions, types) {
+  return actions.filter(action => types.includes(action.type))
 }
 
 export function isBeginningOfTurn(actions) {

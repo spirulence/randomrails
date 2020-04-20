@@ -7,6 +7,7 @@ import HighlightsLayer from "./boardlayers/highlights"
 import { areAdjacent, spaceBetween } from "./boardlayers/common"
 import SelectionCircle from "./boardlayers/selection"
 import { graphql, useStaticQuery } from "gatsby"
+import CountriesLayer from "./boardlayers/countries"
 
 
 const PlayBoard = (props) => {
@@ -149,6 +150,7 @@ const PlayBoard = (props) => {
              cursor: props.inputMode in cursors ? cursors[props.inputMode] : `default`,
            }}>
         <image id="base-image" href={`/game/${gameId}/map/render`}/>
+        <CountriesLayer actions={actions}/>
         <SelectionCircle selected={selected}/>
         <TrackLayer actions={actions}/>
         <CitiesLayer actions={actions}/>

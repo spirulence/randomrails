@@ -1,10 +1,13 @@
 import json
 import tempfile
 
+import numpy
 from django.http import HttpResponseForbidden, HttpResponse
 from reportlab.graphics import renderPM
 from svglib.svglib import svg2rlg
+from scipy.spatial import Voronoi
 
+from .utils import gameactions
 from .utils.permissions import is_player
 from ..models import GameAction
 
@@ -26,8 +29,8 @@ def grid_to_board_y(x, y):
     return y * spaceBetween + spaceBetween / 2
 
 
-def render_to_svg(actions):
-    mountains = set(tuple(json.loads(a.data)["location"]) for a in actions)
+def render_to_svg(mountain_actions, country_actions):
+    mountains = set(tuple(json.loads(a.data)["location"]) for a in mountain_actions)
 
     with tempfile.NamedTemporaryFile(suffix=".svg") as svg_file:
         svg_file.write(b"<svg viewBox='0 0 3500 2000'>")
@@ -42,6 +45,16 @@ def render_to_svg(actions):
                 else:
                     svg_file.write(f"<circle cx='{x}' cy='{y}' r='{circleRadius}' fill='black'/>".encode())
 
+        for country in country_actions:
+            coords = json.loads(country.data)["coords"]
+            coord_strings = []
+            for x, y in coords:
+                coord_strings.append(f'{x} {y}')
+
+            if coord_strings:
+                path = f'<path fill="none" stroke-width="5px" stroke="black" d="M {coord_strings[0]} {" L ".join(coord_strings[1:])}"/>'.encode()
+                svg_file.write(path)
+
         svg_file.write(b"</svg>")
 
         svg_file.seek(0)
@@ -54,10 +67,55 @@ def map_render(request, game_id):
     if not is_player(request, game_id):
         return HttpResponseForbidden()
 
-    actions = GameAction.objects.filter(game_id=game_id, type="add_mountain")
+    mountains = GameAction.objects.filter(game_id=game_id, type="add_mountain")
+    countries = GameAction.objects.filter(game_id=game_id, type="add_country")
 
-    as_string = render_to_svg(actions)
+    as_string = render_to_svg(mountains, countries)
 
     return HttpResponse(as_string, content_type="image/jpg")
+
+
+# def render_cells(game_id):
+#     points = []
+#     for city, (x, y) in gameactions.get_cities_map(game_id).items():
+#         points.append([grid_to_board_x(x, y), grid_to_board_y(x, y)])
+#
+#     points.append([-500, -500])
+#     points.append([4000, -500])
+#     points.append([4000, 2500])
+#     points.append([-500, 2500])
+#
+#     vor = Voronoi(numpy.array(points))
+#
+#     with tempfile.NamedTemporaryFile(suffix=".svg") as svg_file:
+#         svg_file.write(b"<svg viewBox='0 0 3500 2000'>")
+#
+#         for region in vor.regions:
+#             strings = []
+#
+#             for index in region:
+#                 if index != -1:
+#                     x, y = vor.vertices[index]
+#                     strings.append(f'{x} {y}')
+#
+#             if strings:
+#                 path = f'<path fill="none" stroke="black" d="M {strings[0]} {" L ".join(strings[1:])}"/>'.encode()
+#                 svg_file.write(path)
+#
+#         svg_file.write(b"</svg>")
+#
+#         svg_file.seek(0)
+#
+#         drawing = svg2rlg(svg_file.name)
+#         return renderPM.drawToString(drawing, fmt="jpg")
+#
+#
+# def voronoi_render(request, game_id):
+#     if not is_player(request, game_id):
+#         return HttpResponseForbidden()
+#
+#     cells = render_cells(game_id)
+#
+#     return HttpResponse(cells, content_type="image/jpg")
 
 

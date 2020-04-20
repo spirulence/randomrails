@@ -11,7 +11,7 @@ from django.views.decorators.http import require_POST
 
 from .utils.permissions import is_player
 from .gameactions import actiontypes, last_game_action
-from .mapgen.standard import build_new_map
+from .mapgen.countries import build_new_map
 from .utils.gameactions import get_next_available_play_order, get_color_status
 from ..models import Game, PlayerSlot, LobbyAccess, GameAction
 
