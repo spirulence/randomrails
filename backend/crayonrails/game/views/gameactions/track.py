@@ -6,7 +6,7 @@ from django.views.decorators.http import require_POST
 from . import actiontypes
 from ..utils.gameflow import is_players_turn
 from ..utils.adjacency import are_adjacent
-from ..utils.gameactions import get_existing_track, get_remaining_track_money, get_current_track
+from ..utils.gameactions import get_existing_track, get_remaining_track_money, get_current_track, in_water
 from ..utils.permissions import is_player, is_creator
 from ...models import PlayerSlot, GameAction
 
@@ -58,6 +58,9 @@ def action_add_track(request, game_id, x1, y1, x2, y2):
 
     if not are_adjacent((x1, y1), (x2, y2)):
         return HttpResponseBadRequest("points are not adjacent")
+
+    if in_water(game_id, x1, y1) or in_water(game_id, x2, y2):
+        return HttpResponseBadRequest("can't build on the water")
 
     track_key = tuple(sorted([(x1, y1), (x2, y2)]))
     if track_key in get_current_track(game_id):

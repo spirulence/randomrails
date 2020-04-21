@@ -168,3 +168,12 @@ def get_remaining_track_money(game_id):
         money_left -= json.loads(action.data)["spent"]
 
     return money_left
+
+
+def in_water(game_id, x, y):
+    water_points = set()
+    for water in GameAction.objects.filter(game_id=game_id, type="add_water"):
+        water_points.update(tuple(c) for c in json.loads(water.data)["contains"])
+
+    return (x, y) in water_points
+

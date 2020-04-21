@@ -15,7 +15,6 @@ python-dotenv = "*"
 mysqlclient = {version = "*",sys_platform = "== 'linux'"}
 networkx = "*"
 scipy = "*"
-shapely = "*"
 
 [requires]
 python_version = "3.8"

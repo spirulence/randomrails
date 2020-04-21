@@ -41,9 +41,7 @@ def game_new(request):
             new_color="#00ffcc"
         ).save()
 
-        return JsonResponse({
-            "result": {"gameId": new_game.id}
-        })
+        return redirect(f"/static/index.html?game_id={new_game.id}")
     else:
         return HttpResponseForbidden("<h1>Admins only</h1>")
 

@@ -1,0 +1,26 @@
+FROM python:3.8-slim
+
+RUN apt-get update && apt-get install -y git build-essential cmake default-libmysqlclient-dev
+
+RUN pip install cython==0.29.16 numpy==1.18.3 pipenv
+
+RUN git clone --depth 1 https://github.com/libgeos/geos.git /geos-master
+
+WORKDIR /geos-master
+
+RUN mkdir build && cd build \
+    && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr .. \
+    && make -j 2 && ctest . && make install
+
+RUN pip install -e git+https://github.com/Toblerity/Shapely.git@de4838e102dcfd54aadc8af03ed33def918334e6#egg=shapely
+
+WORKDIR /app
+
+COPY backend/Pipfile.lock backend/Pipfile ./
+
+RUN pipenv install --deploy --system
+
+
+
+
+

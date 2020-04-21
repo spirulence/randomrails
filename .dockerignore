@@ -6,3 +6,4 @@ frontend/public/
 backend/.idea/
 backend/crayonrails/db.sqlite3
 backend/crayonrails/game/static/
+backend/crayonrails/staticfiles/
