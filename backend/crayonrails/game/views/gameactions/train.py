@@ -46,7 +46,7 @@ def action_move_train(request, game_id, x, y):
                     "result": "success"
                 })
 
-        return HttpResponseBadRequest("you're not connected to that location")
+        return HttpResponseBadRequest("you're not connected there, or you don't have enough moves")
     else:
         connected_to = False
 
@@ -57,7 +57,7 @@ def action_move_train(request, game_id, x, y):
                     connected_to = True
 
         if not connected_to:
-            return HttpResponseBadRequest("you're not connected to that location")
+            return HttpResponseBadRequest("you're not connected there, or you don't have enough moves")
 
         next_sequence_number = GameAction.objects.filter(game_id=game_id).order_by('-sequence_number').first().sequence_number + 1
         game_action = GameAction(
