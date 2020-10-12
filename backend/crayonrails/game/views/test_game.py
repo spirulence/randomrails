@@ -29,19 +29,6 @@ class GameNew(TestCase):
         response = game_new(self.request)
         self.assertEqual(response.status_code, 403)
 
-    def test_object_created(self):
-        self.request.user = User.objects.create_superuser(
-            username="superjoe"
-        )
-
-        response = game_new(self.request)
-        game_id = json.loads(response.content)["result"]["gameId"]
-
-        self.assertIsNotNone(Game.objects.get(id=game_id))
-
-        self.assertIsNotNone(GameAction.objects.get(game_id=game_id, type="player_joined"))
-        self.assertIsNotNone(GameAction.objects.get(game_id=game_id, type="player_changed_color"))
-
 class GameJoin(TestCase):
 
     def setUp(self):

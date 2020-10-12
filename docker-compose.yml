@@ -6,9 +6,9 @@ services:
       dockerfile: Dockerfile.development
       context: .
     volumes:
-    - ./backend/crayonrails:/app
+      - ./backend/crayonrails:/app
     environment:
       PRODUCTION_STATICFILES: "true"
     command: python manage.py runserver 0:8000
     ports:
-    - 8000:8000
+      - 8000:8000

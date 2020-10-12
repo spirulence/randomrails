@@ -48,6 +48,11 @@ def get_player_current_money(slot):
     return sum(json.loads(action.data)["amount"] for action in player_money_actions)
 
 
+def compute_track_key(x1, y1, x2, y2):
+    ((p1, p2), (p3, p4)) = tuple(sorted([(x1, y1), (x2, y2)]))
+    return p1, p2, p3, p4
+
+
 @require_POST
 def action_add_track(request, game_id, x1, y1, x2, y2):
     if not is_player(request, game_id):
@@ -62,7 +67,7 @@ def action_add_track(request, game_id, x1, y1, x2, y2):
     if in_water(game_id, x1, y1) or in_water(game_id, x2, y2):
         return HttpResponseBadRequest("can't build on the water")
 
-    track_key = tuple(sorted([(x1, y1), (x2, y2)]))
+    track_key = compute_track_key(x1, y1, x2, y2)
     if track_key in get_current_track(game_id):
         return HttpResponseBadRequest("already track there")
 
