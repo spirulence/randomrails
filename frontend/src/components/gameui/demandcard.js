@@ -39,7 +39,7 @@ const DemandCard = (props) => {
 
     return (<div style={{ display: "block" }}>
       <div style={{ display: "inline-block" }}>
-        <img onClick={() => {props.setHighlightGood(demand.good); props.setHighlightCity(demand.destination)}} style={{ margin: 0 }} width={60} src={goodsIcons[demand.good]}/>
+        <img onClick={() => {props.setHighlightGood(demand.good); props.setHighlightCity(demand.destination)}} style={{ margin: 0, backgroundColor : props.cargo.includes(demand.good) ? "#cfc" : "#ccc" }} width={60} src={goodsIcons[demand.good]}/>
       </div>
       <div style={{ display: "inline-block" }}>
         <h6 style={{margin: "5px", fontSize: "12px"}}>{goodsNames[demand.good].split(":")[0]}</h6>

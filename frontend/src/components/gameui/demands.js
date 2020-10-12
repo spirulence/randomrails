@@ -21,6 +21,10 @@ const DemandCards = (props) => {
     const isYourTurn = gamestate.currentTurn(actions, playerId)
     const canDiscardCards = isBeginningOfTurn && isYourTurn && demandCards.length === 3
 
+    const cargo = gamestate.cargoForPlayer(actions, playerId).map((pickup) => {
+        return pickup.good;
+    })
+
     if (hidden) {
         return <div style={{backgroundColor: "rgba(221,221,221, 0.87)", padding: "5px"}}>
             <h4 style={{display: "inline"}}> Demand Cards</h4>
@@ -50,6 +54,7 @@ const DemandCards = (props) => {
                     return <DemandCard highlightGood={highlightGood} highlightCity={highlightCity}
                                        setHighlightCity={setHighlightCity} setHighlightGood={setHighlightGood}
                                        key={index}
+                                       cargo={cargo}
                                        card={demandCard} fillable={fillable} fillAction={(good) => {
                         fetch(`/game/${gameId}/actions/good/deliver/${good}/card/${demandCard.id}/`, {method: "POST"})
                     }
