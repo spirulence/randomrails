@@ -61,17 +61,19 @@ def render_to_svg(water_actions, mountain_actions, country_actions):
                         svg_file.write(f"<circle cx='{x}' cy='{y}' r='{circleRadius}' fill='black'/>".encode())
 
         for country in country_actions:
-            coords = json.loads(country.data)["coords"]
-            coord_strings = []
+            coords = json.loads(country.data)["cells"]
+            color = json.loads(country.data)["color"]
             for x, y in coords:
-                coord_strings.append(f'{x} {y}')
-
-            if coord_strings:
-                path = f'<path fill="none" stroke-width="5px" stroke="black" d="M {coord_strings[0]} {" L ".join(coord_strings[1:])}"/>'.encode()
-                svg_file.write(path)
+                board_x = grid_to_board_x(x, y)
+                board_y = grid_to_board_y(x, y)
+                cell = f'<rect ' \
+                       f'x="{board_x - spaceBetween / 2}" ' \
+                       f'y="{board_y - spaceBetween / 2}" ' \
+                       f'width="{spaceBetween}" height="{spaceBetween}" ' \
+                       f'style="fill:{color};fill-opacity:0.35"/>'.encode()
+                svg_file.write(cell)
 
         svg_file.write(b"</svg>")
-
         svg_file.seek(0)
 
         drawing = svg2rlg(svg_file.name)
@@ -89,49 +91,3 @@ def map_render(request, game_id):
     as_string = render_to_svg(water, mountains, countries)
 
     return HttpResponse(as_string, content_type="image/jpg")
-
-
-# def render_cells(game_id):
-#     points = []
-#     for city, (x, y) in gameactions.get_cities_map(game_id).items():
-#         points.append([grid_to_board_x(x, y), grid_to_board_y(x, y)])
-#
-#     points.append([-500, -500])
-#     points.append([4000, -500])
-#     points.append([4000, 2500])
-#     points.append([-500, 2500])
-#
-#     vor = Voronoi(numpy.array(points))
-#
-#     with tempfile.NamedTemporaryFile(suffix=".svg") as svg_file:
-#         svg_file.write(b"<svg viewBox='0 0 3500 2000'>")
-#
-#         for region in vor.regions:
-#             strings = []
-#
-#             for index in region:
-#                 if index != -1:
-#                     x, y = vor.vertices[index]
-#                     strings.append(f'{x} {y}')
-#
-#             if strings:
-#                 path = f'<path fill="none" stroke="black" d="M {strings[0]} {" L ".join(strings[1:])}"/>'.encode()
-#                 svg_file.write(path)
-#
-#         svg_file.write(b"</svg>")
-#
-#         svg_file.seek(0)
-#
-#         drawing = svg2rlg(svg_file.name)
-#         return renderPM.drawToString(drawing, fmt="jpg")
-#
-#
-# def voronoi_render(request, game_id):
-#     if not is_player(request, game_id):
-#         return HttpResponseForbidden()
-#
-#     cells = render_cells(game_id)
-#
-#     return HttpResponse(cells, content_type="image/jpg")
-
-
