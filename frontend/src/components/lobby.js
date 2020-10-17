@@ -12,6 +12,7 @@ const Lobby = (props) => {
     { color: "#bf00ff", available: false },
     { color: "#6c1499", available: false },])
   const [selectedColorIndex, setSelectedColorIndex] = useState(-1)
+  const [username, setUsername] = useState("")
 
   useEffect(() => {
     fetch(`/game/${props.gameId}/lobby/colors-available/`)
@@ -24,9 +25,12 @@ const Lobby = (props) => {
   const joinElements = <div>
     <h3>You've been invited to join a game!</h3>
     <h3>Pick a color and a screen name.</h3>
-    <input placeholder={"RailBaronScreenNameYeet"} style={{ display: "block", width: "100%" }}/>
+    <input placeholder={"RailBaronScreenNameYeet"}
+           value={username}
+           onChange={(event) => setUsername(event.target.value)}
+           style={{ display: "block", width: "100%" }}/>
     <ColorSelectorSquares colorOptions={colorOptions} selectedColorIndex={selectedColorIndex} selectColor={setSelectedColorIndex}/>
-    <button style={{ display: "block", width: "80%", margin: "auto" }} onClick={() => props.join(colorOptions[selectedColorIndex].color)}>Join</button>
+    <button style={{ display: "block", width: "80%", margin: "auto" }} onClick={() => props.join(colorOptions[selectedColorIndex].color, username)}>Join</button>
   </div>
 
   return (

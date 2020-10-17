@@ -31,8 +31,8 @@ const IndexPage = () => {
     }
   }, [])
 
-  function join(color){
-    fetch(`/game/${gameId}/join/${base64.encode(color)}/screenName1/`, {method: "POST"})
+  function join(color, username){
+    fetch(`/game/${gameId}/join/${base64.encode(color)}/${username}/`, {method: "POST"})
       .then(() => {
         fetch(`/game/${gameId}/my-membership/`)
           .then(response => response.json())

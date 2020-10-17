@@ -98,7 +98,7 @@ def game_join(request, game_id, color, screen_name):
 
     next_play_order = get_next_available_play_order(game_id)
 
-    slot = PlayerSlot(game_id=game_id, user_id=request.user.id, role="guest")
+    slot = PlayerSlot(game_id=game_id, user_id=request.user.id, role="guest", screen_name=screen_name)
     slot.save()
 
     actiontypes.player_joined(

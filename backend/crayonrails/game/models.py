@@ -12,10 +12,11 @@ class Game(models.Model):
 class PlayerSlot(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    screen_name = models.CharField(max_length=50, null=True)
     role = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.id}: Game {self.game_id} - {self.role}"
+        return f"{self.id}: Game {self.game_id} - {self.screen_name} - {self.role}"
 
 
 class Invite(models.Model):

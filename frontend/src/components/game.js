@@ -10,6 +10,7 @@ import DemandCards from "./gameui/demands"
 import PickupGoods from "./gameui/goods"
 import TrainCargo from "./gameui/cargo"
 import TurnIndicator from "./gameui/turnindicator"
+import PlayerDisplay from "./gameui/playerdisplay"
 
 const Game = (props) => {
   const gameId = props.gameId
@@ -43,6 +44,7 @@ const Game = (props) => {
   return (
     <PlayBoard actions={actions} setNeedToFetch={() => {}} gameId={gameId} inputMode={inputMode} highlightCity={highlightCity} highlightGood={highlightGood}>
       <div style={{ zIndex: 1, position: "relative" }}>
+        <PlayerDisplay actions={actions}/>
         <HostingTools actions={actions} show={showHostingTools} gameId={gameId}/>
         <div style={{ position: "fixed", bottom: "0%", backgroundColor: "#ddd", padding: "5px" }}>
           <CrayonChooser playerId={myPlayerId} actions={actions} setCrayon={(color) => {setMyColor(gameId, myPlayerId, color)}}/>
