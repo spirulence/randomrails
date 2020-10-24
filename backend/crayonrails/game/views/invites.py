@@ -57,3 +57,58 @@ def invite_use(request, game_id, invite_code):
         lobby_access.save()
         login(request, user)
         return redirect(f"/static/?game_id={game_id}")
+
+
+def rejoin_create(request, game_id, slot_id):
+    if not is_creator(request, game_id):
+        return HttpResponseForbidden("can't rejoin people to a game you didn't create")
+
+    try:
+        slot_obj = PlayerSlot.object.get(slot_id)
+        slot_obj.user = None
+        slot_obj.save()
+    except:
+        return HttpResponseForbidden()
+
+    invite = Invite(
+        game_id=game_id, 
+        code=random_joincode(), 
+        expires_at=timezone.now() + datetime.timedelta(minutes=5),
+        slot = slot_obj   
+    )
+    invite.save()
+
+    return JsonResponse({
+        "result": {"invite": invite.code}
+    })
+
+    
+
+def invite_rejoin_game(request, game_id, code):
+
+    if not code:
+        return HttpResponseForbidden('<h1>Bad Credentials<h1>')
+    
+    try:
+        rejoin_obj = Invite.objects.get(game_id = game_id, code=code)
+    except Invite.DoesNotExist:
+        time.sleep(random.uniform(1, 3))
+        return HttpResponseForbidden('<h1>Bad Credentials<h1>')
+    
+    if rejoin_obj.expires_at < timezone.now():
+        return HttpResponseForbidden('<h1>Invite Expired<h1>')
+    
+    if request.user.is_authenticated:
+        try:
+            rejoin_obj.slot.user = request.user
+            rejoin_obj.slot.save()
+            return redirect(f"/static/?game_id={game_id}")
+        except AttributeError as e:
+            return HttpResponseForbidden('<h1>Invalid Rejoin URL<h1>')
+    else:
+        user = User.objects.create_user(f"{rejoin_obj.id}-{game_id}-{secrets.token_hex(8)}")
+        rejoin_obj.slot.user = user
+        rejoin_obj.slot.save()
+        login(request, user)
+        return redirect(f"/static/?game_id={game_id}")
+

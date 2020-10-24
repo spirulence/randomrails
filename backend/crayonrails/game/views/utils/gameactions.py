@@ -126,6 +126,11 @@ def is_started(game_id):
         return False
 
 
+#TODO: Implement end game logic
+def isEnded(game_id):
+    pass
+
+
 def get_current_turn(game_id):
     most_recently_started = GameAction.objects.filter(game_id=game_id, type="start_turn").order_by("-sequence_number").first()
     return json.loads(most_recently_started.data)["playOrder"]
