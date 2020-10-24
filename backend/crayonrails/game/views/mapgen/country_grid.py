@@ -28,7 +28,7 @@ class CountryMap(object):
 
         self.seed_countries()
 
-        for i in range(len(self.all_coordinates) // 36):
+        for i in range(len(self.all_coordinates) // 4):
             self.grow()
 
         for i in range(5):
