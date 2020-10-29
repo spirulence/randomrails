@@ -46,4 +46,7 @@ urlpatterns = [
 
     path('<int:game_id>/invite/use/<str:invite_code>/', views.invite_use, name='invite_use'),
     path('<int:game_id>/invite/create/', views.invite_create, name='invite_create'),
+
+    path('<int:game_id>/rejoin/create/<str:slot_id>', views.rejoin_create, name='rejoin_create'),
+    path('<int:game_id>/rejoin/use/<str:code>', views.invite_rejoin_game, name='rejoin_game')
 ]

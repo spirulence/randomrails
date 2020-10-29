@@ -53,11 +53,15 @@ const HostingTools = (props) => {
   return (
     <div style={{ display: props.show ? "block" : "none", backgroundColor: "#ddd", borderTop:"black solid 10px" }}>
       <h5>Hosting Tools</h5>
-      {gameIsStarted(actions) ? <></> : <button onClick={() => {
-        gameapi.startGame(gameId)
-      }}>Start Game</button>}
-      <p>Invite others! {joincodePrefix + joincode}</p>
-      {playersHtml}
+      {
+      gameIsStarted(actions) ? 
+        <></> : 
+        <div>
+          <button onClick={() => {gameapi.startGame(gameId)}}>Start Game</button>
+          <p>Invite others! {joincodePrefix + joincode}</p>
+        </div>
+      }
+        {playersHtml}
     </div>
   )
 }
