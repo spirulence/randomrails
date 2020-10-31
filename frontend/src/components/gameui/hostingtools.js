@@ -33,6 +33,15 @@ const HostingTools = (props) => {
     }>${amount}M</button>))
   }
 
+  function copyRejoinCodeButton(playerId){
+    return <button onClick={() => {
+      gameapi.createRejoinCode(gameId, playerId).then(code => {
+        const fullRejoinUrl = window.location.protocol + "//" + window.location.host + `/game/${gameId}/rejoin/use/${code}`
+        navigator.clipboard.writeText(fullRejoinUrl).then(() => {alert("rejoin code copied")});
+      })
+    }}>Copy Rejoin Code</button>
+  }
+
   const players = Object.values(gamestate.currentPlayers(actions))
   players.sort(p => p.playOrder)
 
@@ -44,7 +53,7 @@ const HostingTools = (props) => {
           width: "30px",
           height: "30px",
           marginRight: "5px",
-        }}/>{moneyButtons(player.playerId)}</p>
+        }}/>{moneyButtons(player.playerId)}{copyRejoinCodeButton(player.playerId)}</p>
       </div>
     })
 

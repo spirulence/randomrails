@@ -11,7 +11,7 @@ from django.utils import timezone
 from django.views.decorators.http import require_POST
 
 from .utils.permissions import is_creator
-from ..models import Invite, LobbyAccess, PlayerSlot, GameAction, G
+from ..models import Invite, LobbyAccess, PlayerSlot, GameAction
 
 
 def random_joincode():
@@ -52,6 +52,7 @@ def invite_use(request, game_id, invite_code):
     '''
 
     # Checks if an invite code is not specified returning an error
+    if not invite_code:
         return HttpResponseForbidden("<h1>Bad credentials</h1>")
 
     # Checks if game is already started
@@ -66,6 +67,9 @@ def invite_use(request, game_id, invite_code):
         # Slows down the response time to avoid attacks
         time.sleep(random.uniform(1, 3))
         return HttpResponseForbidden("<h1>Bad credentials</h1>")
+
+    if invite.slot:
+        return HttpResponseForbidden("<h1>That's a rejoin code, bruh</h1>")
 
     # Checks if the invite code has expired
     if invite.expires_at < timezone.now():
@@ -99,6 +103,13 @@ def rejoin_create(request, game_id, slot_id):
     # Checks if the requester is the creator of the game
     if not is_creator(request, game_id):
         return HttpResponseForbidden("Can't rejoin people to a game you didn't create")
+
+    try:
+        slot_obj = PlayerSlot.objects.get(id=slot_id)
+        if slot_obj.role == "creator":
+            return HttpResponseForbidden("Can't rejoin a creator slot")
+    except PlayerSlot.DoesNotExist:
+        return HttpResponseForbidden("that slot doesn't exist")
 
     try:
         slot_obj = PlayerSlot.objects.get(id=slot_id)
@@ -139,6 +150,8 @@ def invite_rejoin_game(request, game_id, code):
         try:
             rejoin_obj.slot.user = request.user
             rejoin_obj.slot.save()
+            rejoin_obj.expires_at = timezone.now()
+            rejoin_obj.save()
             return redirect(f"/static/?game_id={game_id}")
         except AttributeError as e:
             return HttpResponseForbidden('<h1>Invalid Rejoin URL<h1>')
@@ -146,6 +159,8 @@ def invite_rejoin_game(request, game_id, code):
         user = User.objects.create_user(f"{rejoin_obj.id}-{game_id}-{secrets.token_hex(8)}")
         rejoin_obj.slot.user = user
         rejoin_obj.slot.save()
+        rejoin_obj.expires_at = timezone.now()
+        rejoin_obj.save()
         login(request, user)
         return redirect(f"/static/?game_id={game_id}")
 
