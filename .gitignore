@@ -2,3 +2,5 @@
 /backend/crayonrails/game/static
 /backend/crayonrails/staticfiles
 /.idea/
+
+**/__pycache__/
