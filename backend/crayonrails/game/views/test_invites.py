@@ -171,20 +171,20 @@ class RejoinUse(TestCase):
 
         self.factory = RequestFactory()
 
-    # def test_anonymous_user(self):
-    #     request = self.factory.post("")
-    #
-    #     request.user = self.creator
-    #
-    #     response = rejoin_create(request, self.game.id, self.other_slot.id)
-    #     code = json.loads(response.content)["result"]["invite"]
-    #
-    #     request = self.factory.post("")
-    #     request.session = self.client.session
-    #     request.user = AnonymousUser()
-    #
-    #     response = invite_rejoin_game(request, game_id=self.game.id, code=code)
-    #     self.assertEqual(response.status_code, 200)
+    def test_anonymous_user(self):
+        request = self.factory.post("")
+
+        request.user = self.creator
+
+        response = rejoin_create(request, self.game.id, self.other_slot.id)
+        code = json.loads(response.content)["result"]["invite"]
+
+        request = self.factory.post("")
+        request.session = self.client.session
+        request.user = AnonymousUser()
+
+        response = invite_rejoin_game(request, game_id=self.game.id, code=code)
+        self.assertEqual(response.status_code, 302)
 
     def test_known_user(self):
         request = self.factory.post("")
