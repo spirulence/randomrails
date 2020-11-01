@@ -1,4 +1,10 @@
 /backend/crayonrails/db.sqlite3
 /backend/crayonrails/game/static
 /backend/crayonrails/staticfiles
+
+#python generated files
+**/__pycache__/
+
+#IDE configuration
 /.idea/
+.vscode/

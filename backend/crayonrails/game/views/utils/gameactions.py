@@ -4,11 +4,20 @@ from collections import defaultdict
 from .colors import standard_colors
 from ...models import GameAction
 
+''' gameactions.py : Game Actions/History that is storeable in the GameActions Table. These actions are queried to return specific pieces information'''
 
 def get_current_track(game_id):
-    track = set()
+    ''' Gets all Add and Erase track actions performed in the game
+    Args:
+        game_id: Id of the game
+    '''
+    
+    track = set()   # Ensures only unique track actions are stored
 
+    # Gets all the actions performed that are add or erase track sequentially
     for action in GameAction.objects.filter(game_id=game_id, type__in=["add_track", "erase_track"]).order_by('sequence_number'):
+
+        # Checks action and returns a list of tracks to and from that are stored in json format
         if action.type == "add_track":
             (x1, y1), (x2, y2) = sorted((json.loads(action.data)["from"], json.loads(action.data)["to"]))
             track.add((x1, y1, x2, y2))
@@ -22,18 +31,30 @@ def get_current_track(game_id):
     return track
 
 def last_game_action(game_id):
+    '''Retrieves the last action performed in the game'''
     return GameAction.objects.filter(game_id=game_id).order_by('-sequence_number').first()
 
 
 def get_current_train_location(game_id, player_id):
+    ''' Gets the current location of the train in the game for the player
+    Args:
+        game_id: Id of the game
+        player_id: Id of the player
+    '''
+    # Gets the train in the log for the game specified
     for action in GameAction.objects.filter(game_id=game_id, type="move_train").order_by('-sequence_number'):
         if json.loads(action.data)["playerId"] == player_id:
             return tuple(json.loads(action.data)["to"])
 
 
 def get_goods_map(game_id):
+    ''' Gets good locations in the game map
+    Args:
+        game_id: Id of the game
+    '''
     goods_to_locations = defaultdict(list)
 
+    # Fitler the actions performed in the game by available_goods and return all the locations of those goods
     for action in GameAction.objects.filter(game_id=game_id):
         data = json.loads(action.data)
         if "available_goods" in data:
@@ -44,8 +65,13 @@ def get_goods_map(game_id):
 
 
 def get_cities_map(game_id):
+    ''' Gets all the cities in the map
+    Args:
+        game_id: Id of the game
+    '''
     cities = {}
 
+    # Filter all the actions in the actions in the game and return the location of the cities in the map
     for action in GameAction.objects.filter(game_id=game_id):
         data = json.loads(action.data)
         if "city" in action.type:
@@ -55,11 +81,18 @@ def get_cities_map(game_id):
 
 
 def get_money_for_player(game_id, player_id):
+    ''' Gets the current amount of money a user has in game
+    Args:
+        game_id: Id of the game
+        player_id: Id of the player
+    '''
+    # Gets all the actions in the game and return the sum of the money adjusted in the game
     actions = GameAction.objects.filter(game_id=game_id, type="adjust_money")
     return sum(json.loads(a.data)["amount"] for a in actions if json.loads(a.data)["playerId"] == player_id)
 
 
 def get_current_goods_carried(game_id, player_id):
+
     deliver_actions = filter(lambda a: json.loads(a.data)["playerId"] == player_id,
                              GameAction.objects.filter(game_id=game_id, type="good_delivered"))
     already_delivered_ids = set(json.loads(da.data)["pickupId"] for da in deliver_actions)
@@ -124,6 +157,11 @@ def is_started(game_id):
         return True
     except GameAction.DoesNotExist:
         return False
+
+
+#TODO: Implement end game logic
+def isEnded(game_id):
+    pass
 
 
 def get_current_turn(game_id):

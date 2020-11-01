@@ -23,6 +23,7 @@ class Invite(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     code = models.CharField(max_length=100)
     expires_at = models.DateTimeField()
+    slot = models.ForeignKey(PlayerSlot, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"Invite to Game {self.game_id}"

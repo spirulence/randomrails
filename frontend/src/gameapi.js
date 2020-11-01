@@ -1,5 +1,10 @@
 import base64 from "react-native-base64"
 
+export function createRejoinCode(gameId, playerId) {
+  return fetch(`/game/${gameId}/rejoin/create/${playerId}`, { method: "POST" }).then(response => response.json()).then(data => data.result.invite)
+}
+
+
 export function discardAllDemands(gameId) {
   fetch(`/game/${gameId}/actions/demand/discard/all/`, { method: "POST" })
 }
