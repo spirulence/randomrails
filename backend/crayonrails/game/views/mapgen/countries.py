@@ -1,4 +1,5 @@
 import json
+import pathlib
 import random
 
 from .standard import random_goods, random_separate_map_points, only_distant_locations, random_city_names, \
@@ -8,6 +9,11 @@ from .country_grid import CountryMap
 
 MAP_WIDTH = 87
 MAP_HEIGHT = 50
+
+
+def random_country_names(n):
+    with open(pathlib.Path(__file__).with_name("country-names.txt")) as names:
+        return [name.strip() for name in random.sample(list(names.readlines()), n)]
 
 
 def build_new_map(game):
@@ -67,16 +73,28 @@ def build_new_map(game):
     grid.generate(MAP_WIDTH, MAP_HEIGHT)
 
     country_colors = "#ed1c24ff #f58e90ff #fdfffcff #235789ff #8a9546ff #f1d302ff #7a6a01ff #020100ff".split()
+    country_names = random_country_names(8)
 
     for country_number, cells in grid.cells_by_country.items():
+
+        min_x = min(cells, key=lambda cell: cell[0])[0]
+        max_x = max(cells, key=lambda cell: cell[0])[0]
+        min_y = min(cells, key=lambda cell: cell[1])[1]
+        max_y = max(cells, key=lambda cell: cell[1])[1]
+
+        label_x, label_y = (min_x + max_x) // 2, (min_y + max_y) // 2
+
+        if (label_x, label_y) not in cells:
+            label_x, label_y = random.choice(cells)
+
         GameAction(
             game_id=game.id,
             sequence_number=sequence_number,
             type="add_country",
             data=json.dumps({
-                "name": str(country_number),
+                "name": country_names[country_number],
                 "color": country_colors[country_number],
                 "cells": cells,
-                "labelPoint": random.choice(cells)
+                "labelPoint": (label_x, label_y)
             })).save()
         sequence_number += 1
