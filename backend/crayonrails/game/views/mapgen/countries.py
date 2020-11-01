@@ -1,7 +1,6 @@
 import json
 import pathlib
 import random
-import functools
 
 from .standard import random_goods, random_separate_map_points, only_distant_locations, random_city_names, \
     random_map_point, only_close_locations
