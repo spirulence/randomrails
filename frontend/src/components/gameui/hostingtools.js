@@ -12,10 +12,6 @@ const HostingTools = (props) => {
   const [joincode, setJoincode] = useState("")
 
   useEffect(() => {
-    setJoincodePrefix(window.location.protocol + "//" + window.location.host + `/game/${gameId}/invite/use/`)
-  }, [gameId])
-
-  useEffect(() => {
     createInviteCode(gameId, setJoincode)
 
     const interval = setInterval(() => {
@@ -31,6 +27,13 @@ const HostingTools = (props) => {
       gameapi.adjustMoney(gameId, playerId, amount)
     }
     }>${amount}M</button>))
+  }
+
+  function copyInviteLinkButon(){
+    return <button onClick={() => {
+        const fullInviteUrl = window.location.protocol + "//" + window.location.host + `/game/${gameId}/invite/use/${joincode}`
+        navigator.clipboard.writeText(fullInviteUrl).then(() => {alert("invite code copied")});
+      }}>Copy Invite Code</button>
   }
 
   function copyRejoinCodeButton(playerId){
@@ -67,7 +70,7 @@ const HostingTools = (props) => {
         <></> : 
         <div>
           <button onClick={() => {gameapi.startGame(gameId)}}>Start Game</button>
-          <p>Invite others! {joincodePrefix + joincode}</p>
+          <p>Invite others! {copyInviteLinkButon()}</p>
         </div>
       }
         {playersHtml}
