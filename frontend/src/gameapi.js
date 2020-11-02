@@ -81,3 +81,7 @@ export function startGame(gameId){
 export function undoTrack(gameId){
   fetch(`/game/${gameId}/actions/undo/track/last/`, { method: "POST" })
 }
+
+export function fetchMyRole(gameId, setRole){
+  fetch(`/game/${gameId}/my-membership/`).then(response => response.json()).then(data => {setRole(data.role)})
+}

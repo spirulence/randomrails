@@ -89,8 +89,8 @@ def game_my_membership(request, game_id):
     if request.user.is_authenticated:
         try:
             # Checks the Game's Player slot to see if the player is joined
-            PlayerSlot.objects.get(game_id=game_id, user_id=request.user.id)
-            return JsonResponse({"result": "joined_game"})
+            slot = PlayerSlot.objects.get(game_id=game_id, user_id=request.user.id)
+            return JsonResponse({"result": "joined_game", "role": slot.role})
         except PlayerSlot.DoesNotExist:
             pass
 
