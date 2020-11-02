@@ -17,6 +17,7 @@ const Game = (props) => {
 
   const [actions, setActions] = useState([]);
   const [myPlayerId, setMyPlayerId] = useState(null);
+  const [myRole, setRole] = useState("guest")
   const [showHostingTools, setShowHostingTools] = useState(false);
   const [inputMode, setInputMode] = useState("none")
   const [highlightCity, setHighlightCity] = useState(null)
@@ -28,6 +29,10 @@ const Game = (props) => {
 
   useEffect(() => {
     gameapi.fetchMyPlayerId(gameId, setMyPlayerId)
+  }, [gameId])
+
+  useEffect(() =>{
+    gameapi.fetchMyRole(gameId, setRole)
   }, [gameId])
 
   useEffect(() => {
@@ -53,7 +58,7 @@ const Game = (props) => {
           <button style={{display: "inline"}} disabled={inputMode === "move_train"} onClick={() => {setInputMode("move_train")}}>Move Train</button>
           <button style={{display: "inline"}} disabled={inputMode === "add_track"} onClick={() => {setInputMode("add_track")}}>Add Track</button>
           <button style={{display: "inline"}} disabled={inputMode === "erase_track"} onClick={() => {setInputMode("erase_track")}}>Erase Track</button>
-          <button style={{marginRight: "3px", marginLeft:"3px"}} onClick={() => {setShowHostingTools(!showHostingTools)}}>Toggle Host Tools</button>
+          {myRole === "creator" ? <button style={{marginRight: "3px", marginLeft:"3px"}} onClick={() => {setShowHostingTools(!showHostingTools)}}>Toggle Host Tools</button> : <></>}
           <button style={{display: "inline"}} disabled={inputMode !== "add_track"} onClick={() => {gameapi.undoTrack(gameId)}}>Undo Add Track</button>
         </div>
         <div style={{ position: "fixed", bottom: "60px" }}>
